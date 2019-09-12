@@ -129,8 +129,12 @@
                             })
                         } else {
                             $('#formAdd')[0].reset();
-                            console.log(res.message);
-                            alert(res.message);
+                            // console.log(res.message);
+                            Swal.fire(
+                                'Good job!',
+                                res.message,
+                                'success'
+                            )
                             location.reload();
                         }
                     },
