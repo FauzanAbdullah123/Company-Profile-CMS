@@ -41,3 +41,4 @@ class CreateTagsTable extends Migration
         Schema::dropIfExists('article_tag');
     }
 }
+

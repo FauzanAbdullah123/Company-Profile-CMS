@@ -57,15 +57,14 @@
                                     </center>
                                 </td>
 
-                                <td><center><a href="{{route('article.edit',$data->id)}}">
+                                <td><center>
                                             <button type="button" id="edit-data" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#edit" data-id="'.$row->id.'"
                                             data-id="{{ $data->id }}" 
                                             data-judul="{{ $data->judul }}"
                                             data-konten="{{ $data->konten }}" 
-                                            data-foto="{{ $data->foto }}"
+                                
                                             data-category="{{ $data->category->nama }}"
                                             data-tag="{{ $data->tag->nama }}"><i class="fa fa-edit"></i></button>
-                                            </a>
                                     </center>
                                 </td>
                                 <td>
@@ -149,7 +148,7 @@
         var id = button.data('id')
         var judul = button.data('judul')
         var konten = button.data('konten') 
-        var foto = button.data('foto')
+        // var foto = button.data('foto')
         var category = button.data('category')
         var tag = button.data('tag')
        
@@ -158,7 +157,7 @@
         modal.find('input[name="id"]').val(id)
         modal.find('input[name="judul"]').val(judul)
         modal.find('input[name="konten"]').val(konten)
-        modal.find('input[name="foto"]').val(foto)
+        // modal.find('input[name="foto"]').val(foto)
         modal.find('input[name="category_id"]').val(category)
         modal.find('input[name="tag_id"]').val(tag)
     })  

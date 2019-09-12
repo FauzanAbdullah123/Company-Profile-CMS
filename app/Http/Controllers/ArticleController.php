@@ -21,7 +21,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $article = Article::all();
+        $article = Article::orderBy('created_at', 'desc')->get();
         return view('admin.article.index', compact('article'));
     }
 
@@ -45,33 +45,34 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-           $request->validate([
+        $request->validate([
             'judul' => 'required|unique:articles',
-            'konten' => 'required|min:50',
-            'foto' => 'required|mimes:jpeg.jpg.png.gif|required|max:2048',
+            'konten' => 'required|min:30',
+            'foto' => 'required|mimes:jpeg,jpg,png,gif|required|max:2048',
             'category_id' => 'required',
             'tag_id' => 'required'
         ]);
-        $article = new Article;
-        $article->judul = $request->judul;
-        $article->slug = str_slug($request->judul);
-        $article->konten = $request->konten;
-        $article->user_id = Auth::user()->id;
-        $article->category_id = $request->category;
-        if ($request->hasFile('foto')) {
-            $file = $request->file('foto');
-            $destinationPath = public_path() . '/assets/img/article/';
-            $filename = str_random(6) . '_' . $file->getClientOriginalName();
-            $uploadSuccess = $file->move($destinationPath, $filename);
-            $article->foto = $filename;
-        }
-        $article->save();
-        $article->tag()->attach($request->tag);
-        Session::flash("flash_notification", [
-            "level" => "success",
-            "message" => "Berhasil menyimpan data article berjudul <b>$article->judul</b>!"
-        ]);
-        return view('admin.article.index');
+       $article = new Article();
+       $article->judul = $request->judul;
+       $article->slug = str_slug($request->judul, '-');
+       $article->konten = $request->konten;
+       $article->user_id = Auth::user()->id;
+       $article->category_id = $request->category;
+       if ($request->hasFile('foto')){
+           $file = $request->file('foto');
+           $path = public_path().
+                           '/assets/img/article/';
+           $filename = str_random(6).'_'
+                       .$file->getClientOriginalName();
+           $uploadSuccess = $file->move(
+               $path,
+               $filename
+           );
+           $article->foto = $filename;
+       }
+       $article->save();
+       $article->tag()->attach($request->tag_id);
+       return redirect()->route('article.index');     
     }
 
     /**
@@ -91,7 +92,7 @@ class ArticleController extends Controller
      * @param  \App\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function edit(Article $article)
+    public function edit($id)
     {
         $article = Article::findOrFail($id);
         $category = Category::all();
@@ -107,7 +108,7 @@ class ArticleController extends Controller
      * @param  \App\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Article $article)
+    public function update(Request $request, $id)
     {
            $request->validate([
             'judul' => 'required|unique:articles',
@@ -115,7 +116,7 @@ class ArticleController extends Controller
             'foto' => 'required|mimes:jpeg.jpg.png.gif|required|max:2048',
             'category_id' => 'required',
             'tag_id' => 'required']);
-        $article = Article::findOrFail($id);
+        $article = Article::findOrFail($request->id);
         $article->judul = $request->judul;
         $article->slug = str_slug($request->judul);
         $article->konten = $request->konten;
