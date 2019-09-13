@@ -15,6 +15,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('image', 'ImageController@index');
+Route::post('save-image', 'ImageController@save');
+
 Auth::routes(['register' => false]);
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -23,6 +26,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('/', function() {
         return view('admin.index');
     });
+    Route::resource('/service', 'ServiceController');
     Route::resource('/article', 'ArticleController');
     Route::resource('/category', 'CategoryController');
     Route::resource('/tag', 'TagController');

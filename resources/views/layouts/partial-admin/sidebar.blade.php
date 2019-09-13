@@ -23,15 +23,16 @@
           </a>
         </li>
 
-        <li class="{{ (Request::segment(2) == 'category' || Request::segment(2) == 'tag') ? 'active treeview menu-open' : 'treeview' }}">
+        <li class="{{ ( Request::segment(2) == 'article' || Request::segment(2) == 'category' || Request::segment(2) == 'tag') ? 'active treeview menu-open' : 'treeview' }}">
           <a href="#">
             <i class="fa fa-cog"></i>
-            <span>Manage</span>
+            <span>Blog</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
+            <li class="{{ (Request::segment(2) == 'article') ? 'active' : '' }}"><a href="{{ route('article.index') }}"><i class="fa fa-circle-o"></i>Article</a></li>
             <li class="{{ (Request::segment(2) == 'category') ? 'active' : '' }}"><a href="{{ route('category.index') }}"><i class="fa fa-circle-o"></i>Kategori</a></li>
             <li class="{{ (Request::segment(2) == 'tag') ? 'active' : '' }}"><a href="{{ route('tag.index') }}"><i class="fa fa-circle-o"></i>Tag</a></li>
           </ul>

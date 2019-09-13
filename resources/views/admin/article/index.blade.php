@@ -12,67 +12,77 @@
 @include('admin.article.create')
 @include('admin.article.edit')
 @include('layouts.flash')
+
 <section class="content">
     <div class="row">
         <div class="col-xs-12">
             <div class="box">
                 <div class="box-header">
                     <h3 class="box-title">
-                        <button id="tambah-data" type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#tambah">Add Data</button>
+                        <button id="tambah-data" type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modalAdd">Add Data</button>
                     </h3>
                 </div>
+            <table>
+            <tr>
+                <td>&nbsp &nbsp</td>
+                <form action="{{ route('article.index') }}">
+                    <td><input type="text" class="form-control" name="cari" placeholder="Search"></td>
+                    <td>&nbsp &nbsp</td>
+                      <td><button class="btn btn-primary"><i class="fa fa-search"></i></button></td>
+                </form>
+            </tr>
+            </table>    
                 <!-- /.box-header -->
                 <div class="box-body">
                     <table id="" class="table table-bordered table-hover">
                         <thead>
                             <tr>
-                                <th>Title</th>
-                                <th>Slug</th>
-                                <th>Category</th>
-                                <th>Tag</th>
-                                <th>Author</th>
-                                <th>Image</th>
-                                <th style="text-align: center;">Action</th>
+                                <th><center> No </center></th>
+                                <th><center> Title </center></th>
+                                <th><center> Slug </center></th>
+                                <th><center> Category </center></th>
+                                <th><center> Tags </center></th>
+                                <th><center> Author </center></th>
+                                <th><center> Image </center></th>
+                                <th colspan="2" style="text-align: center;">Action</th>
                             </tr>
                         </thead>
                         <tbody>
+                        @php $no =1; @endphp
                         @foreach ($article as $data)
                             <tr>
-                                <td>{{$data->judul}}</td>
-                                <td>{{$data->slug}}</td>
-                                <td>{{$data->category->nama}}</td>
-                                <td>
+                                <td><center> {{ $no++ }}</td></center>
+                                <td><center> {{$data->judul}}</td></center>
+                                <td><center> {{$data->slug}}</td></center>
+                                <td><center> {{$data->category->nama}}</td></center>
+                                <td><center> 
                                     <ol>
                                         @foreach($data->tag as $a)
                                             <li>{{ $a->nama }}</li>
                                         @endforeach
                                     </ol>
-                                </td>
-                                <td>{{$data->user->name}}</td>
+                                </td></center>
+                                <td><center> {{$data->user->name}}</td></center>
                                 <td>
                                     <center>
-                                    <img width="200px" height="200px"
+                                    <img width="60px" height="60px"
                                     src="{{ asset('assets/img/article/'. 
                                     $data->foto.'') }}" alt="Foto" style="border-radius: 6%">
                                     </center>
                                 </td>
 
-                                <td><center>
-                                            <button type="button" id="edit-data" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#edit" data-id="'.$row->id.'"
-                                            data-id="{{ $data->id }}" 
-                                            data-judul="{{ $data->judul }}"
-                                            data-konten="{{ $data->konten }}" 
-                                
-                                            data-category="{{ $data->category->nama }}"
-                                            data-tag="{{ $data->tag->nama }}"><i class="fa fa-edit"></i></button>
-                                    </center>
+                                <td align="right">
+                                <button type="button" id="edit-data" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#edit"
+                                                data-id="{{ $data->id }}" 
+                                                data-judul="{{ $data->judul }}"
+                                                data-konten="{{ $data->konten }}"
+                                                data-cat="{{ $data->category->nama }}"><i class="fa fa-edit"></i></button>
                                 </td>
                                 <td>
-                                    <form action="{{ route('article.destroy',$data->id) }}" method="post">
+                                    <form action="{{ route('article.destroy', $data->id) }}" method="post">
                                         @csrf
                                         <input type="hidden" name="_method" value="DELETE">
-                                        <button type="submit" id="hapus-data" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modalHapus" data-id="'.$row->id.'" data-nama="'.$row->nama.'"><i class="fa fa-trash-o"></i></button>
-                                            Hapus Data
+                                        <button type="submit" id="hapus-data" class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>
                                         </button>
                                     </form>
                                 </td>
@@ -103,8 +113,8 @@
     <!-- AdminLTE Skins. Choose a skin from the css/skins
         folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="{{ asset('AdminLTE/dist/css/skins/_all-skins.min.css') }}">
-
     <link rel="stylesheet" href="{{asset('AdminLTE/assets/vendor/select2/select2.min.css')}}">
+
 @endsection
 
 @push('js')
@@ -131,7 +141,7 @@
     <!-- AdminLTE for demo purposes -->
     <script src="{{ asset('AdminLTE/dist/js/demo.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
-    
+   
     <script src="{{asset('AdminLTE/assets/vendor/ckeditor/ckeditor.js')}}"></script>
     <script src="{{asset('AdminLTE/assets/vendor/select2/select2.min.js')}}"></script>
     <script src="{{asset('AdminLTE/assets/js/components/select2-init.js')}}"></script>
@@ -143,23 +153,25 @@
     </script>
 
     <script>
+        CKEDITOR.replace( 'editor2' );
+        $(document).ready(function () {
+        $('#s2_demo3').select2();
+    })
+    </script>
+    
+    <script>
         $('#edit').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget) // Button that triggered the modal
         var id = button.data('id')
         var judul = button.data('judul')
-        var konten = button.data('konten') 
-        // var foto = button.data('foto')
-        var category = button.data('category')
-        var tag = button.data('tag')
-       
+        var konten = button.data('konten')
+        var cat = button.data('cat')
         var modal = $(this)
     
         modal.find('input[name="id"]').val(id)
         modal.find('input[name="judul"]').val(judul)
         modal.find('input[name="konten"]').val(konten)
-        // modal.find('input[name="foto"]').val(foto)
-        modal.find('input[name="category_id"]').val(category)
-        modal.find('input[name="tag_id"]').val(tag)
+        modal.find('input[name="category_id"]').val(cat)
     })  
         </script>
 @endpush

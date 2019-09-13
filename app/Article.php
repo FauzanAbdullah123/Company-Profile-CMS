@@ -10,14 +10,16 @@ class Article extends Model
     use LogsActivity;
 
     protected $fillable = [
-        'judul', 'slug','foto',
-        'konten', 'user_id', 'category_id'
+        'judul', 'slug','konten',
+        'foto', 'category_id', 'user_id'
     ];
     public $timestamps = true;
-    public function category()
+
+    public function Category()
     {
         return $this->belongsTo('App\Category', 'category_id');
     }
+
     public function user()
     {
         return $this->belongsTo('App\User', 'user_id');

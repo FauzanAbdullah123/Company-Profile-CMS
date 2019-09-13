@@ -69,6 +69,7 @@
                                     <div class="timeline-body">
                                         Pada Hari {{ $dateDay }}, {{ $data->causer->name }} melakukan perubahan pada model <b>{{ substr($data->subject_type, 4) }}</b>
                                         <ul>
+
                                             @if($data->description == 'updated')
                                                 <li>Data {{ substr($data->subject_type, 4) }} dengan nama
                                                     @foreach($data->properties['old'] as $attr => $old)

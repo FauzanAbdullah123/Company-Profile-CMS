@@ -161,6 +161,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        
 
         /*
          * Package Service Providers...
@@ -168,6 +169,7 @@ return [
         Yajra\DataTables\DataTablesServiceProvider::class,
         'Jenssegers\Date\DateServiceProvider',
         Barryvdh\Cors\ServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -228,7 +230,8 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
-        'Date' => Jenssegers\Date\Date::class
+        'Date' => Jenssegers\Date\Date::class,
+        'Image' => Intervention\Image\Facades\Image::class
     ],
 
 ];

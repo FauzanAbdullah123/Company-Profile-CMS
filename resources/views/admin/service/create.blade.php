@@ -9,11 +9,19 @@
                     </button>
             </div>
                 <div class="modal-body">
-                <form action="{{ route('category.store') }}" method="post">
+                <form action="{{ route('service.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
-                        <label for="nama">Category Name</label>
-                        <input id="nama" class="form-control" type="text" name="nama">
+                        <label>Foto</label>
+                        <input type="file" name="foto" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Judul</label>
+                        <input type="text" name="title" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label><left>Deskripsi</left></label>
+                        <textarea name="desc" id="texteditor" class="form-control" required> </textarea>
                     </div>
                 </div>
                 <div class="modal-footer">

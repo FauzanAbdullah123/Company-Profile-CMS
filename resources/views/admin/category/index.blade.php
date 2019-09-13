@@ -1,61 +1,35 @@
 @extends('layouts.admin')
 
 @section('title-website')
-    Category
+    Kategori
 @endsection
 
 @section('title')
-    Data Category
+    Data Kategori
 @endsection
 
-@section('content')
-@include('admin.category.create')
-@include('admin.category.edit')
-@include('layouts.flash')
+@include ('layouts.flash')
 
+@section('content')
 <section class="content">
     <div class="row">
         <div class="col-xs-12">
             <div class="box">
                 <div class="box-header">
                     <h3 class="box-title">
-                        <button id="tambah-data" type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modalAdd">Add Data</button>
+                        <button id="tambah-data" type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modalAdd">Tambah Data</button>
                     </h3>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
                     <table id="dataTable" class="table table-bordered table-hover">
                         <thead>
-                        <tr>
                             <th>No</th>
                             <th>Category Name</th>
                             <th>Slug</th>
-                            <th style="text-align: center;">Action</th>
+                            <th>Action</th>
                         </thead>
-                        </tr>
                         <tbody class="data-kategori">
-                        @php $no =1; @endphp
-                        @foreach($category as $data)
-                        <tr>
-                            <td>{{ $no++ }}</td>
-                            <td>{{ $data->nama }}</td>
-                            <td>{{ $data->slug }}</td>
-                            <td><center>
-                            <button type="button" id="edit-data" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#edit"
-                                            data-id="{{ $data->id }}" 
-                                            data-nama="{{ $data->nama }}"><i class="fa fa-edit"></i></button>
-                                </center>
-                             </td>
-                            <td>
-                                <form action="{{ route('category.destroy',$data->id) }}" method="post">
-                                    @csrf
-                                    <input type="hidden" name="_method" value="DELETE">
-                                    <button type="submit" id="hapus-data" class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>
-                                    </button>
-                                 </form>
-                            </td>
-                        </tr>
-                        @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -65,6 +39,8 @@
         </div>
     </div>
 </section>
+
+@include('admin.category.modal')
 
 @endsection
 
@@ -109,14 +85,160 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 
     <script>
-        $('#edit').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget) // Button that triggered the modal
-        var id = button.data('id')
-        var nama = button.data('nama')
-        var modal = $(this)
-    
-        modal.find('input[name="id"]').val(id)
-        modal.find('input[name="nama"]').val(nama)
-    })  
-        </script>
+        $(document).ready(function (){
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            // Data Kategori
+            var table = $('#dataTable').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: "{{ route('category.index') }}",
+                columns: [
+                    {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+                    {data: 'nama', name: 'nama'},
+                    {data: 'slug', name: 'slug'},
+                    {data: 'action', name: 'action', orderable: false, searchable: false},
+                ]
+            });
+            // Tambah Data
+            $('#formAdd').on('submit', (e) => {
+                e.preventDefault();
+                $.ajax({
+                    url: '/admin/category',
+                    method: 'POST',
+                    data: {
+                        nama: $('.c-nama').val()
+                    },
+                    success: (res) => {
+                        if(res.errors) {
+                            $.each(res.errors, function(k, v) {
+                            $('.notify-alert').show();
+                            $('.notify-alert').html('')
+                            $('.notify-alert').append(
+                                    `
+                                    <div class="alert alert-danger alert-dismissible">
+                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                        <h4><i class="icon fa fa-ban"></i> Upss!</h4>
+                                        ${v}
+                                    </div>
+                                    `
+                                )
+                            })
+                        } else {
+                            $('#formAdd')[0].reset();
+                            Swal.fire(
+                                'Good job!',
+                                res.message,
+                                'success'
+                            )
+                            location.reload();
+                        }
+                    },
+                    error: (err) => {
+                        console.log(err);
+                    }
+                })
+            })
+            // Tampilan Modal Edit Data
+            $('.data-kategori').on('click', '#edit-data', function(e) {
+                e.preventDefault();
+                var id = $(this).data('id');
+                $.ajax({
+                    url: '/admin/category/'+id,
+                    method: 'GET',
+                    success: (res) => {
+                        $('.e-nama').val('');
+                        $('#modalEdit').modal('show')
+                        $('.e-nama').val(res.data.nama);
+                        $('input[id="id-kategori-e"]').val(res.data.id)
+                    },
+                    error: (err) => {
+                        console.log(err);
+                    }
+                })
+            })
+            // Update Data
+            $('#formEdit').on('submit', (e) => {
+                e.preventDefault();
+                var id = $('input[id="id-kategori-e"]').val();
+                $.ajax({
+                    url: '/admin/category/'+ id,
+                    method: 'PUT',
+                    data: {
+                        id: id,
+                        nama: $('.e-nama').val()
+                    },
+                    success: (res) => {
+                        if(res.errors) {
+                            $.each(res.errors, function(k, v) {
+                            $('.notify-alert-edit').show();
+                            $('.notify-alert-edit').html('')
+                            $('.notify-alert-edit').append(
+                                    `
+                                    <div class="alert alert-danger alert-dismissible">
+                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                        <h4><i class="icon fa fa-ban"></i> Upss!</h4>
+                                        ${v}
+                                    </div>
+                                    `
+                                )
+                            })
+                        } else {
+                            Swal.fire(
+                                'Data Successfully Edited!',
+                                res.message,
+                                'success'
+                            )
+                            location.reload();
+                            $('#formEdit')[0].reset();
+                          
+                        }
+                    },
+                    error: (err) => {
+                        console.log(err);
+                    }
+                });
+            })
+            //Tampilan Modal Hapus Data
+            $('.data-kategori').on('click', '#hapus-data', function (e) {
+                e.preventDefault();
+                var id = $(this).data('id');
+                $.ajax({
+                    url: '/admin/category/' + id,
+                    method: 'GET',
+                    success: (res) => {
+                        $('#modalHapus').modal('show');
+                        $('input[id="id-kategori-h"]').val(res.data.id)
+                        $('.t-before-h').html('Do you want to delete the category with name : <b>'+res.data.nama+'</b> ?')
+                    },
+                    error: (err) => {
+                        console.log(err);
+                    }
+                })
+            })
+            $('#formHapus').on('submit', function (e) {
+                e.preventDefault();
+                var id = $('input[id="id-kategori-h"]').val();
+                $.ajax({
+                    url: '/admin/category/'+id,
+                    method: 'DELETE',
+                    success: (res) => {
+                        Swal.fire(
+                            'Data Successfully Deleted!',
+                            res.message,
+                            'success'
+                        )
+                        location.reload();
+                        $('#formHapus')[0].reset();
+                    },
+                    error: (err) => {
+                        console.log(err);
+                    }
+                })
+            })
+        })
+    </script>
 @endpush

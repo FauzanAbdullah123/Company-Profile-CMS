@@ -1,17 +1,15 @@
 <?php
-
 namespace App\Http\Controllers;
-
+use Illuminate\Http\Request;
 use App\Article;
 use App\Category;
 use App\Tag;
 use Session;
 use App\User;
-use File;
-use Auth;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Spatie\Activitylog\Models\Activity;
-use Illuminate\Http\Request;
-
+use Illuminate\Contracts\Filesystem\FileNotFoundException;
 class ArticleController extends Controller
 {
     /**
@@ -19,12 +17,15 @@ class ArticleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $article = Article::orderBy('created_at', 'desc')->get();
+        $article = Article::orderBy('created_at', 'desc')->paginate(5);
+        $cari = $request->cari;
+        if ($cari) {
+            $article = Article::where('judul', 'LIKE', "%$cari%")->paginate(5);
+        }
         return view('admin.article.index', compact('article'));
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -36,7 +37,6 @@ class ArticleController extends Controller
         $tag = Tag::all();
         return view('admin.article.create', compact('category', 'tag'));
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -45,19 +45,12 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'judul' => 'required|unique:articles',
-            'konten' => 'required|min:30',
-            'foto' => 'required|mimes:jpeg,jpg,png,gif|required|max:2048',
-            'category_id' => 'required',
-            'tag_id' => 'required'
-        ]);
        $article = new Article();
        $article->judul = $request->judul;
        $article->slug = str_slug($request->judul, '-');
        $article->konten = $request->konten;
        $article->user_id = Auth::user()->id;
-       $article->category_id = $request->category;
+       $article->category_id = $request->kategori;
        if ($request->hasFile('foto')){
            $file = $request->file('foto');
            $path = public_path().
@@ -71,10 +64,13 @@ class ArticleController extends Controller
            $article->foto = $filename;
        }
        $article->save();
-       $article->tag()->attach($request->tag_id);
+       Session::flash("flash_notification", [
+        "level" => "success",
+        "message" => "Berhasil menyimpan article <b>$article->judul</b>!"
+    ]);
+       $article->tag()->attach($request->tag);
        return redirect()->route('article.index');     
     }
-
     /**
      * Display the specified resource.
      *
@@ -85,7 +81,6 @@ class ArticleController extends Controller
     {
         //
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -100,7 +95,6 @@ class ArticleController extends Controller
         $selected = $article->tag->pluck('id')->toArray();
         return view('admin.article.edit', compact('article', 'selected', 'category', 'tag'));
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -110,19 +104,12 @@ class ArticleController extends Controller
      */
     public function update(Request $request, $id)
     {
-           $request->validate([
-            'judul' => 'required|unique:articles',
-            'konten' => 'required|min:50',
-            'foto' => 'required|mimes:jpeg.jpg.png.gif|required|max:2048',
-            'category_id' => 'required',
-            'tag_id' => 'required']);
         $article = Article::findOrFail($request->id);
         $article->judul = $request->judul;
         $article->slug = str_slug($request->judul);
         $article->konten = $request->konten;
-        $article->user_id = Auth::user()->id;
-        $article->category_id = $request->category;
-
+        $artikel->user_id = Auth::user()->id;
+        $article->category_id = $request->kategori;
         if ($request->hasFile('foto')) {
             $file = $request->file('foto');
             $path = public_path() . '/assets/img/article';
@@ -136,7 +123,7 @@ class ArticleController extends Controller
             if ($article->foto) {
                 $old_foto = $article->foto;
                 $filepath = public_path() .
-                    '/assets/img//' .
+                    '/assets/img/article/' .
                     $article->foto;
                 try {
                     File::delete($filepath);
@@ -150,19 +137,17 @@ class ArticleController extends Controller
         $article->tag()->sync($request->tag);
         Session::flash("flash_notification", [
             "level" => "success",
-            "message" => "Berhasil edit <b>"
-                . $article->judul . "</b>"
+            "message" => "Berhasil mengedit article <b>$article->judul</b>!"
         ]);
         return redirect()->route('article.index');
     }
-
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Article $article)
+    public function destroy($id)
     {
         $article = Article::findOrFail($id);
         if ($article->foto) {
@@ -175,8 +160,8 @@ class ArticleController extends Controller
         $article->tag()->detach($article->id);
         $article->delete();
         Session::flash("flash_notification", [
-            "level" => "danger",
-            "message" => "Berhasil menghapus data article berjudul <b>$article->judul</b>!"
+            "level" => "success",
+            "message" => "Berhasil menghapus article!"
         ]);
         return redirect()->route('article.index');
     }
