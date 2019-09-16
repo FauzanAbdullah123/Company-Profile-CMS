@@ -188,7 +188,7 @@
                             })
                         } else {
                             Swal.fire(
-                                'Data Successfully Edited!',
+                                'Data Category Successfully Edited!',
                                 res.message,
                                 'success'
                             )

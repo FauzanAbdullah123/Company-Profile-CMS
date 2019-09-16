@@ -25,7 +25,7 @@
 
         <li class="{{ ( Request::segment(2) == 'article' || Request::segment(2) == 'category' || Request::segment(2) == 'tag') ? 'active treeview menu-open' : 'treeview' }}">
           <a href="#">
-            <i class="fa fa-cog"></i>
+            <i class="fa fa-globe"></i>
             <span>Blog</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
@@ -38,6 +38,24 @@
           </ul>
         </li>
 
+        <li class="{{ (Request::segment(2) == 'service') ? 'treeview active' : ''}}">
+          <a href="{{ route('service.index') }}">
+            <i class="fa fa-cogs"></i> <span>Services</span>
+          </a>
+        </li>
+
+        <li class="{{ (Request::segment(2) == 'gallery') ? 'treeview active' : ''}}">
+          <a href="{{ route('gallery.index') }}">
+            <i class="fa fa-camera"></i> <span>Gallery</span>
+          </a>
+        </li>
+
+        <li class="{{ (Request::segment(2) == 'about') ? 'treeview active' : ''}}">
+          <a href="{{ route('about.index') }}">
+            <i class="fa fa-info-circle"></i> <span>About</span>
+          </a>
+        </li>
+    
         <li class="{{ (Request::segment(2) == 'logs') ? 'treeview active' : ''}}">
           <a href="{{ route('logs.index') }}">
             <i class="fa fa-fw fa-wrench"></i> <span>Logs</span>

@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Services;
+use App\About;
 use Validator;
 use Spatie\Activitylog\Models\Activity;
 use Illuminate\Http\Request;
 
-class ServiceController extends Controller
+class AboutController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,7 +18,7 @@ class ServiceController extends Controller
     {
         if(request()->ajax())
         {
-            return Datatables()->of(Services::latest()->get())
+            return Datatables()->of(About::latest()->get())
                     ->addColumn('action', function($data){
                         $btn = '<button type="button" name="edit" class="edit btn btn-primary btn-sm" id="'.$data->id.'"><i class="fa fa-edit"></i></button>';
                         $btn = $btn.' <button type="button" name="delete" class="delete btn btn-danger btn-sm" id="'.$data->id.'"><i class="fa fa-trash-o"></i></button>';
@@ -27,7 +27,7 @@ class ServiceController extends Controller
                     ->rawColumns(['action'])
                     ->make(true);
         }
-        return view('admin.service.index');
+        return view('admin.about.index');
     }
 
     /**
@@ -37,6 +37,7 @@ class ServiceController extends Controller
      */
     public function create()
     {
+        
     }
 
     /**
@@ -48,9 +49,8 @@ class ServiceController extends Controller
     public function store(Request $request)
     {
         $rules = array(
-            'image'    =>  'required|image|max:2048',
-            'title'     =>  'required',
-            'desc'         =>  'required'
+            'title'  =>  'required',
+            'desc'   =>  'required'
         );
 
         $error = Validator::make($request->all(), $rules);
@@ -60,19 +60,12 @@ class ServiceController extends Controller
             return response()->json(['errors' => $error->errors()->all()]);
         }
 
-        $image = $request->file('image');
-
-        $new_name = rand() . '.' . $image->getClientOriginalExtension();
-
-        $image->move(public_path('/assets/img/service/'), $new_name);
-
         $form_data = array(
-            'image'        =>  $new_name,
-            'title'         =>  $request->title,
-            'desc'             => $request->desc
+            'title' =>  $request->title,
+            'desc'  => $request->desc
         );
 
-        Services::create($form_data);
+        About::create($form_data);
 
         return response()->json(['success' => 'Data Added successfully.']);
     }
@@ -98,7 +91,7 @@ class ServiceController extends Controller
     {
         if(request()->ajax())
         {
-            $data = Services::findOrFail($id);
+            $data = About::findOrFail($id);
             return response()->json(['data' => $data]);
         }
     }
@@ -111,46 +104,24 @@ class ServiceController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request)
-    {
-        $image_name = $request->hidden_image;
-        $image = $request->file('image');
-        if($image != '')
+    {        
+        $rules = array(
+            'title'    =>  'required',
+            'desc'     =>  'required'
+        );
+
+        $error = Validator::make($request->all(), $rules);
+
+        if($error->fails())
         {
-            $rules = array(
-                'image'         =>  'image|max:2048',
-                'title'    =>  'required',
-                'desc'     =>  'required'
-            );
-            $error = Validator::make($request->all(), $rules);
-            if($error->fails())
-            {
-                return response()->json(['errors' => $error->errors()->all()]);
-            }
-
-            $image_name = rand() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('/assets/img/service/'), $image_name);
-        }
-        else
-        {
-            $rules = array(
-                'title'    =>  'required',
-                'desc'     =>  'required'
-            );
-
-            $error = Validator::make($request->all(), $rules);
-
-            if($error->fails())
-            {
-                return response()->json(['errors' => $error->errors()->all()]);
-            }
+            return response()->json(['errors' => $error->errors()->all()]);
         }
 
         $form_data = array(
-            'image'            =>   $image_name,
             'title'       =>   $request->title,
             'desc'        =>   $request->desc
         );
-        Services::whereId($request->hidden_id)->update($form_data);
+        About::whereId($request->hidden_id)->update($form_data);
 
         return response()->json(['success' => 'Data is successfully updated']);
     }
@@ -163,7 +134,7 @@ class ServiceController extends Controller
      */
     public function destroy($id)
     {
-        $data = Services::findOrFail($id);
+        $data = About::findOrFail($id);
         $data->delete();
     }
 }

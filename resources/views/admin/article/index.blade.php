@@ -10,7 +10,7 @@
 
 @section('content')
 @include('admin.article.create')
-@include('admin.article.edit')
+@include('admin.article.delete')
 @include('layouts.flash')
 
 <section class="content">
@@ -72,19 +72,15 @@
                                 </td>
 
                                 <td align="right">
-                                <button type="button" id="edit-data" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#edit"
-                                                data-id="{{ $data->id }}" 
-                                                data-judul="{{ $data->judul }}"
-                                                data-konten="{{ $data->konten }}"
-                                                data-cat="{{ $data->category->nama }}"><i class="fa fa-edit"></i></button>
+                                    <a href="{{route('article.edit', $data->id)}}">
+                                    <button type="button" id="edit-data" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></button>
+                                    </a>
                                 </td>
                                 <td>
-                                    <form action="{{ route('article.destroy', $data->id) }}" method="post">
-                                        @csrf
-                                        <input type="hidden" name="_method" value="DELETE">
-                                        <button type="submit" id="hapus-data" class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>
-                                        </button>
-                                    </form>
+                                    <button type="button" id="edit-data" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#hapus"
+                                            data-id="{{ $data->id }}" 
+                                            data-judul="{{ $data->judul }}"><i class="fa fa-trash-o"></i>
+                                    </button>
                                 </td>
                             </tr>
                             @endforeach
@@ -152,26 +148,15 @@
     })
     </script>
 
-    <script>
-        CKEDITOR.replace( 'editor2' );
-        $(document).ready(function () {
-        $('#s2_demo3').select2();
-    })
-    </script>
-    
-    <script>
-        $('#edit').on('show.bs.modal', function (event) {
+     <script>
+        $('#hapus').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget) // Button that triggered the modal
         var id = button.data('id')
         var judul = button.data('judul')
-        var konten = button.data('konten')
-        var cat = button.data('cat')
         var modal = $(this)
     
         modal.find('input[name="id"]').val(id)
         modal.find('input[name="judul"]').val(judul)
-        modal.find('input[name="konten"]').val(konten)
-        modal.find('input[name="category_id"]').val(cat)
     })  
         </script>
 @endpush

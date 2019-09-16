@@ -1,11 +1,11 @@
 @extends('layouts.admin')
 
 @section('title-website')
-    Service
+    About
 @endsection
 
 @section('title')
-    Data Service
+    Data About
 @endsection
 
 @section('content')
@@ -26,7 +26,6 @@
                         <tr>
                             <th width="35%">Title</th>
                             <th width="35%">Description</th>
-                            <th width="10%">Image</th>
                             <th width="30%">Action</th>
                         </tr>
                         </thead>
@@ -44,19 +43,12 @@
   <div class="modal-content">
    <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Add Data Service</h4>
+          <h4 class="modal-title">Add Data About</h4>
         </div>
         <div class="modal-body">
          <span id="form_result"></span>
          <form method="post" id="sample_form" class="form-horizontal" enctype="multipart/form-data">
           @csrf
-          <div class="form-group row mb-4">
-            <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Image : </label>
-            <div class="col-sm-12 col-md-10">
-             <input type="file" name="image" id="image" />
-             <span id="store_image"></span>
-            </div>
-           </div>
           <div class="form-group row mb-4">
             <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3" >Title : </label>
             <div class="col-sm-12 col-md-10">
@@ -153,7 +145,7 @@
     processing: true,
     serverSide: true,
     ajax:{
-    url: "{{ route('service.index') }}",
+    url: "{{ route('about.index') }}",
     },
     columns:[
         {
@@ -165,14 +157,6 @@
             name: 'desc'
         },
         {
-            data: 'image',
-            name: 'image',
-            render: function(data, type, full, meta){
-            return "<img src={{ URL::to('/') }}/assets/img/service/" + data + " width='70' class='img-thumbnail' />";
-            },
-            orderable: false
-        },
-        {
             data: 'action',
             name: 'action',
             orderable: false
@@ -181,7 +165,7 @@
     });
 
     $('#create_record').click(function(){
-    $('.modal-title').text("Add Data Service");
+    $('.modal-title').text("Add Data About");
         $('#action_button').val("Add");
         $('#action').val("Add");
         $('#formModal').modal('show');
@@ -192,7 +176,7 @@
     if($('#action').val() == 'Add')
     {
         $.ajax({
-            url:"{{ route('service.store') }}",
+            url:"{{ route('about.store') }}",
             method:"POST",
             data: new FormData(this),
             contentType: false,
@@ -230,7 +214,7 @@
         if($('#action').val() == "Edit")
         {
             $.ajax({
-                url:"{{ route('service.update') }}",
+                url:"{{ route('about.update') }}",
                 method:"POST",
                 data:new FormData(this),
                 contentType: false,
@@ -271,15 +255,13 @@
     var id = $(this).attr('id');
     $('#form_result').html('');
     $.ajax({
-        url:"/admin/service/"+id+"/edit",
+        url:"/admin/about/"+id+"/edit",
         dataType:"json",
             success:function(html){
-                $('#store_image').html("<img src={{ URL::to('/') }}/assets/img/service/" + html.data.image + " width='70' class='img-thumbnail' />");
-                $('#store_image').append("<input type='hidden' name='hidden_image' value='"+html.data.image+"' />");
                 $('#title').val(html.data.title);
                 $('#desc').val(html.data.desc);
                 $('#hidden_id').val(html.data.id);
-                $('.modal-title').text("Edit Data Service");
+                $('.modal-title').text("Edit Data About");
                 $('#action_button').val("Edit");
                 $('#action').val("Edit");
                 $('#formModal').modal('show');
@@ -296,7 +278,7 @@
 
     $('#ok_button').click(function(){
         $.ajax({
-        url:"/admin/service/destroy/"+user_id,
+        url:"/admin/about/destroy/"+user_id,
         beforeSend:function(){
             $('#ok_button').text('Deleting...');
         },

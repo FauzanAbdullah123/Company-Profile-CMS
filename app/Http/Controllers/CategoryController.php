@@ -109,10 +109,23 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $catId = Category::findOrFail($id);
-        $catId->delete();
+        $category = Category::withCount('Article')->get();
+        foreach($category as $row){
+            if(($row->id == $id) && $row->article_count > 0){
+                $response = [
+                    'success' => false,
+                    'type' => 'error',
+                    'message' => 'Category cannot be deleted<br>because it still has active articles'
+                ];
+                return response()->json($response, 200);
+            }
+        }
+        \DB::table('categories')->delete($id);
         $response = [
-            'message'   => 'Data kategori berhasil dihapus!'
+            'success' => true,
+            'type' => 'success',
+            'title' => 'success',
+            'message' => 'Category successfully deleted'
         ];
         return response()->json($response, 200);
     }

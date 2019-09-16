@@ -66,7 +66,7 @@ class ArticleController extends Controller
        $article->save();
        Session::flash("flash_notification", [
         "level" => "success",
-        "message" => "Berhasil menyimpan article <b>$article->judul</b>!"
+        "message" => "Saved Article Successfully <b>$article->judul</b>!"
     ]);
        $article->tag()->attach($request->tag);
        return redirect()->route('article.index');     
@@ -104,11 +104,11 @@ class ArticleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $article = Article::findOrFail($request->id);
+        $article = Article::findOrFail($id);
         $article->judul = $request->judul;
         $article->slug = str_slug($request->judul);
         $article->konten = $request->konten;
-        $artikel->user_id = Auth::user()->id;
+        $article->user_id = Auth::user()->id;
         $article->category_id = $request->kategori;
         if ($request->hasFile('foto')) {
             $file = $request->file('foto');
@@ -137,7 +137,7 @@ class ArticleController extends Controller
         $article->tag()->sync($request->tag);
         Session::flash("flash_notification", [
             "level" => "success",
-            "message" => "Berhasil mengedit article <b>$article->judul</b>!"
+            "message" => "Edited Article Successfully <b>$article->judul</b>!"
         ]);
         return redirect()->route('article.index');
     }
@@ -147,9 +147,9 @@ class ArticleController extends Controller
      * @param  \App\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        $article = Article::findOrFail($id);
+        $article = Article::findOrFail($request->id);
         if ($article->foto) {
             $old_foto = $article->foto;
             $filepath = public_path() . '/assets/img/article/' . $article->foto;
@@ -161,7 +161,7 @@ class ArticleController extends Controller
         $article->delete();
         Session::flash("flash_notification", [
             "level" => "success",
-            "message" => "Berhasil menghapus article!"
+            "message" => "Deleted Article Successfully!"
         ]);
         return redirect()->route('article.index');
     }

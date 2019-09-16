@@ -1,11 +1,11 @@
 @extends('layouts.admin')
 
 @section('title-website')
-    Service
+    Gallery
 @endsection
 
 @section('title')
-    Data Service
+    Data Gallery
 @endsection
 
 @section('content')
@@ -24,9 +24,7 @@
                     <table id="dataTable" class="table table-bordered table-hover">
                         <thead>
                         <tr>
-                            <th width="35%">Title</th>
-                            <th width="35%">Description</th>
-                            <th width="10%">Image</th>
+                            <th width="35%">Image</th>
                             <th width="30%">Action</th>
                         </tr>
                         </thead>
@@ -44,7 +42,7 @@
   <div class="modal-content">
    <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Add Data Service</h4>
+          <h4 class="modal-title">Add Data Gallery</h4>
         </div>
         <div class="modal-body">
          <span id="form_result"></span>
@@ -57,19 +55,7 @@
              <span id="store_image"></span>
             </div>
            </div>
-          <div class="form-group row mb-4">
-            <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3" >Title : </label>
-            <div class="col-sm-12 col-md-10">
-             <input type="text" name="title" id="title" class="form-control" />
-            </div>
-           </div>
-           <div class="form-group row mb-4">
-            <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Description : </label>
-            <div class="col-sm-12 col-md-10">
-                <textarea id="desc" rows="8" cols="30" type="text" name="desc"></textarea>
-            </div>
-           </div>
-           <br />
+           <br/>
            <div class="form-group" align="center">
             <input type="hidden" name="action" id="action" />
             <input type="hidden" name="hidden_id" id="hidden_id" />
@@ -153,22 +139,14 @@
     processing: true,
     serverSide: true,
     ajax:{
-    url: "{{ route('service.index') }}",
+    url: "{{ route('gallery.index') }}",
     },
     columns:[
-        {
-            data: 'title',
-            name: 'title'
-        },
-        {
-            data: 'desc',
-            name: 'desc'
-        },
         {
             data: 'image',
             name: 'image',
             render: function(data, type, full, meta){
-            return "<img src={{ URL::to('/') }}/assets/img/service/" + data + " width='70' class='img-thumbnail' />";
+            return "<img src={{ URL::to('/') }}/assets/img/gallery/" + data + " width='70' class='img-thumbnail' />";
             },
             orderable: false
         },
@@ -181,7 +159,7 @@
     });
 
     $('#create_record').click(function(){
-    $('.modal-title').text("Add Data Service");
+    $('.modal-title').text("Add Data Gallery");
         $('#action_button').val("Add");
         $('#action').val("Add");
         $('#formModal').modal('show');
@@ -192,7 +170,7 @@
     if($('#action').val() == 'Add')
     {
         $.ajax({
-            url:"{{ route('service.store') }}",
+            url:"{{ route('gallery.store') }}",
             method:"POST",
             data: new FormData(this),
             contentType: false,
@@ -230,7 +208,7 @@
         if($('#action').val() == "Edit")
         {
             $.ajax({
-                url:"{{ route('service.update') }}",
+                url:"{{ route('gallery.update') }}",
                 method:"POST",
                 data:new FormData(this),
                 contentType: false,
@@ -271,15 +249,13 @@
     var id = $(this).attr('id');
     $('#form_result').html('');
     $.ajax({
-        url:"/admin/service/"+id+"/edit",
+        url:"/admin/gallery/"+id+"/edit",
         dataType:"json",
             success:function(html){
-                $('#store_image').html("<img src={{ URL::to('/') }}/assets/img/service/" + html.data.image + " width='70' class='img-thumbnail' />");
+                $('#store_image').html("<img src={{ URL::to('/') }}/assets/img/gallery/" + html.data.image + " width='70' class='img-thumbnail' />");
                 $('#store_image').append("<input type='hidden' name='hidden_image' value='"+html.data.image+"' />");
-                $('#title').val(html.data.title);
-                $('#desc').val(html.data.desc);
                 $('#hidden_id').val(html.data.id);
-                $('.modal-title').text("Edit Data Service");
+                $('.modal-title').text("Edit Data Gallery");
                 $('#action_button').val("Edit");
                 $('#action').val("Edit");
                 $('#formModal').modal('show');
@@ -296,7 +272,7 @@
 
     $('#ok_button').click(function(){
         $.ajax({
-        url:"/admin/service/destroy/"+user_id,
+        url:"/admin/gallery/destroy/"+user_id,
         beforeSend:function(){
             $('#ok_button').text('Deleting...');
         },
