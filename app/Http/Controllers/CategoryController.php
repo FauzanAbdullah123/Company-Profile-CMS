@@ -47,7 +47,7 @@ class CategoryController extends Controller
         $newCat->save();
         $response = [
             'errors'    => false,
-            'message'   => 'Data berhasil di simpan!'
+            'message'   => 'Data saved successfully!'
         ];
         return response()->json($response, 200);
     }
@@ -97,7 +97,7 @@ class CategoryController extends Controller
         $catId->save();
         $response = [
             'data'      => $catId,
-            'message'   => 'Data kategori berhasil diubah menjadi '.$catId->nama.'!'
+            'message'   => 'Category data successfully changed to '.$catId->nama.'!'
         ];
         return response()->json($response, 200);
     }
@@ -113,7 +113,7 @@ class CategoryController extends Controller
         foreach($category as $row){
             if(($row->id == $id) && $row->article_count > 0){
                 $response = [
-                    'success' => false,
+                    'success' => 'error',
                     'type' => 'error',
                     'message' => 'Category cannot be deleted<br>because it still has active articles'
                 ];
@@ -122,7 +122,7 @@ class CategoryController extends Controller
         }
         \DB::table('categories')->delete($id);
         $response = [
-            'success' => true,
+            'success' => 'success',
             'type' => 'success',
             'title' => 'success',
             'message' => 'Category successfully deleted'

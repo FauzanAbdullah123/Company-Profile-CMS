@@ -1,11 +1,11 @@
 @extends('layouts.admin')
 
 @section('title-website')
-    Kategori
+    Category
 @endsection
 
 @section('title')
-    Data Kategori
+    Data Category
 @endsection
 
 @include ('layouts.flash')
@@ -17,7 +17,7 @@
             <div class="box">
                 <div class="box-header">
                     <h3 class="box-title">
-                        <button id="tambah-data" type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modalAdd">Tambah Data</button>
+                        <button id="tambah-data" type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modalAdd">Add Data</button>
                     </h3>
                 </div>
                 <!-- /.box-header -->
@@ -227,12 +227,12 @@
                     method: 'DELETE',
                     success: (res) => {
                         Swal.fire(
-                            'Data Successfully Deleted!',
                             res.message,
-                            'success'
+                            res.type,
+                            res.success
                         )
-                        location.reload();
                         $('#formHapus')[0].reset();
+                        location.reload();
                     },
                     error: (err) => {
                         console.log(err);

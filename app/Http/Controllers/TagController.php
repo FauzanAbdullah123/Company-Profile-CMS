@@ -47,7 +47,7 @@ class TagController extends Controller
         $newTag->save();
         $response = [
             'errors'  => false,
-            'message'   => 'Data berhasil di simpan!'
+            'message'   => 'Data saved successfully!'
         ];
         return response()->json($response, 200);
     }
@@ -97,7 +97,7 @@ class TagController extends Controller
         $tagId->save();
         $response = [
             'data'      => $tagId,
-            'message'   => 'Data tag berhasil diubah menjadi '.$tagId->nama.'!',
+            'message'   => 'Tag data successfully changed to '.$tagId->nama.'!',
             'errors'    => false
         ];
         return response()->json($response, 200);
@@ -110,10 +110,23 @@ class TagController extends Controller
      */
     public function destroy($id)
     {
-        $tagId = Tag::findOrFail($id);
-        $tagId->delete();
+        $tag = Tag::withCount('Article')->get();
+        foreach($tag as $row){
+            if(($row->id == $id) && $row->article_count > 0){
+                $response = [
+                    'success' => 'error',
+                    'type' => 'error',
+                    'message' => 'Tag cannot be deleted<br>because it still has active articles'
+                ];
+                return response()->json($response, 200);
+            }
+        }
+        \DB::table('tags')->delete($id);
         $response = [
-            'message'   => 'Data tag berhasil dihapus!'
+            'success' => 'success',
+            'type' => 'success',
+            'title' => 'success',
+            'message' => 'Tag successfully deleted'
         ];
         return response()->json($response, 200);
     }

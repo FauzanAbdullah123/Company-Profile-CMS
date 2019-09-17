@@ -8,37 +8,39 @@
     Data Tag
 @endsection
 
-@section('content')
-    <section class="content">
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="box">
-                    <div class="box-header">
-                        <h3 class="box-title">
-                            <button id="tambah-data" type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modalAdd">Tambah Data</button>
-                        </h3>
-                    </div>
-                    <!-- /.box-header -->
-                    <div class="box-body">
-                        <table id="dataTable" class="table table-bordered table-hover">
-                            <thead>
-                                <th>No</th>
-                                <th>Tag Name</th>
-                                <th>Slug</th>
-                                <th>Aksi</th>
-                            </thead>
-                            <tbody class="data-tag">
-                            </tbody>
-                        </table>
-                    </div>
-                    <!-- /.box-body -->
-                </div>
-                <!-- /.box -->
-            </div>
-        </div>
-    </section>
+@include ('layouts.flash')
 
-    @include('admin.tag.modal')
+@section('content')
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">
+                        <button id="tambah-data" type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modalAdd">Add Data</button>
+                    </h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <table id="dataTable" class="table table-bordered table-hover">
+                        <thead>
+                            <th>No</th>
+                            <th>Tag Name</th>
+                            <th>Slug</th>
+                            <th>Action</th>
+                        </thead>
+                        <tbody class="data-tag">
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+    </div>
+</section>
+
+@include('admin.tag.modal')
 
 @endsection
 
@@ -80,6 +82,7 @@
     <script src="{{ asset('AdminLTE/bower_components/jquery-slimscroll/jquery.slimscroll.min.js') }}"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="{{ asset('AdminLTE/dist/js/demo.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 
     <script>
         $(document).ready(function (){
@@ -88,7 +91,7 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
-            // Data Tags
+            // Data tag
             var table = $('#dataTable').DataTable({
                 processing: true,
                 serverSide: true,
@@ -127,7 +130,7 @@
                         } else {
                             $('#formAdd')[0].reset();
                             Swal.fire(
-                                'Good Job!',
+                                'Good job!',
                                 res.message,
                                 'success'
                             )
@@ -185,12 +188,13 @@
                             })
                         } else {
                             Swal.fire(
-                                'Data Successfully Edited!',
+                                'Data tag Successfully Edited!',
                                 res.message,
                                 'success'
                             )
                             location.reload();
                             $('#formEdit')[0].reset();
+                          
                         }
                     },
                     error: (err) => {
@@ -223,12 +227,12 @@
                     method: 'DELETE',
                     success: (res) => {
                         Swal.fire(
-                            'Data Successfully Deleted!',
                             res.message,
-                            'success'
+                            res.type,
+                            res.success
                         )
-                        location.reload();
                         $('#formHapus')[0].reset();
+                        location.reload();
                     },
                     error: (err) => {
                         console.log(err);
