@@ -6,6 +6,7 @@ use App\About;
 use Validator;
 use Spatie\Activitylog\Models\Activity;
 use Illuminate\Http\Request;
+use DataTables;
 
 class AboutController extends Controller
 {

@@ -12,16 +12,14 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
-
-Route::get('image', 'ImageController@index');
-Route::post('save-image', 'ImageController@save');
 
 Auth::routes(['register' => false]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+//Route Backend
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('/', function() {
         return view('admin.index');
@@ -47,4 +45,13 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     //Route Page Logs
     Route::get('/logs', 'LogController@index')->name('logs.index');
     Route::delete('/logs/{id}', 'LogController@destroy')->name('logs.destroy');
+});
+
+// Route Frontend
+Route::group(['prefix'=>'/'], function(){
+    Route::get('/','FrontendController@index');
+    Route::get('/about','FrontendController@about');
+    Route::get('/services','FrontendController@services');
+    Route::get('/gallery','FrontendController@gallery');
+    Route::get('/blog','FrontendController@blog');    
 });

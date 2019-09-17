@@ -6,6 +6,7 @@ use App\Services;
 use Validator;
 use Spatie\Activitylog\Models\Activity;
 use Illuminate\Http\Request;
+use DataTables;
 
 class ServiceController extends Controller
 {

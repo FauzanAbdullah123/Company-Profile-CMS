@@ -1,8 +1,11 @@
 <?php
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
 use App\Tag;
 use DataTables;
+use Spatie\Activitylog\Models\Activity;
+
 class TagController extends Controller
 {
     /**

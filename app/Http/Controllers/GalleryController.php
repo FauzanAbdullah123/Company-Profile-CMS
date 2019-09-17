@@ -6,6 +6,7 @@ use App\Gallery;
 use Validator;
 use Spatie\Activitylog\Models\Activity;
 use Illuminate\Http\Request;
+use DataTables;
 
 class GalleryController extends Controller
 {

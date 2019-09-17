@@ -1,9 +1,11 @@
 <?php
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
 use App\Category;
 use Spatie\Activitylog\Models\Activity;
 use DataTables;
+
 class CategoryController extends Controller
 {
     /**

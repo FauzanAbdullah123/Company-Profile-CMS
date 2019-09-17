@@ -27,7 +27,7 @@
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="{{asset('default-avatar.png')}}" class="img-circle" alt="{{ Auth::user()->name }}">
+                <img src="{{asset('default-avatar.jpg')}}" class="img-circle" alt="{{ Auth::user()->name }}">
 
                 <p>
                   {{Auth::user()->name}}
