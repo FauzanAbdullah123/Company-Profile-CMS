@@ -42,11 +42,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:Admin']], func
     Route::get('/logs', 'LogController@index')->name('logs.index');
     Route::delete('/logs/{id}', 'LogController@destroy')->name('logs.destroy');
     //Route Page Article
-    Route::resource('/article', 'ArticleController');
-    //Route Page Category
-    Route::resource('/category', 'CategoryController');
-    //Route Page Tag
-    Route::resource('/tag', 'TagController');
 });
 
 Route::group(['prefix' => '', 'middleware' => ['auth']], function () {
