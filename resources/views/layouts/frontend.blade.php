@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
 <meta name="author" content="DesignForLife" />
 <meta name="description" content="A Multi Purpose Responsive Template - Created by DesignForLife" />
+<link rel="icon" href="logo.jpg">
 <title>Arkamaya | @yield('title-website')</title>
 <link rel="stylesheet" type="text/css" href="{{ asset('DreamLife/html/assets/css/style.css')}}" />
 <!-- CSS assets Here -->

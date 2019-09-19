@@ -1,22 +1,41 @@
 <?php
-namespace App\Http\Controllers;
+
+namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
-use App\Tag;
-use DataTables;
+use App\Http\Controllers\Controller;
 use Spatie\Activitylog\Models\Activity;
+use Validator;
+use App\Category;
 
-class TagController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        return view('admin.tag.index');
+        $category = Category::all();
+        $response = [
+            'success' => true,
+            'data' => $category,
+            'message' => 'berhasil'
+        ];
+        return response()->json($response, 200);
     }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -26,22 +45,22 @@ class TagController extends Controller
     public function store(Request $request)
     {
         $validator = \Validator::make($request->all(), [
-            'nama' => 'required|unique:tags',
+            'nama'  => 'required|unique:categories'
         ]);
-        if($validator->fails()) {
+        if($validator->fails()){
             return response()->json(['errors' => $validator->errors()->all()]);
         }
-        $tag_all = Tag::all();
-        $newTag = new Tag;
-        $newTag->nama = $request->nama;
-        $newTag->slug = str_slug($request->nama);
-        $newTag->save();
+        $newCat = new Category;
+        $newCat->nama = $request->nama;
+        $newCat->slug = str_slug($request->nama);
+        $newCat->save();
         $response = [
-            'errors'  => false,
+            'errors'    => false,
             'message'   => 'Data saved successfully!'
         ];
         return response()->json($response, 200);
     }
+
     /**
      * Display the specified resource.
      *
@@ -50,13 +69,15 @@ class TagController extends Controller
      */
     public function show($id)
     {
-        $tagId = Tag::findOrFail($id);
+        $category = Category::findOrFail($id);
         $response = [
-            'data'      => $tagId,
-            'message'   => 'Data tag dengan nama '.$tagId->nama.'!'
+            'success' => true,
+            'data' => $category,
+            'message' => 'berhasil'
         ];
         return response()->json($response, 200);
     }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -67,6 +88,7 @@ class TagController extends Controller
     {
         //
     }
+
     /**
      * Update the specified resource in storage.
      *
@@ -76,23 +98,23 @@ class TagController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $tagId = Tag::findOrFail($id);
+        $catId = Category::findOrFail($id);
         $validator = \Validator::make($request->all(), [
-            'nama'  => 'required|unique:tags,nama,'.$tagId->id
+            'nama'  => 'required|unique:categories,nama,'.$catId->id
         ]);
-        if($validator->fails()) {
+        if($validator->fails()){
             return response()->json(['errors' => $validator->errors()->all()]);
         }
-        $tagId->nama = $request->nama;
-        $tagId->slug = str_slug($request->nama);
-        $tagId->save();
+        $catId->nama = $request->nama;
+        $catId->slug = str_slug($request->nama);
+        $catId->save();
         $response = [
-            'data'      => $tagId,
-            'message'   => 'Tag data successfully changed to '.$tagId->nama.'!',
-            'errors'    => false
+            'data'      => $catId,
+            'message'   => 'Category data successfully changed to '.$catId->nama.'!'
         ];
         return response()->json($response, 200);
     }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -101,23 +123,23 @@ class TagController extends Controller
      */
     public function destroy($id)
     {
-        $tag = Tag::withCount('Article')->get();
-        foreach($tag as $row){
+        $category = Category::withCount('Article')->get();
+        foreach($category as $row){
             if(($row->id == $id) && $row->article_count > 0){
                 $response = [
                     'success' => 'error',
                     'type' => 'error',
-                    'message' => 'Tag cannot be deleted<br>because it still has active articles'
+                    'message' => 'Category cannot be deleted<br>because it still has active articles'
                 ];
                 return response()->json($response, 200);
             }
         }
-        \DB::table('tags')->delete($id);
+        \DB::table('categories')->delete($id);
         $response = [
             'success' => 'success',
             'type' => 'success',
             'title' => 'success',
-            'message' => 'Tag successfully deleted'
+            'message' => 'Category successfully deleted'
         ];
         return response()->json($response, 200);
     }

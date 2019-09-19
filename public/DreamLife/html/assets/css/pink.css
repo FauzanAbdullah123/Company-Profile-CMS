@@ -45,7 +45,7 @@ ul#mainmenu{
 .search_bar .search_button						{background: url('../images/icons/search_icon.png') no-repeat 4px 22px #fcfcfc;}
 
 /*Header Text*/
-.header_text	{background-color: #f3f3f3; border-top: 1px solid #dadada; border-bottom: 1px solid #dbdbdb;}
+.header_text	{background-color: orange; border-top: 1px solid orange; border-bottom: 1px solid orange;}
 
 /*Sub Menu*/
 ul#mainmenu li ul li a				{border-bottom: 1px solid #555; background-color: #444; color: #b7b7b7;}
@@ -178,17 +178,17 @@ ul.pricing_features li										{background-color: #fff;}
 
 /* Footer
 --------------*/
-#footer								{background-color: #e7e7e7;}
+#footer								{background-color: black;}
 #footer .back_top				{background:url('../images/icons/back_top.png') no-repeat 12px 20px #fff;}
-h3 .first-word						{ color:#C9577D; }
-.footer_bottom					{background-color: #fff;}
+h3 .first-word						{ color: white; }
+.footer_bottom					{background-color: black; border-top: 1px solid white;}
 #footer .footer_text			{color: #999;}
 
 /*Recent Posts*/
 .recent_posts .post_heading a				{color: #333;}
 .recent_posts .post_heading a:hover 	{ color: #C9577D; }
 .post_meta .time 								{ color: #999999; }
-.post_meta a 										{color: #C9577D;}
+.post_meta a 										{color: white;}
 
 /*Twitter*/
 .latest_tweets small, .sidebar_tweets small	{color: #999;}

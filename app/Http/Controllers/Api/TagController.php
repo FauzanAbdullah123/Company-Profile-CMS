@@ -1,9 +1,11 @@
 <?php
-namespace App\Http\Controllers;
+
+namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Tag;
-use DataTables;
+use Validator;
 use Spatie\Activitylog\Models\Activity;
 
 class TagController extends Controller
@@ -13,10 +15,27 @@ class TagController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        return view('admin.tag.index');
+        $tag = Tag::all();
+        $response = [
+            'success' => true,
+            'data' => $tag,
+            'message' => 'berhasil'
+        ];
+        return response()->json($response, 200);
     }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -42,6 +61,7 @@ class TagController extends Controller
         ];
         return response()->json($response, 200);
     }
+
     /**
      * Display the specified resource.
      *
@@ -50,13 +70,15 @@ class TagController extends Controller
      */
     public function show($id)
     {
-        $tagId = Tag::findOrFail($id);
+        $tag = Tag::findOrFail($id);
         $response = [
-            'data'      => $tagId,
-            'message'   => 'Data tag dengan nama '.$tagId->nama.'!'
+            'success' => true,
+            'data' => $tag,
+            'message' => 'berhasil'
         ];
         return response()->json($response, 200);
     }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -67,6 +89,7 @@ class TagController extends Controller
     {
         //
     }
+
     /**
      * Update the specified resource in storage.
      *
@@ -93,6 +116,7 @@ class TagController extends Controller
         ];
         return response()->json($response, 200);
     }
+
     /**
      * Remove the specified resource from storage.
      *

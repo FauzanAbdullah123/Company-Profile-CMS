@@ -35,9 +35,11 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
             </div>
-            <form id="formEdit">
+            <form id="formEdit" method="POST">
                 <div class="modal-body">
-                    <input type="hidden" name="id" id="id-tag-e">
+                    <input type="hidden" name="id" id="id">
+                    <input type="hidden" name="_method" value="PATCH" id="">
+                        @csrf
                     <div class="form-group">
                         <div class="notify-alert-edit"></div>
                         <label for="nama">Tag Name</label>
@@ -47,30 +49,6 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-success">Edit</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="modalHapus" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Delete Data</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-            </div>
-            <form id="formHapus">
-                <input type="hidden" name="id" id="id-tag-h">
-                <div class="modal-body">
-                    <p class="t-before-h"></p>
-                    <small class="form-text text-muted">*Data will delete permanently!</small>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-danger">Yes, Delete</button>
                 </div>
             </form>
         </div>

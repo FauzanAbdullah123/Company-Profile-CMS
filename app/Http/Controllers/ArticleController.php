@@ -69,7 +69,7 @@ class ArticleController extends Controller
         "message" => "Saved Article Successfully <b>$article->judul</b>!"
     ]);
        $article->tag()->attach($request->tag);
-       return redirect()->route('article.index');     
+       return redirect()->route('article.index');    
     }
     /**
      * Display the specified resource.

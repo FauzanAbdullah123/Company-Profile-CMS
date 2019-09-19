@@ -24,7 +24,6 @@
                 <div class="box-body">
                     <table id="dataTable" class="table table-bordered table-hover">
                         <thead>
-                            <th>No</th>
                             <th>Tag Name</th>
                             <th>Slug</th>
                             <th>Action</th>
@@ -92,26 +91,47 @@
                 }
             });
             // Data tag
-            var table = $('#dataTable').DataTable({
-                processing: true,
-                serverSide: true,
-                ajax: "{{ route('tag.index') }}",
-                columns: [
-                    {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-                    {data: 'nama', name: 'nama'},
-                    {data: 'slug', name: 'slug'},
-                    {data: 'action', name: 'action', orderable: false, searchable: false},
+            $('#dataTable').DataTable({
+            dataType: "json",
+            ajax: {
+                    url: '/api/tag/',
+                    dataType: "json",
+                    type: "GET",
+                    stateSave : true,
+                    serverSide: true,
+                    processing: true,
+            },
+            responsive:true,
+            columns: [
+                    { data: 'nama', name: 'nama' },
+                    { data: 'slug', name: 'slug' },
+                    { data: 'id', render : function (data, type, row, meta) {
+                        return `
+                        <button type="button" class= "btn btn-primary btn-sm"
+                            data-target="#modalEdit"
+                            data-toggle="modal"
+                            data-id="${row.id}"
+                            data-nama="${row.nama}"
+                            ><i class="fa fa-edit"></i></button>
+                            <button class="btn btn-danger btn-sm"
+                            data-id="${row.id}"
+                            id="hapus-datatag"
+                            ><i class="fa fa-trash-o"></i></button>
+                        `;
+                        }
+                    }
                 ]
             });
             // Tambah Data
             $('#formAdd').on('submit', (e) => {
                 e.preventDefault();
                 $.ajax({
-                    url: '/admin/tag',
+                    url: '/api/tag',
                     method: 'POST',
                     data: {
                         nama: $('.c-nama').val()
                     },
+                    dataType: 'json',
                     success: (res) => {
                         if(res.errors) {
                             $.each(res.errors, function(k, v) {
@@ -143,34 +163,28 @@
                 })
             })
             // Tampilan Modal Edit Data
-            $('.data-tag').on('click', '#edit-data', function(e) {
-                e.preventDefault();
-                var id = $(this).data('id');
-                $.ajax({
-                    url: '/admin/tag/'+id,
-                    method: 'GET',
-                    success: (res) => {
-                        $('.e-nama').val('');
-                        $('#modalEdit').modal('show')
-                        $('.e-nama').val(res.data.nama);
-                        $('input[id="id-tag-e"]').val(res.data.id)
-                    },
-                    error: (err) => {
-                        console.log(err);
-                    }
-                })
+          // get Edit data
+            $('#modalEdit').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget)
+                var id = button.data('id')
+                var nama = button.data('nama')
+                var modal = $(this)
+                modal.find('.modal-body input[name="id"]').val(id)
+                modal.find('.modal-body input[name="nama"]').val(nama)
             })
             // Update Data
             $('#formEdit').on('submit', (e) => {
                 e.preventDefault();
-                var id = $('input[id="id-tag-e"]').val();
+                var formData = new FormData($('#formEdit')[0]);
+                var id = formData.get('id');
                 $.ajax({
-                    url: '/admin/tag/'+ id,
+                    url: '/api/tag/'+ id,
                     method: 'PUT',
                     data: {
                         id: id,
                         nama: $('.e-nama').val()
                     },
+                    dataType: 'json',
                     success: (res) => {
                         if(res.errors) {
                             $.each(res.errors, function(k, v) {
@@ -203,39 +217,27 @@
                 });
             })
             //Tampilan Modal Hapus Data
-            $('.data-tag').on('click', '#hapus-data', function (e) {
-                e.preventDefault();
-                var id = $(this).data('id');
+            // Hapus Data
+            $("#dataTable").on('click', '#hapus-datatag', function () {
+                var id = $(this).data("id");
+                // alert(id)
                 $.ajax({
-                    url: '/admin/tag/' + id,
-                    method: 'GET',
-                    success: (res) => {
-                        $('#modalHapus').modal('show');
-                        $('input[id="id-tag-h"]').val(res.data.id)
-                        $('.t-before-h').html('Do you want to delete the tag with name : <b>'+res.data.nama+'</b> ?')
+                    url: '/api/tag/' + id,
+                    method: "DELETE",
+                    dataType: "json",
+                    data: {
+                        id: id
                     },
-                    error: (err) => {
-                        console.log(err);
-                    }
-                })
-            })
-            $('#formHapus').on('submit', function (e) {
-                e.preventDefault();
-                var id = $('input[id="id-tag-h"]').val();
-                $.ajax({
-                    url: '/admin/tag/'+id,
-                    method: 'DELETE',
-                    success: (res) => {
+                    success: function (berhasil) {
                         Swal.fire(
-                            res.message,
-                            res.type,
-                            res.success
+                            berhasil.message,
+                            berhasil.type,
+                            berhasil.success
                         )
-                        $('#formHapus')[0].reset();
                         location.reload();
                     },
-                    error: (err) => {
-                        console.log(err);
+                    error: function (gagal) {
+                        console.log(gagal)
                     }
                 })
             })

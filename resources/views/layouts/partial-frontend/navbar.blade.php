@@ -1,12 +1,12 @@
 <!-- header -->
-<div id="header_wrapper" class="clearfix">
+<div id="header_wrapper" class="" style="background:#fc4903; border-bottom: 1px solid white;">
 	<!-- menu -->
 	<div id="header">
 		<!-- logo -->
 		<div id="logo"><a href="index.html"><img src="{{ asset('DreamLife/html/assets/images/logo.png')}}" alt="logo" /></a></div>
 		<!-- logo end -->
 		<!-- main menu -->
-		<ul id="mainmenu">
+		<ul id="mainmenu" style="background:black;">
 			<li><a href="/">Home</a></li>
 			<li><a href="/about">About Us</a></li>
 			<li><a href="/services">Services</a></li>

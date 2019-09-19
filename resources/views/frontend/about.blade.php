@@ -295,29 +295,6 @@
 <!-- container 12 end -->
 <!-- container 12 -->
 <div class="container_12">
-<!-- our clients -->
-    <div class="grid_12">
-        <div class="divider_page">
-            <h2>Our Happy Clients</h2>
-            <div class="heading_button">
-                <div class="prev_button" id="ourclients_prev">Prev</div>
-                <div class="next_button" id="ourclients_next">Next</div>
-            </div>
-        </div>
-        <div class="our_clients">
-            <a href="http://themeforest.net/?ref=DesignForLife" target="_blank" class="a_client themeforest"></a>
-            <a href="http://activeden.net/?ref=DesignForLife" target="_blank" class="a_client activeden"></a>
-            <a href="http://audiojungle.net/?ref=DesignForLife" target="_blank" class="a_client audiojungle"></a>
-            <a href="http://codecanyon.net/?ref=DesignForLife" target="_blank" class="a_client codecanyon"></a>
-            <a href="http://3docean.net/?ref=DesignForLife" target="_blank" class="a_client ocean3d"></a>
-            <a href="http://photodune.net/?ref=DesignForLife" target="_blank" class="a_client photodune"></a>
-            <a href="http://themeforest.net/?ref=DesignForLife" target="_blank" class="a_client tutorials"></a>
-            <a href="http://videohive.net/?ref=DesignForLife" target="_blank" class="a_client videohive"></a>
-            <a href="http://activeden.net/?ref=DesignForLife" target="_blank" class="a_client activeden"></a>
-            <a href="http://themeforest.net/?ref=DesignForLife" target="_blank" class="a_client themeforest"></a>
-        </div>
-    </div>
-    <!-- our clients end -->
 </div>
 <!-- container 12 end -->
 @endsection

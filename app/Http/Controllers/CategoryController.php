@@ -15,18 +15,6 @@ class CategoryController extends Controller
      */
     public function index(Request $request)
     {
-        if($request->ajax()) {
-            $category = Category::all();
-            return Datatables::of($category)
-                    ->addIndexColumn()
-                    ->addColumn('action', function ($row) {
-                        $btn = '<button type="button" id="edit-data" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalEdit" data-id="'.$row->id.'"><i class="fa fa-edit"></i></button>';
-                        $btn = $btn.' <button type="button" id="hapus-data" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modalHapus" data-id="'.$row->id.'" data-nama="'.$row->nama.'"><i class="fa fa-trash-o"></i></button>';
-                        return $btn;
-                    })
-                    ->rawColumns(['action'])
-                    ->make(true);
-        }
         return view('admin.category.index');
     }
     /**

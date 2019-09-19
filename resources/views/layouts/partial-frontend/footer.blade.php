@@ -3,13 +3,8 @@
     <!-- footer container -->
         <div class="container_12 footer_content">
         <div class="grid_3">
-            <h3><span class="first-word">About</span> Us</h3>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
-            <p><b>Address:</b><br>Sokullu Mehmet Pasa Street 1234, Country<br><b>Telephone:</b><br>+90(123) 456-78 90<br><b>Fax:</b><br>+90(123) 456-78 91</p>
-        </div>
-        <div class="grid_3">
-            <h3><span class="first-word">Latest</span> Tweets</h3>
-            <div class="latest_tweets"></div>
+            <h3><span class="first-word">About</span></h3>
+            <p>We are IT Solutions company from Bandung, Indonesia. We design, create, and develop a variety of software and in all matters relating to the application of Information and Communication Technology.</p>
         </div>
         <div class="grid_3">
             <h3><span class="first-word">Recent</span> Posts</h3>
@@ -39,8 +34,8 @@
         </div>
         
         <div class="grid_3">
-            <h3><span class="first-word">Gallery</span> Stream</h3>
-            <ul id="flickrfeed"></ul>
+            <h3><span class="first-word">Contact</span></h3>
+            <p><b>Address:</b><br>Jl. Guntursari Wetan No. 17 Buah Batu, Bandung Jawa Barat, Indonesia 40286<br><b>Telephone :</b><br>(022)87325528<br><b>Telephone 2:</b><br>(0267)8406552<br><b>Email :<br>info[at]arkamaya.co.id<br></b></p>
         </div>
     </div>
     <!-- footer container end -->
