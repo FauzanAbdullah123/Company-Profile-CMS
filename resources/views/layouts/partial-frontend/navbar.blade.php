@@ -3,7 +3,7 @@
 	<!-- menu -->
 	<div id="header">
 		<!-- logo -->
-		<div id="logo"><a href="index.html"><img src="{{ asset('DreamLife/html/assets/images/logo.png')}}" alt="logo" /></a></div>
+		<div id="logo"><a href="index.html"><img src="{{ asset('logoarkamaya-removebg-preview.png')}}" height="30px" hei alt="logo" /></a></div>
 		<!-- logo end -->
 		<!-- main menu -->
 		<ul id="mainmenu" style="background:black;">
@@ -15,9 +15,9 @@
 		<!-- main menu end -->
 		<!-- search bar -->
 		<div class="search_bar">
-			<form action="index.html" method="get">
-				<input name="s" value="Type &amp; Search" type="text" />
-				<a href="#" class="search_button">Search</a>
+			<form action="{{ route('all.blog') }}">
+				<input name="cari" value="Type &amp; Search" type="text" />
+				<button type="submit"><i class="search_button"></i></button>
 			</form>
 		</div>
 		<!-- search bar end -->

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
 <meta name="author" content="DesignForLife" />
 <meta name="description" content="A Multi Purpose Responsive Template - Created by DesignForLife" />
-<link rel="icon" href="logo.jpg">
+<link rel="icon" href="{{ asset('icon.png')}}">
 <title>Arkamaya | Home</title>
 <link rel="stylesheet" type="text/css" href="{{ asset('DreamLife/html/assets/css/style.css')}}" />
 <!--[if lte IE 8]>
@@ -20,7 +20,7 @@
 	<!-- menu -->
 	<div id="header">
 		<!-- logo -->
-		<div id="logo"><a href="/"><img src="{{ asset('DreamLife/html/assets/images/logo.png')}}" alt="logo" /></a></div>
+		<div id="logo"><a href="/"><img src="{{ asset('logoarkamaya-removebg-preview.png')}}" height="30px" alt="logo" /></a></div>
 		<!-- logo end -->
 		<!-- main menu -->
 		<ul id="mainmenu" style="background:black;">
@@ -315,30 +315,19 @@
 		<div class="grid_12">
 			<!-- popular blog post -->
 			<div class="grid_8 alpha">
-				<div class="divider_page"><h2>Popular Blog Post</h2></div>
+				<div class="divider_page"><h2>Recent Blog Post</h2></div>
 				<!-- a post image -->
+				@foreach($article as $blog)
 				<div class="grid_4 alpha a_blogpost popular">
 					<div class="image">
 			    	<div class="normal">
-			    		<img src="{{ asset('DreamLife/html/assets/images/mix/940/image.jpg')}}" alt="" class="grid_image"/>
+			    		<img src="{{ asset('assets/img/article/'.$blog->foto)}}" alt="" class="grid_image"/>
 			    	</div>
 			    	<div class="hover">
 			    		<div class="post_links">
-			    			<div><a href="{{ asset('DreamLife/html/assets/images/mix/940/image.jpg')}}" data-rel="prettyPhoto" class="misc_white_icons16 icon16_15" title="Big Size"></a></div>
-			    			<div><a href="blog_single_post.html" class="misc_white_icons16 icon16_67" title="Read More"></a></div>
+			    			<div><a href="{{ route('detail.blog', $blog->slug) }}" class="misc_white_icons16 icon16_67" title="Read More"></a></div>
 			    		</div>
 			    		<div class="clearfix"></div>
-			    		<!-- social links -->
-			    		<div class="social_links">
-			    			<div class="share_text">Share on</div>
-			    			<div class="share_icons">
-			    				<a href="http://twitthis.com/twit?url=http://dreamlife.designforlifeden.com/blog_single_post.html" target="_blank" class="social_colored twitter tooltip_s" title="Twitter"></a>
-			    				<a href="http://www.facebook.com/sharer.php?u=http://dreamlife.designforlifeden.com/blog_single_post.html" target="_blank" class="social_colored facebook tooltip_s" title="Facebook"></a>
-			    				<a href="http://linkedin.com/shareArticle?mini=true&amp;url=http://dreamlife.designforlifeden.com/blog_single_post.html&amp;title=DreamLife%20Responsive%20Template" target="_blank" class="social_colored linkedin tooltip_s" title="LinkedIn"></a>
-			    				<a href="mailto:?subject=DreamLife%20Responsive%20Template&amp;body=http://dreamlife.designforlifeden.com/blog_single_post.html" class="social_colored mail tooltip_s" title="Mail"></a>
-			    			</div>
-			    		</div>
-			    		<!-- social links end -->
 			    	</div>
 			    </div>
 				</div>
@@ -346,19 +335,19 @@
 				<!-- post details -->
 				<div class="grid_4 omega">
 					<!-- post heading -->
-					<h3 class="pp_heading"><a href="blog_single_post.html">Tour the world</a></h3>
+					<h3 class="pp_heading"><a href="{{ route('detail.blog', $blog->slug) }}">{{ $blog->judul }}</a></h3>
 					<!-- post heading end -->
 					<!-- post meta info -->
 			    	<div class="meta-info">
-							<div class="date-info">January 2st, 2013</div>
-							<div class="comment-info"><a href="blog_single_post.html#comments" title="Comment on Praesent Et Urna Turpis Sadips">2 Comments</a></div>
+							<div class="date-info">{{ date('d F Y' ,strtotime($blog->created_at)) }}</div>
 					</div>
 			    	<!-- post meta info end -->
 			    	<!-- post content -->
-			    	<p>Quisque ligulas ipsum, euismod atras vulputate iltricies etri elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nulla nunc dui, tristique.</p>
-			    	<p><a href="blog_single_post.html" class="sc_button medium">Read More</a></p>
+			    	<p> {!! substr($blog->konten, 0, 200) !!}</p>
+			    	<p><a href="{{ route('detail.blog', $blog->slug) }}" class="sc_button medium">Read More</a></p>
 			    	<!-- post content end -->
 				</div>
+				@endforeach
 				<!-- post details end -->
 			</div>
 			<!-- popular blog post end -->
