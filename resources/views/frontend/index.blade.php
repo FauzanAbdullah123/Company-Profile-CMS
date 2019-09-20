@@ -32,9 +32,9 @@
 		<!-- main menu end -->
 		<!-- search bar -->
 		<div class="search_bar">
-			<form action="index.html" method="get">
-				<input name="s" value="Type &amp; Search" type="text" />
-				<a href="#" class="search_button">Search</a>
+			<form action="{{ route('all.blog') }}">
+				<input name="cari" value="Type &amp; Search Blog" type="text" />
+				<button type="submit"><i class="search_button"></i></button>
 			</form>
 		</div>
 		<!-- search bar end -->
@@ -72,244 +72,29 @@
 	<div class="container_12">
 		<!-- features boxes -->
 		<div class="grid_12">
-			<div class="divider_page"><h2>Features</h2></div>
-			<div class="grid_3 alpha">
-				<!-- a feature box -->
-				<div class="feature_box">
-					<div class="feature_icon"><a href="sliders.html" class="edevices_icons32 icon32_25"></a></div>
-					<div class="feature_content">
-						<div class="feature_heading">
-							<div class="medium">RESPONSIVE</div>
-							<div class="large">TEMPLATE</div>
-						</div>
-						<p class="feature_desc">Fusce consequat ipsum id nulla fringilla euismod. Morbi purus ut nibh eget faucibus.</p>
-					</div>
-					<div class="feature_link"><a href="sliders.html" class="arrows_icons16 icon16_5 tooltip_s" title="Read More"></a></div>
-				</div>
-				<!-- a feature box end -->
-			</div>
-			<div class="grid_3 lambda">
-				<!-- a feature box -->
-				<div class="feature_box">
-					<div class="feature_icon"><a href="portfolio_one_column.html" class="misc_icons32 icon32_92"></a></div>
-					<div class="feature_content">
-						<div class="feature_heading">
-							<div class="medium">CREATIVE</div>
-							<div class="large">DESIGN</div>
-						</div>
-						<p class="feature_desc">Phasellus a ipsum odio nec. Etiam eget elit. Curabitur elementum co facilisis pulvinar.</p>
-					</div>
-					<div class="feature_link"><a href="portfolio_one_column.html" class="arrows_icons16 icon16_5 tooltip_s" title="Read More"></a></div>
-				</div>
-				<!-- a feature box end -->
-			</div>
-			<div class="grid_3 lambda">
-				<!-- a feature box -->
-				<div class="feature_box">
-					<div class="feature_icon"><a href="contact.html" class="media_icons32 icon32_18"></a></div>
-					<div class="feature_content">
-						<div class="feature_heading">
-							<div class="medium">EXCELLENT</div>
-							<div class="large">SUPPORT</div>
-						</div>
-						<p class="feature_desc">Duis nec elit nunc. Phasellus, est non hendrerit aliquet, dolor ante sagittis magna.</p>
-					</div>
-					<div class="feature_link"><a href="contact.html" class="arrows_icons16 icon16_5 tooltip_s" title="Read More"></a></div>
-				</div>
-				<!-- a feature box end -->
-			</div>
-			<div class="grid_3 omega">
-				<!-- a feature box -->
-				<div class="feature_box">
-					<div class="feature_icon"><a href="elements.html" class="misc_icons32 icon32_26"></a></div>
-					<div class="feature_content">
-						<div class="feature_heading">
-							<div class="medium">AND MUCH</div>
-							<div class="large">MOREEE</div>
-						</div>
-						<p class="feature_desc">Etiam id sapien ultricies euis iaculis. Quisque lorem, viv non sodales a, pellentesque in.</p>
-					</div>
-					<div class="feature_link"><a href="elements.html" class="arrows_icons16 icon16_5 tooltip_s" title="Read More"></a></div>
-				</div>
-				<!-- a feature box end -->
-			</div>
-		</div>
+		<div class="divider_page"><h2>Our Services</h2></div>
+		@php
+			$services = \App\Services::all();
+		@endphp
+        @foreach($services as $data)
+        <div class="grid_3 alpha">
+            <!-- a feature box -->
+            <div class="feature_box">
+                <div class="feature_icon">
+                    <img src="{{ asset('assets/img/service/'.$data->image)}}" width="35px" height="35px" alt="">
+                </div>
+                <div class="feature_content">
+                    <div class="feature_heading">
+                        <div class="small" style="font-size:22px;">{{$data->title}}</div>
+                    </div>
+                    <div class="desc" style="font-size:15px; text-align:center; font-color:white;">{{$data->desc}}</div>
+                </div>
+            </div>
+            <!-- a feature box end -->
+        </div>
+        @endforeach
+    </div>
 		<!-- features boxes end -->
-		<!-- recent works -->
-		<div class="grid_12">
-			<div class="divider_page">
-				<h2>Recent Works</h2>
-				<div class="heading_button">
-					<div class="prev_button" id="recentworks_prev">Prev</div>
-					<div class="next_button" id="recentworks_next">Next</div>
-				</div>
-			</div>
-		</div>
-		<div id="recentWorks">
-			<!-- a work -->
-			<div class="a_work">	
-			    <div class="normal">
-			    	<img src="{{ asset('DreamLife/html/assets/images/mix/940/image_fixed.jpg')}}" alt="Business Man" class="grid_image"/>
-			    	<div class="work_heading">Business Man</div>
-			    </div>
-			    <div class="hover">
-			    	<h4>Business Man</h4>
-			    	<div class="work_links">
-			    		<div><a href="{{ asset('DreamLife/html/assets/images/mix/940/image.jpg')}}" data-rel="prettyPhoto" class="misc_white_icons16 icon16_15" title="Big Size"></a></div>
-			    		<div><a href="single_project.html" class="misc_white_icons16 icon16_67" title="Project Details"></a></div>
-			    	</div>
-			    	<div class="clearfix"></div>
-			    	<!-- social links -->
-			    	<div class="social_links">
-			    		<div class="share_text">Share on</div>
-			    		<div class="share_icons">
-			    			<a href="http://twitthis.com/twit?url=http://dreamlife.designforlifeden.com" target="_blank" class="social_colored twitter tooltip_s" title="Twitter"></a>
-			    			<a href="http://www.facebook.com/sharer.php?u=http://dreamlife.designforlifeden.com" target="_blank" class="social_colored facebook tooltip_s" title="Facebook"></a>
-			    			<a href="http://linkedin.com/shareArticle?mini=true&amp;url=http://dreamlife.designforlifeden.com&amp;title=DreamLife%20Responsive%20Template" target="_blank" class="social_colored linkedin tooltip_s" title="LinkedIn"></a>
-			    			<a href="mailto:?subject=DreamLife%20Responsive%20Template&amp;body=http://dreamlife.designforlifeden.com" class="social_colored mail tooltip_s" title="Mail"></a>
-			    		</div>
-			    	</div>
-			    	<!-- social links end -->
-			    </div>
-			</div>
-			<!-- a work end -->
-			<!-- a work -->
-			<div class="a_work">	
-			    <div class="normal">
-			    	<img src="{{ asset('DreamLife/html/assets/images/mix/940/image_fixed.jpg')}}" alt="Luxury Life" class="grid_image"/>
-			    	<div class="work_heading">Luxury Life</div>
-			    </div>
-			    <div class="hover">
-			    	<h4>Luxury Life</h4>
-			    	<div class="work_links">
-			    		<div><a href="{{ asset('DreamLife/html/assets/images/mix/940/image.jpg')}}" data-rel="prettyPhoto" class="misc_white_icons16 icon16_15" title="Big Size"></a></div>
-			    		<div><a href="single_project.html" class="misc_white_icons16 icon16_67" title="Project Details"></a></div>
-			    	</div>
-			    	<div class="clearfix"></div>
-			    	<!-- social links -->
-			    	<div class="social_links">
-			    		<div class="share_text">Share on</div>
-			    		<div class="share_icons">
-			    			<a href="http://twitthis.com/twit?url=http://dreamlife.designforlifeden.com" target="_blank" class="social_colored twitter tooltip_s" title="Twitter"></a>
-			    			<a href="http://www.facebook.com/sharer.php?u=http://dreamlife.designforlifeden.com" target="_blank" class="social_colored facebook tooltip_s" title="Facebook"></a>
-			    			<a href="http://linkedin.com/shareArticle?mini=true&amp;url=http://dreamlife.designforlifeden.com&amp;title=DreamLife%20Responsive%20Template" target="_blank" class="social_colored linkedin tooltip_s" title="LinkedIn"></a>
-			    			<a href="mailto:?subject=DreamLife%20Responsive%20Template&amp;body=http://dreamlife.designforlifeden.com" class="social_colored mail tooltip_s" title="Mail"></a>
-			    		</div>
-			    	</div>
-			    	<!-- social links end -->
-			    </div>
-			</div>
-			<!-- a work end -->
-			<!-- a work -->
-			<div class="a_work">	
-			    <div class="normal">
-			    	<img src="{{ asset('DreamLife/html/assets/images/mix/940/image_fixed.jpg')}}" alt="Good Morning" class="grid_image"/>
-			    	<div class="work_heading">Good Morning</div>
-			    </div>
-			    <div class="hover">
-			    	<h4>Good Morning</h4>
-			    	<div class="work_links">
-			    		<div><a href="{{ asset('DreamLife/html/assets/images/mix/940/image.jpg')}}" data-rel="prettyPhoto" class="misc_white_icons16 icon16_15" title="Big Size"></a></div>
-			    		<div><a href="single_project.html" class="misc_white_icons16 icon16_67" title="Project Details"></a></div>
-			    	</div>
-			    	<div class="clearfix"></div>
-			    	<!-- social links -->
-			    	<div class="social_links">
-			    		<div class="share_text">Share on</div>
-			    		<div class="share_icons">
-			    			<a href="http://twitthis.com/twit?url=http://dreamlife.designforlifeden.com" target="_blank" class="social_colored twitter tooltip_s" title="Twitter"></a>
-			    			<a href="http://www.facebook.com/sharer.php?u=http://dreamlife.designforlifeden.com" target="_blank" class="social_colored facebook tooltip_s" title="Facebook"></a>
-			    			<a href="http://linkedin.com/shareArticle?mini=true&amp;url=http://dreamlife.designforlifeden.com&amp;title=DreamLife%20Responsive%20Template" target="_blank" class="social_colored linkedin tooltip_s" title="LinkedIn"></a>
-			    			<a href="mailto:?subject=DreamLife%20Responsive%20Template&amp;body=http://dreamlife.designforlifeden.com" class="social_colored mail tooltip_s" title="Mail"></a>
-			    		</div>
-			    	</div>
-			    	<!-- social links end -->
-			    </div>
-			</div>
-			<!-- a work end -->
-			<!-- a work -->
-			<div class="a_work">	
-			    <div class="normal">
-			    	<img src="{{ asset('DreamLife/html/assets/images/mix/940/image_fixed.jpg')}}" alt="Shopping" class="grid_image"/>
-			    	<div class="work_heading">Shopping</div>
-			    </div>
-			    <div class="hover">
-			    	<h4>Shopping</h4>
-			    	<div class="work_links">
-			    		<div><a href="{{ asset('DreamLife/html/assets/images/mix/940/image.jpg')}}" data-rel="prettyPhoto" class="misc_white_icons16 icon16_15" title="Big Size"></a></div>
-			    		<div><a href="single_project.html" class="misc_white_icons16 icon16_67" title="Project Details"></a></div>
-			    	</div>
-			    	<div class="clearfix"></div>
-			    	<!-- social links -->
-			    	<div class="social_links">
-			    		<div class="share_text">Share on</div>
-			    		<div class="share_icons">
-			    			<a href="http://twitthis.com/twit?url=http://dreamlife.designforlifeden.com" target="_blank" class="social_colored twitter tooltip_s" title="Twitter"></a>
-			    			<a href="http://www.facebook.com/sharer.php?u=http://dreamlife.designforlifeden.com" target="_blank" class="social_colored facebook tooltip_s" title="Facebook"></a>
-			    			<a href="http://linkedin.com/shareArticle?mini=true&amp;url=http://dreamlife.designforlifeden.com&amp;title=DreamLife%20Responsive%20Template" target="_blank" class="social_colored linkedin tooltip_s" title="LinkedIn"></a>
-			    			<a href="mailto:?subject=DreamLife%20Responsive%20Template&amp;body=http://dreamlife.designforlifeden.com" class="social_colored mail tooltip_s" title="Mail"></a>
-			    		</div>
-			    	</div>
-			    	<!-- social links end -->
-			    </div>
-			</div>
-			<!-- a work end -->
-			<!-- a work -->
-			<div class="a_work">	
-			    <div class="normal">
-			    	<img src="{{ asset('DreamLife/html/assets/images/mix/940/image_fixed.jpg')}}" alt="Luxury Life" class="grid_image"/>
-			    	<div class="work_heading">Urban Style</div>
-			    </div>
-			    <div class="hover">
-			    	<h4>Urban Style</h4>
-			    	<div class="work_links">
-			    		<div><a href="{{ asset('DreamLife/html/assets/images/mix/940/image.jpg')}}" data-rel="prettyPhoto" class="misc_white_icons16 icon16_15" title="Big Size"></a></div>
-			    		<div><a href="single_project.html" class="misc_white_icons16 icon16_67" title="Project Details"></a></div>
-			    	</div>
-			    	<div class="clearfix"></div>
-			    	<!-- social links -->
-			    	<div class="social_links">
-			    		<div class="share_text">Share on</div>
-			    		<div class="share_icons">
-			    			<a href="http://twitthis.com/twit?url=http://dreamlife.designforlifeden.com" target="_blank" class="social_colored twitter tooltip_s" title="Twitter"></a>
-			    			<a href="http://www.facebook.com/sharer.php?u=http://dreamlife.designforlifeden.com" target="_blank" class="social_colored facebook tooltip_s" title="Facebook"></a>
-			    			<a href="http://linkedin.com/shareArticle?mini=true&amp;url=http://dreamlife.designforlifeden.com&amp;title=DreamLife%20Responsive%20Template" target="_blank" class="social_colored linkedin tooltip_s" title="LinkedIn"></a>
-			    			<a href="mailto:?subject=DreamLife%20Responsive%20Template&amp;body=http://dreamlife.designforlifeden.com" class="social_colored mail tooltip_s" title="Mail"></a>
-			    		</div>
-			    	</div>
-			    	<!-- social links end -->
-			    </div>
-			</div>
-			<!-- a work end -->
-			<!-- a work -->
-			<div class="a_work">	
-			    <div class="normal">
-			    	<img src="{{ asset('DreamLife/html/assets/images/mix/940/image_fixed.jpg')}}" alt="Good Morning" class="grid_image"/>
-			    	<div class="work_heading">Vogue</div>
-			    </div>
-			    <div class="hover">
-			    	<h4>Vogue</h4>
-			    	<div class="work_links">
-			    		<div><a href="{{ asset('DreamLife/html/assets/images/mix/940/image.jpg')}}" data-rel="prettyPhoto" class="misc_white_icons16 icon16_15" title="Big Size"></a></div>
-			    		<div><a href="single_project.html" class="misc_white_icons16 icon16_67" title="Project Details"></a></div>
-			    	</div>
-			    	<div class="clearfix"></div>
-			    	<!-- social links -->
-			    	<div class="social_links">
-			    		<div class="share_text">Share on</div>
-			    		<div class="share_icons">
-			    			<a href="http://twitthis.com/twit?url=http://dreamlife.designforlifeden.com" target="_blank" class="social_colored twitter tooltip_s" title="Twitter"></a>
-			    			<a href="http://www.facebook.com/sharer.php?u=http://dreamlife.designforlifeden.com" target="_blank" class="social_colored facebook tooltip_s" title="Facebook"></a>
-			    			<a href="http://linkedin.com/shareArticle?mini=true&amp;url=http://dreamlife.designforlifeden.com&amp;title=DreamLife%20Responsive%20Template" target="_blank" class="social_colored linkedin tooltip_s" title="LinkedIn"></a>
-			    			<a href="mailto:?subject=DreamLife%20Responsive%20Template&amp;body=http://dreamlife.designforlifeden.com" class="social_colored mail tooltip_s" title="Mail"></a>
-			    		</div>
-			    	</div>
-			    	<!-- social links end -->
-			    </div>
-			</div>
-			<!-- a work end -->
-		</div>
-		<!-- recent works end -->
 		<div class="clearfix"></div>
 		<!-- popular blog post and testiomonials -->
 		<div class="grid_12">
@@ -354,44 +139,105 @@
 			<!-- testimonials -->
 			<div class="grid_4 omega">
 				<div class="divider_page">
-					<h2>What Client's Say</h2>
+					<h2> <center>Our Office</center></h2>
 					<div class="heading_button">
-						<div class="prev_button" id="testimonials_prev">Prev</div>
-						<div class="next_button" id="testimonials_next">Next</div>
 					</div>
+				</div>
+					<!-- a testimonial -->
+					<div class="testimonial">
+						<div class="title">Bandung</div>
+						<div class="desc">Guntursari Wetan No. 17
+						Buah Batu, Bandung 40286
+						Phone (022) 87325528
+						Whatsapp 08172311185
+						</div><br>
+						<div class="title">Karawang</div>
+						<div class="desc">
+						Perum Puri Telukjambe Blok C-09 No. 15
+						Desa Sinarbaya, Kecamatan Teluk Jambe Timur
+						</div>
+					</div>
+					<!-- a testimonial end -->
+				</div>
+				<!-- a testimonial end -->
+			</div>
+			<!-- testimonials end -->
+		<div class="grid_12" align="center">
+				<div class="divider_page">
+					<h2> <center>Who We Work With </center></h2>
+				</div>
+				<div class="heading_button">
+					<div class="prev_button" id="testimonials_prev">Prev</div>
+					<div class="next_button" id="testimonials_next">Next</div>
 				</div>
 				<div class="testimonials">
 					<!-- a testimonial -->
 					<div class="testimonial">
-						<div class="desc">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</div>
+						<div class="desc" style="font-size:15px;"><center>Since the first stand We have cooperated and bred by the largest Automotive Company in Indonesia, PT. TMMIN as a local-vendor that supports software on the part of quality control, logistics, vehicle, administration and production. <br><br>
+																		 <b>PT. Toyota Motor Manufacturing Indonesia</b><br>
+																		KAWASAN INDUSTRI KIIC LOT DD 1, JL. PERMATA RAYA, KARAWANG BARAT</center></div>
 						<div class="who">
-							<img src="{{ asset('DreamLife/html/assets/images/mix/envato/envato_logo.png')}}" alt=""/> <span class="name">John Doe</span><span class="job"> , Web Developer</span>
+							<img src="toyota.png" alt="" height="30px" width="80px"/> <span class="name">Toyota</span><span class="job"> , Supports software on the part of quality control, logistics, vehicle, administration and production.</span>
+						</div>
+					</div>
+					<div class="testimonial">
+						<div class="desc" style="font-size:15px;"><center>For Almost 10 years we have been supporting PD. Kebersihan Kota Bandung in managing HRIS, with more concern in employee payroll, personnel activities,and payment automation. <br><br>
+																		<b>PD. Kebersihan Kota Bandung</b><br>
+																		JL. SURAPATI NO.216, CAHAUR GEULIS, CIBEUNYING KALER, BANDUNG</center></div>
+						<div class="who">
+							<img src="logo-98.png" alt="" height="30px" width="80px"/> <span class="name">Bandung Resik</span><span class="job"> ,employee payroll, personnel activities,and payment automation</span>
+						</div>
+					</div>	
+					<div class="testimonial">
+						<div class="desc" style="font-size:15px;"><center>In Automotive Sector, we also have the opportunity to work with AISIN Indonesia Automotive in GA Inventory Sector , IATF document standard, and other business operations. <br><br>
+																		<b>PT. Aisin Indonesia Automotive</b><br>
+																		KAWASAN INDUSTRI KIIC LOT LL NO.9-10, KABUPATEN BANDUNG</center></div>
+						<div class="who">
+							<img src="logo-97.png" alt="" height="30px" width="80px"/> <span class="name">AISIN Indonesia Automotive</span><span class="job"> , GA Inventory Sector , IATF document standard, and other business operations</span>
 						</div>
 					</div>
 					<!-- a testimonial end -->
 					<!-- a testimonial -->
 					<div class="testimonial">
-						<div class="desc">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here.</div>
+						<div class="desc" style="font-size:15px;"><center>PT Pupuk Kujang is one of the state-owned enterprises engaged in he field of industry and marketing of urea fertilizer and various chemical industries. We help develop Corporate Schedule, budget realization, and standard coasting. <br><br>
+																		<b>PT. Pupuk Kujang</b><br>
+																		JL. JEND. A. YANI NO. 39 CIKAMPEK 41373 KABUPATEN KARAWANG</center></div>
 						<div class="who">
-							<img src="{{ asset('DreamLife/html/assets/images/mix/envato/tutplus_logo.png')}}" alt=""/> <span class="name">Doctor Who</span><span class="job"> , Artist</span>
+							<img src="logo-94.png" alt="" height="30px" width="80px"/> <span class="name">Pupuk Kujang</span><span class="job"> , Corporate Schedule, budget realization, and standard coasting.</span>
 						</div>
 					</div>
 					<!-- a testimonial end -->
 					<!-- a testimonial -->
 					<div class="testimonial">
-						<div class="desc">Aliquam blandit augue ut augue hendrerit pharetra. Sed ante ligula, pretium ornare facilisis ut, laoreet ut diam. Etiam sit amet nibh magna. Nam suscipit quam sit amet lorem viverra blandit. Mauris rhoncus pulvinar laoreet. Proin ullamcorper pretium </div>
+						<div class="desc" style="font-size:15px;"><center>Barry Callebaut, the world's leading supplier of high-quality chocolate and cocoa products. B2B Chocolate & Cocoa manufacturer work with us in the field of HRIS Implementation. <br><br>
+																		<b>Barry Callebaut - PT. Papandayan Cocoa Industries</b><br>
+																		JL. RAYA DAYEUHOLOT NO.84, PASAWAHAN, DAYEUHKOLOT, BANDUNG</center></div>
 						<div class="who">
-							<img src="{{ asset('DreamLife/html/assets/images/mix/envato/photodune_logo.png')}}" alt=""/> <span class="name">Ted Mosby</span><span class="job"> , Architect</span>
+							<img src="logo-96.png" alt="" height="30px" width="80px"/> <span class="name">Barry Callebaut</span><span class="job"> , HRIS Implementation</span>
 						</div>
 					</div>
-					<!-- a testimonial end -->
+					
 				</div>
+				
+		<!-- our clients end -->
+		<!-- popular blog post and testiomonials end -->
 			</div>
-			<!-- testimonials end -->
-		</div>
+		<!-- our clients -->
+		<div class="grid_12">
+				<div class="divider_page">
+				</div>
+				<img src="toyota.png" target="_blank" class="a_client themeforest" width="150px" height="60px" style="margin-right: 40px;">
+				<img src="logo-98.png" target="_blank" class="a_client themeforest" width="150px" height="60px" style="margin-right: 40px;">
+				<img src="logo-97.png" target="_blank" class="a_client themeforest" width="150px" height="60px" style="margin-right: 40px;">
+				<img src="logo-94.png" target="_blank" class="a_client themeforest" width="150px" height="60px" style="margin-right: 40px;">
+				<img src="logo-96.png" target="_blank" class="a_client themeforest" width="150px" height="60px">
+			</div>
+		<!-- our clients end -->
 		<!-- popular blog post and testiomonials end -->
 	</div>
+	
 	<!-- container 12 end -->
+	
 	<!-- footer -->
 	@include('layouts.partial-frontend.footer')
 	<!-- footer end -->

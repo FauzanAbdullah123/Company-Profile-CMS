@@ -58,7 +58,7 @@
            <div class="form-group row mb-4">
             <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Description : </label>
             <div class="col-sm-12 col-md-10">
-                <textarea id="desc" rows="8" cols="30" type="text" name="desc"></textarea>
+                <textarea id="desc" rows="8" cols="30" type="text" class="desc" name="desc"></textarea>
             </div>
            </div>
            <br />
@@ -137,6 +137,13 @@
     <script src="{{asset('AdminLTE/assets/vendor/ckeditor/ckeditor.js')}}"></script>
     <script src="{{asset('AdminLTE/assets/vendor/select2/select2.min.js')}}"></script>
     <script src="{{asset('AdminLTE/assets/js/components/select2-init.js')}}"></script>
+
+    <script>
+        CKEDITOR.replace( 'editor1' );
+        $(document).ready(function () {
+        $('#select2').select2();
+    })
+    </script>
 
 <script>
     $(document).ready(function(){

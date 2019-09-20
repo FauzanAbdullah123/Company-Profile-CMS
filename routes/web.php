@@ -59,9 +59,9 @@ Route::group(['prefix' => '', 'middleware' => ['auth']], function () {
 // Route Frontend
 Route::group(['prefix'=>'/'], function(){
     Route::get('/','FrontendController@index');
-    Route::get('/about','FrontendController@about');
-    Route::get('/services','FrontendController@services');
-    Route::get('/gallery','FrontendController@gallery');
+    Route::get('/about','FrontendController@about')->name('about');
+    Route::get('/services','FrontendController@services')->name('services');
+    Route::get('/gallery','FrontendController@gallery')->name('gallery');
     Route::get('/blog', 'FrontendController@allblog')->name('all.blog');
     Route::get('/blog/{article}', 'FrontendController@detailblog')->name('detail.blog');
     Route::get('/blog/category/{cat}', 'FrontendController@blogcat')->name('cat.blog');

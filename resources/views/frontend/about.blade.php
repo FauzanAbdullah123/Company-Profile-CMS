@@ -12,22 +12,15 @@
 <!-- container 12 -->
 <div class="container_12">
     <!-- mission and vision -->
+    @php
+        $about = \App\About::paginate(4);
+    @endphp
+    @foreach($about as $data)
     <div class="grid_6">
-        <!-- page slider -->
-        <div class="sliderinPage theme-dark">
-            <div class="nivoSlider">
-                <img src="{{ asset('DreamLife/html/assets/images/mix/940/image_fixed.jpg')}}" alt="" />
-                <img src="{{ asset('DreamLife/html/assets/images/mix/940/image_fixed.jpg')}}" alt=""/>
-                <img src="{{ asset('DreamLife/html/assets/images/mix/940/image_fixed.jpg')}}" alt="" />
-            </div>
-        </div>
-        <!-- page slider end -->
+        <div class="divider_page"><h2>{{$data->title}}</h2></div>
+       <p style="font-size:15px">{{$data->desc}}</p>
     </div>
-    <div class="grid_6">
-        <div class="divider_page"><h2>Our Mission &amp; Vision</h2></div>
-        <p>Curabitur urna ligula, lobortis nec malesuada vitae, pulvinar et metus. Curabitur eu consequat magna. Nulla facilisi. Suspendisse potenti. Suspendisse congue placerat vestibulum. Nulla id ligula et nibh cursus pretium. Integer eleifend laoreet tincidunt. Vestibulum facilisis consectetur odio vitae faucibus.</p>
-        <p>Sed id sem vel enim placerat fringilla quis eget velit. Aenean viverra, nisi vitae pharetra fringilla, nisl leo congue mi, et malesuada eros orci at tortor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed vestibulum porttitor gravida. Nulla eu velit sed ipsum luctus bibendum. Donec tincidunt faucibus ultricies. Sed volutpat ultrices lobortis. Aliquam fringilla mauris nec neque pretium laoreet.</p>
-    </div>
+    @endforeach
     <!-- mission and vision end -->
 </div>
 <!-- container 12 end -->
@@ -35,35 +28,34 @@
 <div class="container_12">
     <!-- tabs -->
     <div class="grid_6">
-        <div class="divider_page"><h2>Why Us?</h2></div>
+        <div class="divider_page"><h2>Position Available</h2></div>
         <!-- accordion -->
+        @php
+            $about = \App\About::latest()->paginate(2);
+        @endphp
+         @foreach($about as $data)
         <div class="accordion">
-            <h5>Curabitur nec metus purus</h5>
+            <h5>{{$data->title}}</h5>
             <div>
-                <p>Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate.</p>
-            </div>
-            <h5>Aenean metus libero</h5>
-            <div>
-                <p>Sed non urna. Donec et ante. Phasellus eu ligula. Vestibulum sit amet purus. Vivamus hendrerit, dolor at aliquet laoreet, mauris turpis porttitor velit, faucibus interdum tellus libero ac justo. Vivamus non quam. In suscipit faucibus urna.</p>
-            </div>
-            <h5>Vestibulum egestas metus</h5>
-            <div>
-                <p>Nam enim risus, molestie et, porta ac, aliquam ac, risus. Quisque lobortis. Phasellus pellentesque purus in massa. Aenean in pede. Phasellus ac libero ac tellus pellentesque semper. Sed ac felis. Sed commodo, magna quis lacinia ornare, quam ante aliquam nisi, eu iaculis leo purus venenatis dui.</p>
+                <p>{{$data->desc}}</p>
             </div>
         </div>
+        @endforeach
         <!-- accordion end -->
     </div>
     <!-- tabs end -->
     <!-- progress bar -->
     <div class="grid_6">
-        <div class="divider_page"><h2>Some Statistics</h2></div>
+        <div class="divider_page"><h2>We offer the following technology platforms :</h2></div>
         <div class="progress_bars">
-            <b>Customer satisfaction</b>
-            <div class="progress_bar" data-percentage="99" data-title="99%"><span></span></div>
-            <b>Lorem ipsum dolor sit amet</b>
-            <div class="progress_bar" data-percentage="65" data-title="65%"><span></span></div>
-            <b>Curabitur nec metus purus</b>
-            <div class="progress_bar" data-percentage="85" data-title="85%"><span></span></div>
+            <b>ASP.NET</b>
+            <div class="progress_bar" data-percentage="95" data-title="95%"><span></span></div>
+            <b>PHP</b>
+            <div class="progress_bar" data-percentage="95" data-title="95%"><span></span></div>
+            <b>MOBILE APPS (ANDROID)</b>
+            <div class="progress_bar" data-percentage="90" data-title="90%"><span></span></div>
+            <b>DATABASE, INTERFACING, OTHERS</b>
+            <div class="progress_bar" data-percentage="95" data-title="95%"><span></span></div>
         </div>
     </div>
     <!-- progress bar end -->
@@ -89,30 +81,17 @@
         <div class="a_member">
             <!-- member pic -->
             <div class="member_pic">
-                <img src="{{ asset('DreamLife/html/assets/images/mix/100/image.jpg')}}" alt="member1">
+                <img src="team-99.jpg" alt="member1">
             </div>
             <!-- member pic end -->
             <!-- member content -->
             <div class="member_content">
                 <!-- member info -->
                 <div class="member_info">
-                    <div class="member_name">Julianne Diers</div>
-                    <div class="member_job">CEO / Founder</div>
+                    <div class="member_name">Irfan Satriadarma</div>
+                    <div class="member_job">Chief Executive Officer</div>
                 </div>
                 <!-- member info end -->
-                <!-- member bio -->
-                <p class="member_bio">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't.</p>
-                <!-- member bio end -->
-                <!-- member social networks -->
-                <div class="member_social">
-                    <div class="social_title">Follow with</div>
-                    <div class="social_icons">
-                        <a href="http://facebook.com/" target="_blank" class="social_colored tooltip_s  facebook" title="Facebook"></a>
-                        <a href="http://twitter.com/" target="_blank" class="social_colored tooltip_s  twitter" title="Twitter"></a>
-                        <a href="http://linkedin.com/" target="_blank" class="social_colored tooltip_s  linkedin" title="Linkedin"></a>
-                        <a href="mailto:yourmail@mail.com" class="social_colored tooltip_s  mail" title="Mail"></a>
-                    </div>
-                </div>
                 <!-- member social networks end -->
                 <div class="clearfix"></div>
             </div>
@@ -123,31 +102,17 @@
         <div class="a_member">
             <!-- member pic -->
             <div class="member_pic">
-                <img src="{{ asset('DreamLife/html/assets/images/mix/100/image.jpg')}}" alt="member2">
+                <img src="team-98.jpg" alt="member2">
             </div>
             <!-- member pic end -->
             <!-- member content -->
             <div class="member_content">
                 <!-- member info -->
                 <div class="member_info">
-                    <div class="member_name">Lance Sorre</div>
-                    <div class="member_job">Director / Founder</div>
+                    <div class="member_name">Achmad Nur Pratomo</div>
+                    <div class="member_job">Chief Technology Officer</div>
                 </div>
                 <!-- member info end -->
-                <!-- member bio -->
-                <p class="member_bio">Aenean metus libero, viverra in porttitor sed, porta vel mi. Duis at nunc vel mauris dictum semper. Ut accumsan sagittis neque vel eleifend. In luctus vestibulum urna. Proin vitae.</p>
-                <!-- member bio end -->
-                <!-- member social networks -->
-                <div class="member_social">
-                    <div class="social_title">Follow with</div>
-                    <div class="social_icons">
-                        <a href="http://dribbble.com/" target="_blank" class="social_colored tooltip_s  dribbble" title="Dribbble"></a>
-                        <a href="http://twitter.com/" target="_blank" class="social_colored tooltip_s  twitter" title="Twitter"></a>
-                        <a href="http://flickr.com/" target="_blank" class="social_colored tooltip_s  flickr" title="Flickr"></a>
-                        <a href="mailto:yourmail@mail.com" class="social_colored tooltip_s  mail" title="Mail"></a>
-                    </div>
-                </div>
-                <!-- member social networks end -->
                 <div class="clearfix"></div>
             </div>
             <!-- member content end -->
@@ -157,31 +122,17 @@
         <div class="a_member">
             <!-- member pic -->
             <div class="member_pic">
-                <img src="{{ asset('DreamLife/html/assets/images/mix/100/image.jpg')}}" alt="member3">
+                <img src="team-97.jpg" alt="member3">
             </div>
             <!-- member pic end -->
             <!-- member content -->
             <div class="member_content">
                 <!-- member info -->
                 <div class="member_info">
-                    <div class="member_name">Liza Banfield</div>
-                    <div class="member_job">Business Development</div>
+                    <div class="member_name">Farid Satia Supriana</div>
+                    <div class="member_job">Chief Operating Officer</div>
                 </div>
                 <!-- member info end -->
-                <!-- member bio -->
-                <p class="member_bio">Vestibulum egestas metus id leo aliquet eleifend. Donec vel lectus metus. Curabitur dictum risus at erat convallis vitae laoreet mauris tempor. In dolor magna, consectetur ac blandit.</p>
-                <!-- member bio end -->
-                <!-- member social networks -->
-                <div class="member_social">
-                    <div class="social_title">Follow with</div>
-                    <div class="social_icons">
-                        <a href="http://facebook.com/" target="_blank" class="social_colored tooltip_s  facebook" title="Facebook"></a>
-                        <a href="http://vimeo.com/" target="_blank" class="social_colored tooltip_s  vimeo" title="Vimeo"></a>
-                        <a href="http://tumblr.com/" target="_blank" class="social_colored tooltip_s  tumblr" title="Tumblr"></a>
-                        <a href="mailto:yourmail@mail.com" class="social_colored tooltip_s  mail" title="Mail"></a>
-                    </div>
-                </div>
-                <!-- member social networks end -->
                 <div class="clearfix"></div>
             </div>
             <!-- member content end -->
@@ -191,31 +142,17 @@
         <div class="a_member">
             <!-- member pic -->
             <div class="member_pic">
-                <img src="{{ asset('DreamLife/html/assets/images/mix/100/image.jpg')}}" alt="member4">
+                <img src="team-96.jpg" alt="member4">
             </div>
             <!-- member pic end -->
             <!-- member content -->
             <div class="member_content">
                 <!-- member info -->
                 <div class="member_info">
-                    <div class="member_name">Mathew Welden</div>
-                    <div class="member_job">Editorial Manager</div>
+                    <div class="member_name">Ipan Herdiansyah</div>
+                    <div class="member_job">Chief Marketing Officer</div>
                 </div>
                 <!-- member info end -->
-                <!-- member bio -->
-                <p class="member_bio">Aliquam sagittis turpis enim, et lobortis libero. Duis fringilla purus ut purus ornare venenatis. Suspendisse aliquam ligula ut velit bibendum at vestibulum odio eleifend. Vivamus...</p>
-                <!-- member bio end -->
-                <!-- member social networks -->
-                <div class="member_social">
-                    <div class="social_title">Follow with</div>
-                    <div class="social_icons">
-                        <a href="http://facebook.com/" target="_blank" class="social_colored tooltip_s  facebook" title="Facebook"></a>
-                        <a href="http://dribbble.com/" target="_blank" class="social_colored tooltip_s  dribbble" title="Dribbble"></a>
-                        <a href="http://twitter.com/" target="_blank" class="social_colored tooltip_s  twitter" title="Twitter"></a>
-                        <a href="mailto:yourmail@mail.com" class="social_colored tooltip_s  mail" title="Mail"></a>
-                    </div>
-                </div>
-                <!-- member social networks end -->
                 <div class="clearfix"></div>
             </div>
             <!-- member content end -->
@@ -225,31 +162,17 @@
         <div class="a_member">
             <!-- member pic -->
             <div class="member_pic">
-                <img src="{{ asset('DreamLife/html/assets/images/mix/100/image.jpg')}}" alt="member5">
+                <img src="team-95.jpg" alt="member5">
             </div>
             <!-- member pic end -->
             <!-- member content -->
             <div class="member_content">
                 <!-- member info -->
                 <div class="member_info">
-                    <div class="member_name">Fernando Barco</div>
-                    <div class="member_job">Production Assistant</div>
+                    <div class="member_name">Widya Revina</div>
+                    <div class="member_job">HRGA Manager</div>
                 </div>
                 <!-- member info end -->
-                <!-- member bio -->
-                <p class="member_bio">Fusce sagittis justo eu felis ornare lacinia. In hac habitasse platea dictumst. Aliquam dapibus dictum laoreet. Sed vehicula magna neque, non sollicitudin mauris. Cras, consectetur.</p>
-                <!-- member bio end -->
-                <!-- member social networks -->
-                <div class="member_social">
-                    <div class="social_title">Follow with</div>
-                    <div class="social_icons">
-                        <a href="http://facebook.com/" target="_blank" class="social_colored tooltip_s  facebook" title="Facebook"></a>
-                        <a href="http://dribbble.com/" target="_blank" class="social_colored tooltip_s  dribbble" title="Dribbble"></a>
-                        <a href="http://vimeo.com/" target="_blank" class="social_colored tooltip_s  vimeo" title="Vimeo"></a>
-                        <a href="mailto:yourmail@mail.com" class="social_colored tooltip_s  mail" title="Mail"></a>
-                    </div>
-                </div>
-                <!-- member social networks end -->
                 <div class="clearfix"></div>
             </div>
             <!-- member content end -->
@@ -259,31 +182,37 @@
         <div class="a_member">
             <!-- member pic -->
             <div class="member_pic">
-                <img src="{{ asset('DreamLife/html/assets/images/mix/100/image.jpg')}}" alt="member6">
+                <img src="team-94.jpg" alt="member6">
             </div>
             <!-- member pic end -->
             <!-- member content -->
             <div class="member_content">
                 <!-- member info -->
                 <div class="member_info">
-                    <div class="member_name">Erik Woldt</div>
-                    <div class="member_job">Community Officer</div>
+                    <div class="member_name">Yudha Ari Istiantoro</div>
+                    <div class="member_job">Project Manager</div>
                 </div>
                 <!-- member info end -->
-                <!-- member bio -->
-                <p class="member_bio">Duis tincidunt faucibus mollis. Cras eget pulvinar augue. Sed convallis, felis id posuere imperdiet, magna est aliquet arcu, vitae placerat enim enim vel sem. Nunc dunt lorem ipsum faucibus.</p>
-                <!-- member bio end -->
-                <!-- member social networks -->
-                <div class="member_social">
-                    <div class="social_title">Follow with</div>
-                    <div class="social_icons">
-                        <a href="http://twitter.com/" target="_blank" class="social_colored tooltip_s  twitter" title="Twitter"></a>
-                        <a href="http://myspace.com/" target="_blank" class="social_colored tooltip_s  myspace" title="MySpace"></a>
-                        <a href="http://flickr.com/" target="_blank" class="social_colored tooltip_s  flickr" title="Flickr"></a>
-                        <a href="mailto:yourmail@mail.com" class="social_colored tooltip_s  mail" title="Mail"></a>
-                    </div>
+                <div class="clearfix"></div>
+            </div>
+            <!-- member content end -->
+        </div>
+        <!-- a member end -->
+          <!-- a member -->
+          <div class="a_member">
+            <!-- member pic -->
+            <div class="member_pic">
+                <img src="team-93.jpg" alt="member6">
+            </div>
+            <!-- member pic end -->
+            <!-- member content -->
+            <div class="member_content">
+                <!-- member info -->
+                <div class="member_info">
+                    <div class="member_name">Rakhman Mansyur</div>
+                    <div class="member_job">Project Manager</div>
                 </div>
-                <!-- member social networks end -->
+                <!-- member info end -->
                 <div class="clearfix"></div>
             </div>
             <!-- member content end -->

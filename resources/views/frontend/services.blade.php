@@ -35,66 +35,23 @@
 <div class="container_12">
     <!-- features boxes -->
     <div class="grid_12">
+        @foreach($services as $data)
         <div class="grid_3 alpha">
             <!-- a feature box -->
             <div class="feature_box">
-                <div class="feature_icon"><a href="sliders.html" class="edevices_icons32 icon32_15"></a></div>
+                <div class="feature_icon">
+                    <img src="{{ asset('assets/img/service/'.$data->image)}}" width="35px" height="35px" alt="">
+                </div>
                 <div class="feature_content">
                     <div class="feature_heading">
-                        <div class="large">GRAPHIC</div>
-                        <div class="medium">DESIGN</div>
+                        <div class="small" style="font-size:22px;">{{$data->title}}</div>
                     </div>
-                    <p class="feature_desc">Fusce consequat ipsum id nulla fringilla euismod. Morbi purus ut nibh eget faucibus.</p>
+                    <div class="desc" style="font-size:15px; text-align:center; font-color:white;">{{$data->desc}}</div>
                 </div>
-                <div class="feature_link"><a href="sliders.html" class="arrows_icons16 icon16_5 tooltip_s" title="Read More"></a></div>
             </div>
             <!-- a feature box end -->
         </div>
-        <div class="grid_3 lambda">
-            <!-- a feature box -->
-            <div class="feature_box">
-                <div class="feature_icon"><a href="portfolio_one_column.html" class="social_icons32 icon32_13"></a></div>
-                <div class="feature_content">
-                    <div class="feature_heading">
-                        <div class="large">LOGO</div>
-                        <div class="medium">DESIGN</div>
-                    </div>
-                    <p class="feature_desc">Phasellus a ipsum odio nec. Etiam eget elit. Curabitur elementum co facilisis pulvinar.</p>
-                </div>
-                <div class="feature_link"><a href="portfolio_one_column.html" class="arrows_icons16 icon16_5 tooltip_s" title="Read More"></a></div>
-            </div>
-            <!-- a feature box end -->
-        </div>
-        <div class="grid_3 lambda">
-            <!-- a feature box -->
-            <div class="feature_box">
-                <div class="feature_icon"><a href="contact.html" class="displayoptions_icons32 icon32_1"></a></div>
-                <div class="feature_content">
-                    <div class="feature_heading">
-                        <div class="large">WEB</div>
-                        <div class="medium">DESIGN</div>
-                    </div>
-                    <p class="feature_desc">Duis nec elit nunc. Phasellus, est non hendrerit aliquet, dolor ante sagittis magna.</p>
-                </div>
-                <div class="feature_link"><a href="contact.html" class="arrows_icons16 icon16_5 tooltip_s" title="Read More"></a></div>
-            </div>
-            <!-- a feature box end -->
-        </div>
-        <div class="grid_3 omega">
-            <!-- a feature box -->
-            <div class="feature_box">
-                <div class="feature_icon"><a href="elements.html" class="mobile_icons32 icon32_4"></a></div>
-                <div class="feature_content">
-                    <div class="feature_heading">
-                        <div class="large">MOBILE</div>
-                        <div class="medium">APPS</div>
-                    </div>
-                    <p class="feature_desc">Etiam id sapien ultricies euis iaculis. Quisque lorem, viv non sodales a, pellentesque in.</p>
-                </div>
-                <div class="feature_link"><a href="elements.html" class="arrows_icons16 icon16_5 tooltip_s" title="Read More"></a></div>
-            </div>
-            <!-- a feature box end -->
-        </div>
+        @endforeach
     </div>
     <!-- features boxes end -->
 </div>

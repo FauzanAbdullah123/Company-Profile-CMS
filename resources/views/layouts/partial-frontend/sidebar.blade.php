@@ -10,7 +10,7 @@
             <ul class="sidebar_cat">
                 @foreach($category as $data)
                         @if($data->Article->count() > 0)
-                <li><a href="/blog/category/{{ $data->slug }}" class="justify-content-between align-items-center d-flex"><h6>{{ $data->nama }}</h6><h6 style="text-align:right;">{{ $data->Article->count() }}</h6></a></li>
+                <li><a href="/blog/category/{{ $data->slug }}" class="text-primary"><b>{{ $data->nama }}</b></a></li>
                         @endif
                 @endforeach
             </ul>

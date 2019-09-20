@@ -16,7 +16,7 @@
 		<!-- search bar -->
 		<div class="search_bar">
 			<form action="{{ route('all.blog') }}">
-				<input name="cari" value="Type &amp; Search" type="text" />
+				<input name="cari" value="Type &amp; Search Blog" type="text" />
 				<button type="submit"><i class="search_button"></i></button>
 			</form>
 		</div>

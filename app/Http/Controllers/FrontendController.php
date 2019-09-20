@@ -6,25 +6,47 @@ use Illuminate\Http\Request;
 use App\Article;
 use App\Tag;
 use App\Category;
+use App\Services;
+use App\Gallery;
+use App\About;
 
 class FrontendController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $article = Article::with('category', 'tag', 'user')->take(1)->get();
+        $cari = $request->cari;
+        if ($cari) {
+            $art = Article::where('judul', 'LIKE', "%$cari%")->paginate(4);
+        }
         return view('frontend.index', compact('article'));
     }
 
-    public function about(){
-        return view('frontend.about');
+    public function about(Request $request){
+        $about = About::all();
+        $cari = $request->cari;
+        if ($cari) {
+            $article = Article::where('judul', 'LIKE', "%$cari%")->paginate(4);
+        }
+        return view('frontend.about', compact('about'));
     }
 
-    public function services(){
-        return view('frontend.services');
+    public function services(Request $request){
+        $services = Services::all();
+        $cari = $request->cari;
+        if ($cari) {
+            $article = Article::where('judul', 'LIKE', "%$cari%")->paginate(4);
+        }
+        return view('frontend.services', compact('services'));
     }
 
-    public function gallery(){
-        return view('frontend.gallery');
+    public function gallery(Request $request){
+        $gallery = Gallery::all();
+        $cari = $request->cari;
+        if ($cari) {
+            $article = Article::where('judul', 'LIKE', "%$cari%")->paginate(4);
+        }
+        return view('frontend.gallery', compact('gallery'));
     }
 
     public function allblog(Request $request)

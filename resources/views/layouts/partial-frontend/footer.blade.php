@@ -7,32 +7,22 @@
             <p>We are IT Solutions company from Bandung, Indonesia. We design, create, and develop a variety of software and in all matters relating to the application of Information and Communication Technology.</p>
         </div>
         <div class="grid_3">
-            <h3><span class="first-word">Recent</span> Posts</h3>
+            <h3><span class="first-word">Recent Posts</span></h3>
+            @php
+                $recent = \App\Article::latest()->paginate(3);
+            @endphp
+            @foreach($recent as $data)
             <div class="recent_posts">
                 <div class="a_post">
-                    <a href="blog_single_post.html" title="Lorem ipsum dolor si amet there internet" class="post_img">
-                        <img src="{{ asset('DreamLife/html/assets/images/mix/80/image.jpg')}}" alt="Recent Post 1" />
+                    <a href="/blog/{{ $data->slug }}" title="{{ $data->judul }}" class="post_img">
+                        <img src="{{ asset('assets/img/article/'.$data->foto) }}" alt="Recent Post" height="50px" />
                     </a>
-                    <h6 class="post_heading"><a href="blog_single_post.html">Lorem ipsum dolor si amet there internet</a></h6>
-                    <div class="post_meta"><span class="time">12/01/2012</span> &bull; <a href="blog_single_post.html#comments">10 comments</a></div>
-                </div>
-                <div class="a_post">
-                    <a href="blog_single_post.html" title="There are many variations of passages" class="post_img">
-                        <img src="{{ asset('DreamLife/html/assets/images/mix/80/image.jpg')}}" alt="Recent Post 2" />
-                    </a>
-                    <h6 class="post_heading"><a href="blog_single_post.html">There are many variations of passages</a></h6>
-                    <div class="post_meta"><span class="time">10/01/2013</span> &bull; <a href="blog_single_post.html#comments">30 comments</a></div>
-                </div>
-                <div class="a_post">
-                    <a href="blog_single_post.html" title="Making this the first true generator on the" class="post_img">
-                        <img src="{{ asset('DreamLife/html/assets/images/mix/80/image.jpg')}}" alt="Recent Post 3" />
-                    </a>
-                    <h6 class="post_heading"><a href="blog_single_post.html">Making this the first true generator on the</a></h6>
-                    <div class="post_meta"><span class="time">07/01/2013</span> &bull; <a href="blog_single_post.html#comments">39 comments</a></div>
+                    <h6 class="post_heading"><a href="/blog/{{ $data->slug }}">{{ $data->judul }}</a></h6>
+                    <div class="post_meta"><span class="time">{{ $data->created_at->diffForHumans() }}</span></div>
                 </div>
             </div>
+            @endforeach
         </div>
-        
         <div class="grid_3">
             <h3><span class="first-word">Contact</span></h3>
             <p><b>Address:</b><br>Jl. Guntursari Wetan No. 17 Buah Batu, Bandung Jawa Barat, Indonesia 40286<br><b>Telephone :</b><br>(022)87325528<br><b>Telephone 2:</b><br>(0267)8406552<br><b>Email :<br>info[at]arkamaya.co.id<br></b></p>
