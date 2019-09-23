@@ -75,23 +75,23 @@
 		<div class="divider_page"><h2>Our Services</h2></div>
 		@php
 			$services = \App\Services::all();
-		@endphp
+					@endphp
         @foreach($services as $data)
         <div class="grid_3 alpha">
             <!-- a feature box -->
-            <div class="feature_box">
-                <div class="feature_icon">
-                    <img src="{{ asset('assets/img/service/'.$data->image)}}" width="35px" height="35px" alt="">
-                </div>
-                <div class="feature_content">
-                    <div class="feature_heading">
-                        <div class="small" style="font-size:22px;">{{$data->title}}</div>
-                    </div>
-                    <div class="desc" style="font-size:15px; text-align:center; font-color:white;">{{$data->desc}}</div>
-                </div>
-            </div>
-            <!-- a feature box end -->
-        </div>
+					<div class="feature_box">
+						<div class="feature_icon">
+							<img src="{{ asset('assets/img/service/'.$data->image)}}" width="35px" height="35px" alt="">
+						</div>
+						<div class="feature_content">
+							<div class="feature_heading">
+								<div class="small" style="font-size:22px;">{{$data->title}}</div>
+							</div>
+							<div class="desc" style="font-size:15px; text-align:center; font-color:white;">{{$data->desc}}</div>
+						</div>
+					</div>
+					<!-- a feature box end -->
+				</div>
         @endforeach
     </div>
 		<!-- features boxes end -->
