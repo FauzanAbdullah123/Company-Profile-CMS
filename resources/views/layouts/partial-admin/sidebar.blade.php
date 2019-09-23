@@ -63,6 +63,11 @@
             <i class="fa fa-cog"></i> <span>Manage User</span>
           </a>
         </li>
+        <li class="{{ (Request::segment(2) == 'logs') ? 'treeview active' : ''}}">
+          <a href="{{ route('logs.index') }}">
+            <i class="fa fa-cogs"></i> <span>Logs Activity</span>
+          </a>
+        </li>
         @endrole
 
          @role('Member')

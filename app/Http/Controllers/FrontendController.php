@@ -41,7 +41,7 @@ class FrontendController extends Controller
     }
 
     public function gallery(Request $request){
-        $gallery = Gallery::all();
+        $gallery = Gallery::paginate(4);
         $cari = $request->cari;
         if ($cari) {
             $article = Article::where('judul', 'LIKE', "%$cari%")->paginate(4);
@@ -51,7 +51,7 @@ class FrontendController extends Controller
 
     public function allblog(Request $request)
     {
-        $article = Article::with('category', 'tag', 'user')->get();
+        $article = Article::with('category', 'tag', 'user')->paginate(5);
         $cari = $request->cari;
         if ($cari) {
             $article = Article::where('judul', 'LIKE', "%$cari%")->paginate(4);

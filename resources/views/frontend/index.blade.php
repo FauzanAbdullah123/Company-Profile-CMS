@@ -42,17 +42,17 @@
 	<!-- menu end -->
 	<!-- slider -->
 	<div class="camera_wrap" id="cameraSlider">
-        <div data-thumb="{{ asset('DreamLife/html/assets/images/mix/80/image.jpg')}}" data-src="{{ asset('slider1.jpg')}}">
-        	<div class="camera_desc pink heading fadeIn camera_effected" style="bottom:190px;left:80px;">DreamLife Responsive Template</div>
-        	<div class="camera_desc black fadeIn camera_effected" style="bottom:140px;left:80px;">Choose the best option for your personal or business website. Of course DreamLife!</div>
+        <div data-thumb="" data-src="{{ asset('slider1.jpg')}}">
+        	<div class="camera_desc pink heading fadeIn camera_effected" style="bottom:250px;left:80px;">We Provide IT Solution</div>
+        	<div class="camera_desc black fadeIn camera_effected" style="bottom:140px;left:80px;">Hi, We Are Arkamaya, Software Development Company from Bandung, Indonesia. Specialized in Software Development(Web, Dekstop, Mobile), you named IT.</div>
         </div>
-    	<div data-thumb="{{ asset('DreamLife/html/assets/images/mix/80/image.jpg')}}" data-src="{{ asset('slider2.jpg')}}">
-    		<div class="camera_desc green heading fadeIn camera_effected" style="bottom:190px;right:80px;">Creative Design</div>
-        	<div class="camera_desc black fadeIn camera_effected" style="bottom:140px;right:80px;">DreamLife is incredibly responsive, with a refreshingly clean design</div>
+    	<div data-thumb="" data-src="{{ asset('slider2.jpg')}}">
+    		<div class="camera_desc green heading fadeIn camera_effected" style="bottom:250px;right:80px;">Experience in Various Fields</div>
+        	<div class="camera_desc black fadeIn camera_effected" style="bottom:140px;right:80px;">more than 10 years experience in various fields in Manufacturing, Retail, Human Resource Information System, Inventory, Enterprise Resource Planning, etc.</div>
     	</div>
-    	<div data-thumb="{{ asset('DreamLife/html/assets/images/mix/80/image.jpg')}}" data-src="{{ asset('slider3.jpg')}}">
-    		<div class="camera_desc blue heading fadeIn camera_effected" style="bottom:230px;left:50%;margin-left:-95px;">Enjoy the Landscape!</div>
-        	<div class="camera_desc black fadeIn camera_effected" style="bottom:200px;left:50%;margin-left:-145px; max-width:290px;">with the many features different from each other.</div>
+    	<div data-thumb="" data-src="{{ asset('slider3.jpg')}}">
+    		<div class="camera_desc blue heading fadeIn camera_effected" style="bottom:270px;left:50%;margin-left:-95px;">What We Do</div>
+        	<div class="camera_desc black fadeIn camera_effected" style="bottom:200px;left:50%;margin-left:-145px; max-width:290px;">Arkamaya help you to build an awesome software or develop the existing one, so you can focus on running your business.</div>
     	</div>
     </div>
 	<!-- slider end -->
@@ -75,7 +75,7 @@
 		<div class="divider_page"><h2>Our Services</h2></div>
 		@php
 			$services = \App\Services::all();
-					@endphp
+		@endphp
         @foreach($services as $data)
         <div class="grid_3 alpha">
             <!-- a feature box -->

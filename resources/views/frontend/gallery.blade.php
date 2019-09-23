@@ -49,19 +49,11 @@
     </div>
     <!-- portfolio items end -->
     <div class="grid_12">
-        <!-- page navigation -->
         <ul class="page_navigation">
-            <li><a href="#page1" class="prev_page passive"></a></li>
-            <li><a href="#page1" class="active">1</a></li>
-            <li><a href="#page2">2</a></li>
-            <li><a href="#page3">3</a></li>
-            <li><a href="#page4">4</a></li>
-            <li><a href="#page5">5</a></li>
-            <li><a href="#" class="more_page">...</a></li>
-            <li><a href="#page99">99</a></li>
-            <li><a href="#page2" class="next_page"></a></li>
-        </ul>
+        <!-- page navigation -->
+        {{ $gallery->links('pagination.default') }}
         <!-- page navigation end -->
+        </ul>
     </div>
 </div>
 <!-- container 12 end -->

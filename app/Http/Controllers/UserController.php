@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Role;
 use Session;
+use Spatie\Activitylog\Models\Activity;
+
 
 class UserController extends Controller
 {

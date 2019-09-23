@@ -52,10 +52,19 @@
         </ul>
         <!-- page navigation end -->
         @endforeach
+         
+        <div class="grid_12">
+            <ul class="page_navigation">
+                <!-- page navigation -->
+                {{ $article->links('pagination.default') }}
+                <!-- page navigation end -->
+            </ul>
+        </div>
 
     </div>
     @include('layouts.partial-frontend.sidebar')
 </div>
+
 
 
 <!-- container 12 end -->
