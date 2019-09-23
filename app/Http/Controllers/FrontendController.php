@@ -41,7 +41,7 @@ class FrontendController extends Controller
     }
 
     public function gallery(Request $request){
-        $gallery = Gallery::paginate(4);
+        $gallery = Gallery::paginate(12);
         $cari = $request->cari;
         if ($cari) {
             $article = Article::where('judul', 'LIKE', "%$cari%")->paginate(4);
