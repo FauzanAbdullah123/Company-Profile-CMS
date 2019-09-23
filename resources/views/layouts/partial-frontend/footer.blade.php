@@ -30,7 +30,7 @@
         <div class="grid_3">
             <h3><span class="first-word">Gallery</span> Stream</h3>
             @php
-                $gallery = \App\Gallery::take(9)->get();
+                $gallery = \App\Gallery::latest()->take(9)->get();
             @endphp
               @foreach($gallery as $data)
             <a href="{{ asset('assets/img/gallery/'.$data->image)}}" data-rel="prettyPhoto" >

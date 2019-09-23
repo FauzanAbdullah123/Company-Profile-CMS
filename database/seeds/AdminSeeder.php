@@ -27,14 +27,14 @@ class AdminSeeder extends Seeder
         $admin = new User();
         $admin->name = 'Administrator';
         $admin->email = 'admin@gmail.com';
-        $admin->password = bcrypt('12345678');
+        $admin->password = bcrypt('arkamaya123');
         $admin->save();
         $admin->attachRole('admin');
          //Membuat sample member
          $member = new User();
          $member->name = 'Member';
          $member->email = 'member@gmail.com';
-         $member->password = bcrypt('12345678');
+         $member->password = bcrypt('arkamaya123');
          $member->save();
          $member->attachRole('member');
     }

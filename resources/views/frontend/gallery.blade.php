@@ -26,7 +26,7 @@
                 <div class="a_work">
                     <!-- image -->	
                     <div class="normal">
-                        <img src="{{ asset('assets/img/gallery/'.$data->image)}}" width="300px" height="150px" alt="" class="grid_image"/>
+                        <img src="{{ asset('assets/img/gallery/'.$data->image)}}" alt="" class="grid_image"/>
                     </div>
                     <!-- image end -->
                     <!-- hover effect -->
