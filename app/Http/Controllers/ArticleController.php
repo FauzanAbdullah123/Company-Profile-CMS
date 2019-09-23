@@ -19,7 +19,7 @@ class ArticleController extends Controller
      */
     public function index(Request $request)
     {
-        $article = Article::orderBy('created_at', 'desc')->paginate(5);
+        $article = Article::orderBy('created_at', 'desc');
         $cari = $request->cari;
         if ($cari) {
             $article = Article::where('judul', 'LIKE', "%$cari%")->paginate(5);
