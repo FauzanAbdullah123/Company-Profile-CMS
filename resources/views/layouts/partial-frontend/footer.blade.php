@@ -1,3 +1,4 @@
+<!-- ini footer -->
 <div id="footer">
     <div class="back_top"></div>
     <!-- footer container -->
