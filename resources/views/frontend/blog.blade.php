@@ -11,6 +11,13 @@
 @section('content')
 <!-- container 12 -->
 
+<style>
+    p.serif {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 17px;
+    }
+</style>
+
 <div class="container_12">
     <!-- a sidebar width blog post -->
     <div class="content left grid_9">
@@ -48,10 +55,14 @@
       
         <!-- page navigation -->
         <ul class="page_navigation">
-      
+           
         </ul>
         <!-- page navigation end -->
         @endforeach
+               <p class="serif">Page : {{ $article->currentPage() }}</p>
+               <p class="serif">the Amount of Data : {{ $article->total() }}</p>
+               <p class="serif">Data Per Page : {{ $article->perPage() }}</p>
+        <br><br>
          
         <div class="grid_12">
             <ul class="page_navigation">
