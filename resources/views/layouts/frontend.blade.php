@@ -8,11 +8,41 @@
 <link rel="icon" href="{{ asset('icon.png')}}">
 <title>Arkamaya | @yield('title-website')</title>
 <link rel="stylesheet" type="text/css" href="{{ asset('DreamLife/html/assets/css/style.css')}}" />
+<script src="http://code.jquery.com/jquery-2.2.1.min.js"></script>
+<style type="text/css">
+    .preloader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 9999;
+      background-color: #fff;
+    }
+    .preloader .loading {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%,-50%);
+      font: 14px arial;
+    }
+</style>
+<script>
+    $(document).ready(function(){
+      $(".preloader").fadeOut();
+    })
+</script>
 <!-- CSS assets Here -->
 @yield('css')
 <!-- End CSS assets Here -->
 </head>
 <body>
+<div class="preloader">
+	<div class="loading">
+		<img src="preloader.gif" width="80">
+		<p>Harap Tunggu</p>
+	</div>
+</div>
 <!-- container full -->
 <div class="container_full">
     <!-- Navigation Bar -->

@@ -148,6 +148,7 @@
                                 )
                             })
                         } else {
+                            
                             $('#formAdd')[0].reset();
                             Swal.fire(
                                 'Good job!',
