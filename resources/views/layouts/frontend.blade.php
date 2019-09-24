@@ -39,8 +39,7 @@
 <body>
 <div class="preloader">
 	<div class="loading">
-		<img src="preloader.gif" width="300">
-		<p style="font-size: 25px; text-align:center;">Please Wait</p>
+		  <img src="{{ asset('1pGE.gif')}}" width="150">
 	</div>
 </div>
 <!-- container full -->

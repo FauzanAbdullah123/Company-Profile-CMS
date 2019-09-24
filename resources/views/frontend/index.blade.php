@@ -8,11 +8,37 @@
 <link rel="icon" href="{{ asset('icon.png')}}">
 <title>Arkamaya | Home</title>
 <link rel="stylesheet" type="text/css" href="{{ asset('DreamLife/html/assets/css/style.css')}}" />
-<!--[if lte IE 8]>
-	<link rel="stylesheet" type="text/css" href="{{ asset('DreamLife/html/assets/css/ie8.css')}}" />
-<![endif]-->
+<script src="http://code.jquery.com/jquery-2.2.1.min.js"></script>
+<style type="text/css">
+    .preloader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 9999;
+      background-color: #fff;
+    }
+    .preloader .loading {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%,-50%);
+      font: 14px arial;
+    }
+</style>
+<script>
+    $(document).ready(function(){
+     setTimeout(function(){ $('.preloader').fadeOut('slow'); }, 2000);
+})
+</script>
 </head>
 <body>
+<div class="preloader">
+	<div class="loading">
+		<img src="1pGE.gif" width="150">
+	</div>
+</div>
 <!-- container full -->
 <div class="container_full">
 	<!-- header -->
