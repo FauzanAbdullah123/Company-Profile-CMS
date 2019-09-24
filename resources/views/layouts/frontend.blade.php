@@ -29,8 +29,8 @@
 </style>
 <script>
     $(document).ready(function(){
-      $(".preloader").fadeOut();
-    })
+     setTimeout(function(){ $('.preloader').fadeOut('slow'); }, 2000);
+})
 </script>
 <!-- CSS assets Here -->
 @yield('css')
@@ -39,8 +39,8 @@
 <body>
 <div class="preloader">
 	<div class="loading">
-		<img src="preloader.gif" width="80">
-		<p>Harap Tunggu</p>
+		<img src="preloader.gif" width="300">
+		<p style="font-size: 25px; text-align:center;">Please Wait</p>
 	</div>
 </div>
 <!-- container full -->
