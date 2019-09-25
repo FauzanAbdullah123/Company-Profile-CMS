@@ -53,10 +53,6 @@
         </div>
         <!-- a blog post end -->
       
-        <!-- page navigation -->
-        <ul class="page_navigation">
-           
-        </ul>
         <!-- page navigation end -->
         @endforeach
                <p class="serif">Page : {{ $article->currentPage() }}</p>

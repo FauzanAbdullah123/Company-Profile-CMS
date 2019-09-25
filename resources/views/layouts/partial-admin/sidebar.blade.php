@@ -55,7 +55,7 @@
 
         <li class="{{ (Request::segment(2) == 'about') ? 'treeview active' : ''}}">
           <a href="{{ route('about.index') }}">
-            <i class="fa fa-info-circle"></i> <span>About</span>
+             <i class="fa fa-info-circle"></i> <span>About</span>
           </a>
         </li>
         <li class="{{ (Request::segment(2) == 'user') ? 'treeview active' : ''}}">
@@ -63,13 +63,34 @@
             <i class="fa fa-cog"></i> <span>Manage User</span>
           </a>
         </li>
+        <li class="{{ (Request::segment(2) == 'logs') ? 'treeview active' : ''}}">
+          <a href="{{ route('logs.index') }}">
+            <i class="fa fa-cogs"></i> <span>Logs</span>
+          </a>
+        </li>
+          <li class="{{ ( Request::segment(2) == 'sliders' || Request::segment(2) == 'office' || Request::segment(2) == 'works' || Request::segment(2) == 'logo' || Request::segment(2) == 'platforms') ? 'active treeview menu-open' : 'treeview' }}">
+          <a href="#">
+            <i class="fa fa-globe"></i>
+            <span>Website Settings</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li class="{{ (Request::segment(2) == 'sliders') ? 'active' : '' }}"><a href="{{ route('sliders.index') }}"><i class="fa fa-circle-o"></i>Sliders</a></li>
+            <li class="{{ (Request::segment(2) == 'office') ? 'active' : '' }}"><a href="{{ route('office.index') }}"><i class="fa fa-circle-o"></i>Office Address</a></li>
+            <li class="{{ (Request::segment(2) == 'works') ? 'active' : '' }}"><a href="{{ route('works.index') }}"><i class="fa fa-circle-o"></i>Works</a></li>
+            <li class="{{ (Request::segment(2) == 'logo') ? 'active' : '' }}"><a href="{{ route('logo.index') }}"><i class="fa fa-circle-o"></i>Logo</a></li>
+            <li class="{{ (Request::segment(2) == 'platforms') ? 'active' : '' }}"><a href="{{ route('platforms.index') }}"><i class="fa fa-circle-o"></i>Platforms</a></li>
+          </ul>
+        </li>
         @endrole
 
          @role('Member')
              <li class="{{ ( Request::segment(2) == 'article' || Request::segment(2) == 'category' || Request::segment(2) == 'tag') ? 'active treeview menu-open' : 'treeview' }}">
               <a href="#">
                 <i class="fa fa-globe"></i>
-                <span>Blog</span>
+                <span>Setings Webstite</span>
                 <span class="pull-right-container">
                   <i class="fa fa-angle-left pull-right"></i>
                 </span>

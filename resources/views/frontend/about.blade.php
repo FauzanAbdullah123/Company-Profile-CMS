@@ -95,14 +95,13 @@
     <div class="grid_6">
         <div class="divider_page"><h2>We offer the following technology platforms :</h2></div>
         <div class="progress_bars">
-            <b>ASP.NET</b>
-            <div class="progress_bar" data-percentage="95" data-title="95%"><span></span></div>
-            <b>PHP</b>
-            <div class="progress_bar" data-percentage="95" data-title="95%"><span></span></div>
-            <b>MOBILE APPS (ANDROID)</b>
-            <div class="progress_bar" data-percentage="90" data-title="90%"><span></span></div>
-            <b>DATABASE, INTERFACING, OTHERS</b>
-            <div class="progress_bar" data-percentage="95" data-title="95%"><span></span></div>
+        @php
+            $platforms = \App\Platforms::all();
+        @endphp
+        @foreach($platforms as $data)
+            <b>{{ $data->platforms }}</b>
+            <div class="progress_bar" data-percentage="{{ $data->percentage }}" data-title="{{ $data->title }}%"><span></span></div>
+        @endforeach
         </div>
     </div>
     <!-- progress bar end -->

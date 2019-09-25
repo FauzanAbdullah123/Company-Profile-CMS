@@ -81,7 +81,7 @@
                                             @elseif($data->description == 'created')
                                                 <li>Data {{ substr($data->subject_type, 4) }} dengan nama
                                                         @foreach($data->properties['attributes'] as $attr => $old)
-                                                            @if($attr == 'nama')
+                                                            @if($attr == 'judul')
                                                                 <b>{{ $old }}</b> telah dibuat
                                                             @endif
                                                         @endforeach

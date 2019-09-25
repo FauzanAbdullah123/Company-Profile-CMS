@@ -25,8 +25,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:Admin']], func
     Route::get('/', function() {
         return view('admin.index');
     });
-    //Route Page About
+    //Route Page Manages User
     Route::resource('/user', 'UserController');
+    //Route Page About
     Route::resource('/about', 'AboutController');
     Route::post('/about/update', 'AboutController@update')->name('about.update');
     Route::get('/about/destroy/{id}', 'AboutController@destroy');
@@ -41,7 +42,26 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:Admin']], func
     //Route Page Logs
     Route::get('/logs', 'LogController@index')->name('logs.index');
     Route::delete('/logs/{id}', 'LogController@destroy')->name('logs.destroy');
-    //Route Page Article
+    //Route Page Settings Sliders
+    Route::resource('/sliders', 'SlidersController');
+    Route::post('/sliders/update', 'SlidersController@update')->name('sliders.update');
+    Route::get('/sliders/destroy/{id}', 'SlidersController@destroy');
+    //Route Page Settings Office
+    Route::resource('/office', 'OfficeController');
+    Route::post('/office/update', 'OfficeController@update')->name('office.update');
+    Route::get('/office/destroy/{id}', 'OfficeController@destroy');
+    //Route Page Settings Works
+    Route::resource('/works', 'WorksController');
+    Route::post('/works/update', 'WorksController@update')->name('works.update');
+    Route::get('/works/destroy/{id}', 'WorksController@destroy');
+    //Route Page Settings Logo
+    Route::resource('/logo', 'LogoController');
+    Route::post('/logo/update', 'LogoController@update')->name('logo.update');
+    Route::get('/logo/destroy/{id}', 'LogoController@destroy');
+     //Route Page Settings Platforms
+    Route::resource('/platforms', 'PlatformsController');
+    Route::post('/platforms/update', 'PlatformsController@update')->name('platforms.update');
+    Route::get('/platforms/destroy/{id}', 'PlatformsController@destroy');
 });
 
 Route::group(['prefix' => '', 'middleware' => ['auth']], function () {

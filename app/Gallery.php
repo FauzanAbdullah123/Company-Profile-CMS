@@ -17,3 +17,4 @@ class Gallery extends Model
 
     protected static $logFillable = true;
 }
+    
