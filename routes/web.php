@@ -62,6 +62,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:Admin']], func
     Route::resource('/platforms', 'PlatformsController');
     Route::post('/platforms/update', 'PlatformsController@update')->name('platforms.update');
     Route::get('/platforms/destroy/{id}', 'PlatformsController@destroy');
+    //Route Page Settings team
+    Route::resource('/team', 'TeamController');
+    Route::post('/team/update', 'TeamController@update')->name('team.update');
+    Route::get('/team/destroy/{id}', 'TeamController@destroy');
 });
 
 Route::group(['prefix' => '', 'middleware' => ['auth']], function () {
