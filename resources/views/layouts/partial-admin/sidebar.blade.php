@@ -41,10 +41,19 @@
             <li class="{{ (Request::segment(2) == 'tag') ? 'active' : '' }}"><a href="{{ route('tag.index') }}"><i class="fa fa-circle-o"></i>Tags</a></li>
           </ul>
         </li>
-        <li class="{{ (Request::segment(2) == 'service') ? 'treeview active' : ''}}">
-          <a href="{{ route('service.index') }}">
-            <i class="fa fa-cogs"></i> <span>Services</span>
+
+        <li class="{{ ( Request::segment(2) == 'service' || Request::segment(2) == 'other-service') ? 'active treeview menu-open' : 'treeview' }}">
+          <a href="#">
+            <i class="fa fa-cogs"></i>
+            <span>Services</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
           </a>
+          <ul class="treeview-menu">
+            <li class="{{ (Request::segment(2) == 'service') ? 'active' : '' }}"><a href="{{ route('service.index') }}"><i class="fa fa-circle-o"></i>Service</a></li>
+            <li class="{{ (Request::segment(2) == 'other-service') ? 'active' : '' }}"><a href="{{ route('other-service.index') }}"><i class="fa fa-circle-o"></i>Other Service</a></li>
+          </ul>
         </li>
 
         <li class="{{ (Request::segment(2) == 'gallery') ? 'treeview active' : ''}}">

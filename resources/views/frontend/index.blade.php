@@ -5,7 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
 <meta name="author" content="DesignForLife" />
 <meta name="description" content="A Multi Purpose Responsive Template - Created by DesignForLife" />
-<link rel="icon" href="{{ asset('icon.png')}}">
+@php
+	$logo = \App\Logo::take(1)->get();
+@endphp
+@foreach($logo as $data)
+<link rel="icon" href="{{ asset('assets/img/logo/'.$data->image)}}">
+@endforeach
 <title>Arkamaya | Home</title>
 <link rel="stylesheet" type="text/css" href="{{ asset('DreamLife/html/assets/css/style.css')}}" />
 <script src="http://code.jquery.com/jquery-2.2.1.min.js"></script>
@@ -46,7 +51,12 @@
 	<!-- menu -->
 	<div id="header">
 		<!-- logo -->
+		@php
+			$logo = \App\Logo::latest()->paginate(1);
+		@endphp
+		@foreach($logo as $data)
 		<div id="logo"><a href="/"><img src="{{ asset('logoarkamaya-removebg-preview.png')}}" height="30px" alt="logo" /></a></div>
+		@endforeach
 		<!-- logo end -->
 		<!-- main menu -->
 		<ul id="mainmenu" style="background:black;">
@@ -98,14 +108,14 @@
 		<div class="grid_12">
 		<div class="divider_page"><h2>Our Services</h2></div>
 		@php
-			$services = \App\Services::all();
+			$otherservice = \App\OtherService::all();
 		@endphp
-        @foreach($services as $data)
+        @foreach($otherservice as $data)
         <div class="grid_3 alpha">
             <!-- a feature box -->
 					<div class="feature_box">
 						<div class="feature_icon">
-							<img src="{{ asset('assets/img/service/'.$data->image)}}" width="35px" height="35px" alt="">
+							<img src="{{ asset('assets/img/otherservice/'.$data->image)}}" width="35px" height="35px" alt="">
 						</div>
 						<div class="feature_content">
 							<div class="feature_heading">
@@ -217,10 +227,10 @@
 			<div class="divider_page">
 			</div>
 			@php
-				$logo = \App\Logo::all();
+				$works = \App\Works::all();
 			@endphp
-			@foreach($logo as $data)
-				<img src="{{ asset('assets/img/logo/'.$data->image)}}" target="_blank" class="a_client themeforest" width="150px" height="60px" style="margin-right: 15px; margin-left: 15px;">
+			@foreach($works as $data)
+				<img src="{{ asset('assets/img/works/'.$data->image)}}" target="_blank" class="a_client themeforest" width="150px" height="60px" style="margin-right: 15px; margin-left: 15px;">
 			@endforeach
 			</div>
 		<!-- our clients end -->

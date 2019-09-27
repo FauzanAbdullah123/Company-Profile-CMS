@@ -3,7 +3,12 @@
 	<!-- menu -->
 	<div id="header">
 		<!-- logo -->
-		<div id="logo"><a href="index.html"><img src="{{ asset('logoarkamaya-removebg-preview.png')}}" height="30px" hei alt="logo" /></a></div>
+		@php
+			$logo = \App\Logo::latest()->paginate(1);
+		@endphp
+		@foreach($logo as $data)
+		<div id="logo"><a href="/"><img src="{{ asset('logoarkamaya-removebg-preview.png')}}" height="30px" alt="logo" /></a></div>
+		@endforeach
 		<!-- logo end -->
 		<!-- main menu -->
 		<ul id="mainmenu" style="background:black;">

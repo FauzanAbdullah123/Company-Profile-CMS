@@ -35,6 +35,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:Admin']], func
     Route::resource('/service', 'ServiceController');
     Route::post('/service/update', 'ServiceController@update')->name('service.update');
     Route::get('/service/destroy/{id}', 'ServiceController@destroy');
+     //Route Page OtherService
+    Route::resource('/other-service', 'OtherServiceController');
+    Route::post('/other-service/update', 'OtherServiceController@update')->name('other-service.update');
+    Route::get('/other-service/destroy/{id}', 'OtherServiceController@destroy');
     //Route Page Gallery
     Route::resource('/gallery', 'GalleryController');
     Route::post('/gallery/update', 'GalleryController@update')->name('gallery.update');
@@ -66,6 +70,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:Admin']], func
     Route::resource('/team', 'TeamController');
     Route::post('/team/update', 'TeamController@update')->name('team.update');
     Route::get('/team/destroy/{id}', 'TeamController@destroy');
+    //Route Position Available
+    Route::resource('/positionavailable', 'PositionAvailableController');
 });
 
 Route::group(['prefix' => '', 'middleware' => ['auth']], function () {

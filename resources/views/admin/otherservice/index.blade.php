@@ -1,11 +1,11 @@
 @extends('layouts.admin')
 
 @section('title-website')
-    works
+    Other Service
 @endsection
 
 @section('title')
-    Data works
+    Data Other Service
 @endsection
 
 @section('content')
@@ -24,10 +24,8 @@
                     <table id="dataTable" class="table table-bordered table-hover">
                         <thead>
                         <tr>
-                            <th width="35%">Name</th>
+                            <th width="35%">Title</th>
                             <th width="35%">Description</th>
-                            <th width="10%">Address</th>
-                            <th width="35%">Jobs</th>
                             <th width="10%">Image</th>
                             <th width="30%">Action</th>
                         </tr>
@@ -46,7 +44,7 @@
   <div class="modal-content">
    <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Add Data works</h4>
+          <h4 class="modal-title">Add Data Other Service</h4>
         </div>
         <div class="modal-body">
          <span id="form_result"></span>
@@ -60,7 +58,7 @@
             </div>
            </div>
           <div class="form-group row mb-4">
-            <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3" >Name : </label>
+            <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3" >Title : </label>
             <div class="col-sm-12 col-md-10">
              <input type="text" name="title" id="title" class="form-control" />
             </div>
@@ -68,19 +66,7 @@
            <div class="form-group row mb-4">
             <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Description : </label>
             <div class="col-sm-12 col-md-10">
-                <textarea id="desc" rows="8" class="form-control" type="text" name="desc"></textarea>
-            </div>
-           </div>
-            <div class="form-group row mb-4">
-            <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Address : </label>
-            <div class="col-sm-12 col-md-10">
-                <textarea id="address" rows="4" class="form-control" type="text" name="address"></textarea>
-            </div>
-           </div>
-            <div class="form-group row mb-4">
-            <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Jobs : </label>
-            <div class="col-sm-12 col-md-10">
-                <textarea id="jobs" rows="3" class="form-control" type="text" name="jobs"></textarea>
+                <textarea id="desc" rows="8" cols="30" type="text" name="desc"></textarea>
             </div>
            </div>
            <br />
@@ -167,7 +153,7 @@
     processing: true,
     serverSide: true,
     ajax:{
-    url: "{{ route('works.index') }}",
+    url: "{{ route('other-service.index') }}",
     },
     columns:[
         {
@@ -179,18 +165,10 @@
             name: 'desc'
         },
         {
-            data: 'address',
-            name: 'address'
-        },
-        {
-            data: 'jobs',
-            name: 'jobs'
-        },
-        {
             data: 'image',
             name: 'image',
             render: function(data, type, full, meta){
-            return "<img src={{ URL::to('/') }}/assets/img/works/" + data + " width='70' class='img-thumbnail' />";
+            return "<img src={{ URL::to('/') }}/assets/img/otherservice/" + data + " width='70' class='img-thumbnail' />";
             },
             orderable: false
         },
@@ -203,7 +181,7 @@
     });
 
     $('#create_record').click(function(){
-    $('.modal-title').text("Add Data works");
+    $('.modal-title').text("Add Data Other Service");
         $('#action_button').val("Add");
         $('#action').val("Add");
         $('#formModal').modal('show');
@@ -214,7 +192,7 @@
     if($('#action').val() == 'Add')
     {
         $.ajax({
-            url:"{{ route('works.store') }}",
+            url:"{{ route('other-service.store') }}",
             method:"POST",
             data: new FormData(this),
             contentType: false,
@@ -252,7 +230,7 @@
         if($('#action').val() == "Edit")
         {
             $.ajax({
-                url:"{{ route('works.update') }}",
+                url:"{{ route('other-service.update') }}",
                 method:"POST",
                 data:new FormData(this),
                 contentType: false,
@@ -274,7 +252,7 @@
                 if(data.success)
                 {
                 Swal.fire(
-                    'Data works Successfully Edited!',
+                    'Data Other Service Successfully Edited!',
                     data.success,
                     'success'
                     )
@@ -293,17 +271,15 @@
     var id = $(this).attr('id');
     $('#form_result').html('');
     $.ajax({
-        url:"/admin/works/"+id+"/edit",
+        url:"/admin/other-service/"+id+"/edit",
         dataType:"json",
             success:function(html){
-                $('#store_image').html("<img src={{ URL::to('/') }}/assets/img/works/" + html.data.image + " width='70' class='img-thumbnail' />");
+                $('#store_image').html("<img src={{ URL::to('/') }}/assets/img/otherservice/" + html.data.image + " width='70' class='img-thumbnail' />");
                 $('#store_image').append("<input type='hidden' name='hidden_image' value='"+html.data.image+"' />");
                 $('#title').val(html.data.title);
                 $('#desc').val(html.data.desc);
-                $('#address').val(html.data.address);
-                $('#jobs').val(html.data.jobs);
                 $('#hidden_id').val(html.data.id);
-                $('.modal-title').text("Edit Data works");
+                $('.modal-title').text("Edit Data Other Service");
                 $('#action_button').val("Edit");
                 $('#action').val("Edit");
                 $('#formModal').modal('show');
@@ -320,7 +296,7 @@
 
     $('#ok_button').click(function(){
         $.ajax({
-        url:"/admin/works/destroy/"+user_id,
+        url:"/admin/other-service/destroy/"+user_id,
         beforeSend:function(){
             $('#ok_button').text('Deleting...');
         },

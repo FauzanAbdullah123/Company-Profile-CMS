@@ -4,8 +4,13 @@
     <!-- footer container -->
         <div class="container_12 footer_content">
         <div class="grid_3">
-            <h3><span class="first-word">About</span></h3>
-            <p>We are IT Solutions company from Bandung, Indonesia. We design, create, and develop a variety of software and in all matters relating to the application of Information and Communication Technology.</p>
+            @php
+                $about = \App\About::where('title', '=', 'about')->paginate(1);
+            @endphp
+            @foreach($about as $data)
+            <h3><span class="first-word">{{ $data->title}}</span></h3>
+            <p>{{ $data->desc }}</p>
+            @endforeach
         </div>
         <div class="grid_3">
             <h3><span class="first-word">Recent Posts</span></h3>
@@ -25,8 +30,13 @@
             @endforeach
         </div>
         <div class="grid_3">
-            <h3><span class="first-word">Contact</span></h3>
-            <p><b>Address:</b><br>Jl. Guntursari Wetan No. 17 Buah Batu, Bandung Jawa Barat, Indonesia 40286<br><b>Telephone :</b><br>(022)87325528<br><b>Telephone 2:</b><br>(0267)8406552<br><b>Email :<br>info[at]arkamaya.co.id<br></b></p>
+         @php
+            $about = \App\About::where('title', '=', 'contact')->paginate(1);
+        @endphp
+        @foreach($about as $data)
+            <h3><span class="first-word">{{ $data->title }}</span></h3>
+            <p>{{ $data->desc }}</p>
+        @endforeach
         </div>
         <div class="grid_3">
             <h3><span class="first-word">Gallery</span> Stream</h3>

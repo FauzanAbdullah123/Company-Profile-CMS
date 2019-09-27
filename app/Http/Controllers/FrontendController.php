@@ -7,6 +7,7 @@ use App\Article;
 use App\Tag;
 use App\Category;
 use App\Services;
+use App\OtherService;
 use App\Gallery;
 use App\About;
 
@@ -33,11 +34,12 @@ class FrontendController extends Controller
 
     public function services(Request $request){
         $services = Services::all();
+        $otherservice = OtherService::all();
         $cari = $request->cari;
         if ($cari) {
             $article = Article::where('judul', 'LIKE', "%$cari%")->paginate(4);
         }
-        return view('frontend.services', compact('services'));
+        return view('frontend.services', compact('services', 'otherservice'));
     }
 
     public function gallery(Request $request){
