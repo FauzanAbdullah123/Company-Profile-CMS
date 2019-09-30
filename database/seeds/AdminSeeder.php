@@ -30,6 +30,7 @@ class AdminSeeder extends Seeder
         $admin->password = bcrypt('arkamaya123');
         $admin->save();
         $admin->attachRole('admin');
+        
          //Membuat sample member
          $member = new User();
          $member->name = 'Member';

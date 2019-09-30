@@ -55,13 +55,13 @@
                                 <td><center> {{$data->judul}}</td></center>
                                 <td><center> {{$data->slug}}</td></center>
                                 <td><center> {{$data->category->nama}}</td></center>
-                                <td><center> 
+                                <td>
                                     <ol>
                                         @foreach($data->tag as $a)
                                             <li>{{ $a->nama }}</li>
                                         @endforeach
                                     </ol>
-                                </td></center>
+                                </td>
                                 <td><center> {{$data->user->name}}</td></center>
                                 <td>
                                     <center>

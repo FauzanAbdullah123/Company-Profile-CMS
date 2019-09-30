@@ -5,7 +5,7 @@
 @endsection
 
 @section('title')
-    {{ $article->judul }}
+    Blog Detail
 @endsection
 
 @section('content')

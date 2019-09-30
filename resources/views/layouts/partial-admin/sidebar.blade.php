@@ -90,6 +90,7 @@
             <li class="{{ (Request::segment(2) == 'office') ? 'active' : '' }}"><a href="{{ route('office.index') }}"><i class="fa fa-circle-o"></i>Office Address</a></li>
             <li class="{{ (Request::segment(2) == 'works') ? 'active' : '' }}"><a href="{{ route('works.index') }}"><i class="fa fa-circle-o"></i>Works</a></li>
             <li class="{{ (Request::segment(2) == 'logo') ? 'active' : '' }}"><a href="{{ route('logo.index') }}"><i class="fa fa-circle-o"></i>Logo</a></li>
+             <li class="{{ (Request::segment(2) == 'positionavailable') ? 'active' : '' }}"><a href="{{ route('positionavailable.index') }}"><i class="fa fa-circle-o"></i>Position Available</a></li>
             <li class="{{ (Request::segment(2) == 'platforms') ? 'active' : '' }}"><a href="{{ route('platforms.index') }}"><i class="fa fa-circle-o"></i>Platforms</a></li>
             <li class="{{ (Request::segment(2) == 'team') ? 'active' : '' }}"><a href="{{ route('team.index') }}"><i class="fa fa-circle-o"></i>Team</a></li>
           </ul>
@@ -100,7 +101,7 @@
              <li class="{{ ( Request::segment(2) == 'article' || Request::segment(2) == 'category' || Request::segment(2) == 'tag') ? 'active treeview menu-open' : 'treeview' }}">
               <a href="#">
                 <i class="fa fa-globe"></i>
-                <span>Articles</span>
+                <span>Blog</span>
                 <span class="pull-right-container">
                   <i class="fa fa-angle-left pull-right"></i>
                 </span>

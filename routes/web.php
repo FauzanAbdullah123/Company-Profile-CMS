@@ -97,3 +97,5 @@ Route::group(['prefix'=>'/'], function(){
     Route::get('/blog/category/{cat}', 'FrontendController@blogcat')->name('cat.blog');
     Route::get('/blog/tag/{tag}', 'FrontendController@blogtag')->name('tag.blog');
 });
+
+

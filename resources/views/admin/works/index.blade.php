@@ -24,10 +24,10 @@
                     <table id="dataTable" class="table table-bordered table-hover">
                         <thead>
                         <tr>
-                            <th width="35%">Name</th>
-                            <th width="35%">Description</th>
-                            <th width="10%">Address</th>
-                            <th width="35%">Jobs</th>
+                            <th width="15%">Name</th>
+                            <th width="31%">Description</th>
+                            <th width="20%">Address</th>
+                            <th width="15%">Jobs</th>
                             <th width="10%">Image</th>
                             <th width="30%">Action</th>
                         </tr>
