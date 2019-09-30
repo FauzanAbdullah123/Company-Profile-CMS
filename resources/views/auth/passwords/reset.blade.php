@@ -47,8 +47,9 @@
                         @enderror
                     </div>
 
-                    <div class="wrap-input100 validate-input" data-validate="Confirm Password">
+                    <div class="wrap-input100 validate-input" data-validate="Enter Password">
                         <input id="password-confirm" type="password" class="input100" name="password_confirmation" placeholder="Password Confirmation" required autocomplete="new-password">
+                         <span class="focus-input100" data-placeholder="&#xf191;"></span>
                     </div>
 
 					<div class="container-login100-form-btn">
