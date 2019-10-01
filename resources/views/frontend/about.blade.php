@@ -53,7 +53,7 @@
         @endphp
         @foreach($platforms as $data)
             <b>{{ $data->platforms }}</b>
-            <div class="progress_bar" data-percentage="{{ $data->percentage }}" data-title="{{ $data->title }}%"><span></span></div>
+            <div class="progress_bar" data-percentage="{{ $data->percentage }}" data-title="{{ $data->percentage }}%"><span></span></div>
         @endforeach
         </div>
     </div>

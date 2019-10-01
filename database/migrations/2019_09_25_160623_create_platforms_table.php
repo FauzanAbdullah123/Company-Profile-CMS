@@ -17,7 +17,6 @@ class CreatePlatformsTable extends Migration
             $table->bigIncrements('id');
             $table->string('platforms');
             $table->string('percentage');
-            $table->string('title');
             $table->timestamps();
         });
     }

@@ -51,10 +51,11 @@
     <div class="grid_12">
         <ul class="page_navigation">
         <!-- page navigation -->
-        {{ $gallery->links('pagination.default') }}
+        {{ $gallery->links() }}
         <!-- page navigation end -->
         </ul>
     </div>
 </div>
+
 <!-- container 12 end -->
 @endsection

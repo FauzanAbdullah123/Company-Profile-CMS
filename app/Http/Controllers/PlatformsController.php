@@ -51,8 +51,7 @@ class PlatformsController extends Controller
     {
         $rules = array(
             'platforms'  =>  'required',
-            'percentage'   =>  'required',
-            'title' => 'required'
+            'percentage'   =>  'required'
         );
 
         $error = Validator::make($request->all(), $rules);
@@ -64,8 +63,7 @@ class PlatformsController extends Controller
 
         $form_data = array(
             'platforms' =>  $request->platforms,
-            'percentage'  => $request->percentage,
-            'title' => $request->title
+            'percentage'  => $request->percentage
         );
 
         Platforms::create($form_data);
@@ -110,8 +108,7 @@ class PlatformsController extends Controller
     {        
         $rules = array(
             'platforms'  =>  'required',
-            'percentage'   =>  'required',
-            'title' => 'required'
+            'percentage'   =>  'required'
         );
 
         $error = Validator::make($request->all(), $rules);
@@ -123,8 +120,7 @@ class PlatformsController extends Controller
 
         $form_data = array(
             'platforms' =>  $request->platforms,
-            'percentage'  => $request->percentage,
-            'title' => $request->title
+            'percentage'  => $request->percentage
         );
         Platforms::whereId($request->hidden_id)->update($form_data);
 

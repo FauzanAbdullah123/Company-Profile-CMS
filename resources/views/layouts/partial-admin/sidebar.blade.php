@@ -72,11 +72,6 @@
             <i class="fa fa-cog"></i> <span>Manage User</span>
           </a>
         </li>
-        <li class="{{ (Request::segment(2) == 'logs') ? 'treeview active' : ''}}">
-          <a href="{{ route('logs.index') }}">
-            <i class="fa fa-cogs"></i> <span>Logs</span>
-          </a>
-        </li>
           <li class="{{ ( Request::segment(2) == 'sliders' || Request::segment(2) == 'office' || Request::segment(2) == 'works' || Request::segment(2) == 'logo' || Request::segment(2) == 'platforms' || Request::segment(2) == 'team') ? 'active treeview menu-open' : 'treeview' }}">
           <a href="#">
             <i class="fa fa-globe"></i>
@@ -94,6 +89,11 @@
             <li class="{{ (Request::segment(2) == 'platforms') ? 'active' : '' }}"><a href="{{ route('platforms.index') }}"><i class="fa fa-circle-o"></i>Platforms</a></li>
             <li class="{{ (Request::segment(2) == 'team') ? 'active' : '' }}"><a href="{{ route('team.index') }}"><i class="fa fa-circle-o"></i>Team</a></li>
           </ul>
+        </li>
+         <li class="{{ (Request::segment(2) == 'logs') ? 'treeview active' : ''}}">
+          <a href="{{ route('logs.index') }}">
+            <i class="fa fa-cogs"></i> <span>Logs</span>
+          </a>
         </li>
         @endrole
 

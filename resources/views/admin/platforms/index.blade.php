@@ -26,7 +26,6 @@
                         <tr>
                             <th width="35%">Platforms</th>
                             <th width="35%">Percentage %</th>
-                            <th>Title</th>
                             <th width="30%">Action</th>
                         </tr>
                         </thead>
@@ -60,12 +59,6 @@
             <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3" >Percentage : </label>
             <div class="col-sm-12 col-md-10">
              <input type="text" name="percentage" id="percentage" class="form-control" />
-            </div>
-           </div>
-          <div class="form-group row mb-4">
-            <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3" >Title : </label>
-            <div class="col-sm-12 col-md-10">
-             <input type="text" name="title" id="title" class="form-control" />
             </div>
            </div>
           
@@ -170,10 +163,6 @@
         {
             data: 'percentage',
             name: 'percentage'
-        },
-         {
-            data: 'title',
-            name: 'title'
         },
         {
             data: 'action',

@@ -3,7 +3,7 @@
     <div class="back_top"></div>
     
 
-<!--Start of Tawk.to Script-->
+<!-- Start of Tawk.to Script -->
 <script type="text/javascript">
 var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
 (function(){
@@ -18,10 +18,10 @@ s0.parentNode.insertBefore(s1,s0);
 <!--End of Tawk.to Script-->
 
     <!-- footer container -->
-        <div class="container_12 footer_content">
+    <div class="container_12 footer_content">
         <div class="grid_3">
             @php
-                $about = \App\About::where('title', '=', 'about')->paginate(1);
+                $about = \App\About::where('title', '=', 'about')->take(5)->get();
             @endphp
             @foreach($about as $data)
             <h3><span class="first-word">{{ $data->title}}</span></h3>
@@ -31,7 +31,7 @@ s0.parentNode.insertBefore(s1,s0);
         <div class="grid_3">
             <h3><span class="first-word">Recent Posts</span></h3>
             @php
-                $recent = \App\Article::latest()->paginate(3);
+                $recent = \App\Article::latest()->take(3)->get();
             @endphp
             @foreach($recent as $data)
             <div class="recent_posts">
@@ -47,7 +47,7 @@ s0.parentNode.insertBefore(s1,s0);
         </div>
         <div class="grid_3">
          @php
-            $about = \App\About::where('title', '=', 'contact')->paginate(1);
+            $about = \App\About::where('title', '=', 'contact')->take(1)->get();
         @endphp
         @foreach($about as $data)
             <h3><span class="first-word">{{ $data->title }}</span></h3>

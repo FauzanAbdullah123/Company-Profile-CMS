@@ -56,7 +56,7 @@
                         <div class="form-group row mb-4">
                             <label for="" class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Tags</label>
                             <div class="col-sm-12 col-md-10">
-                            <select name="tag[]" id="select2" class="form-control multiple" required multiple>
+                            <select style="width:100%;" name="tag[]" id="select2" class="form-control multiple" required multiple>
                                 <option value="">- Choose Tag -</option>
                                     @foreach ($tag as $data)
                                         <option value="{{ $data->id }}" {{ (in_array($data->id, $selected)) ? 'selected="selected"' : '' }}>
