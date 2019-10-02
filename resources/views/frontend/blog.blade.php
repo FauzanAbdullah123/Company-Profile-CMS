@@ -55,10 +55,6 @@
       
         <!-- page navigation end -->
         @endforeach
-               <p class="serif">Page : {{ $article->currentPage() }}</p>
-               <p class="serif">the Amount of Data : {{ $article->total() }}</p>
-               <p class="serif">Data Per Page : {{ $article->perPage() }}</p>
-        <br><br>
          
         <div class="grid_12">
             <ul class="page_navigation">

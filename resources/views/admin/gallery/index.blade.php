@@ -59,7 +59,7 @@
            <div class="form-group" align="center">
             <input type="hidden" name="action" id="action" />
             <input type="hidden" name="hidden_id" id="hidden_id" />
-            <input type="submit" name="action_button" id="action_button" class="btn btn-warning" value="Add" />
+            <input type="submit" name="action_button" id="action_button" class="btn btn-warning" value="Add" style="margin-left: 80%;" />
            </div>
          </form>
         </div>
@@ -78,7 +78,7 @@
                 <h4 align="center" style="margin:0;">Are you sure you want to remove this data?</h4>
             </div>
             <div class="modal-footer">
-             <button type="button" name="ok_button" id="ok_button" class="btn btn-danger">OK</button>
+             <button type="button" name="ok_button" id="ok_button" class="btn btn-danger">Save</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
             </div>
         </div>
@@ -160,7 +160,7 @@
 
     $('#create_record').click(function(){
     $('.modal-title').text("Add Data Gallery");
-        $('#action_button').val("Add");
+        $('#action_button').val("Save");
         $('#action').val("Add");
         $('#formModal').modal('show');
     });
@@ -230,7 +230,7 @@
                 if(data.success)
                 {
                 Swal.fire(
-                    'Data Service Successfully Edited!',
+                    'Data Gallery Successfully Edited!',
                     data.success,
                     'success'
                     )
@@ -256,7 +256,7 @@
                 $('#store_image').append("<input type='hidden' name='hidden_image' value='"+html.data.image+"' />");
                 $('#hidden_id').val(html.data.id);
                 $('.modal-title').text("Edit Data Gallery");
-                $('#action_button').val("Edit");
+                $('#action_button').val("Save");
                 $('#action').val("Edit");
                 $('#formModal').modal('show');
             }

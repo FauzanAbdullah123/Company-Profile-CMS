@@ -62,17 +62,32 @@
           </a>
         </li>
 
-        <li class="{{ (Request::segment(2) == 'about') ? 'treeview active' : ''}}">
+         <li class="{{ (Request::segment(2) == 'about') ? 'treeview active' : ''}}">
           <a href="{{ route('about.index') }}">
-             <i class="fa fa-info-circle"></i> <span>About</span>
+            <i class="fa fa-info-circle"></i> <span>About</span>
           </a>
         </li>
+
+         <li class="{{ (Request::segment(2) == 'positionavailables' || Request::segment(2) == 'platforms') ? 'active treeview menu-open' : 'treeview' }}">
+          <a href="#">
+            <i class="fa fa-bar-chart"></i>
+            <span>Carrier</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li class="{{ (Request::segment(2) == 'positionavailables') ? 'active' : '' }}"><a href="{{ route('positionavailable.index') }}"><i class="fa fa-circle-o"></i>Position Available</a></li>
+            <li class="{{ (Request::segment(2) == 'platforms') ? 'active' : '' }}"><a href="{{ route('platforms.index') }}"><i class="fa fa-circle-o"></i>Platforms</a></li>
+          </ul>
+        </li>
+
         <li class="{{ (Request::segment(2) == 'user') ? 'treeview active' : ''}}">
           <a href="{{ route('user.index') }}">
             <i class="fa fa-cog"></i> <span>Manage User</span>
           </a>
         </li>
-          <li class="{{ ( Request::segment(2) == 'sliders' || Request::segment(2) == 'office' || Request::segment(2) == 'works' || Request::segment(2) == 'logo' || Request::segment(2) == 'platforms' || Request::segment(2) == 'team') ? 'active treeview menu-open' : 'treeview' }}">
+        <li class="{{ ( Request::segment(2) == 'sliders' || Request::segment(2) == 'office' || Request::segment(2) == 'works' || Request::segment(2) == 'logo' || Request::segment(2) == 'platforms' || Request::segment(2) == 'team') ? 'active treeview menu-open' : 'treeview' }}">
           <a href="#">
             <i class="fa fa-globe"></i>
             <span>Website Settings</span>
@@ -85,8 +100,6 @@
             <li class="{{ (Request::segment(2) == 'office') ? 'active' : '' }}"><a href="{{ route('office.index') }}"><i class="fa fa-circle-o"></i>Office Address</a></li>
             <li class="{{ (Request::segment(2) == 'works') ? 'active' : '' }}"><a href="{{ route('works.index') }}"><i class="fa fa-circle-o"></i>Works</a></li>
             <li class="{{ (Request::segment(2) == 'logo') ? 'active' : '' }}"><a href="{{ route('logo.index') }}"><i class="fa fa-circle-o"></i>Logo</a></li>
-             <li class="{{ (Request::segment(2) == 'positionavailable') ? 'active' : '' }}"><a href="{{ route('positionavailable.index') }}"><i class="fa fa-circle-o"></i>Position Available</a></li>
-            <li class="{{ (Request::segment(2) == 'platforms') ? 'active' : '' }}"><a href="{{ route('platforms.index') }}"><i class="fa fa-circle-o"></i>Platforms</a></li>
             <li class="{{ (Request::segment(2) == 'team') ? 'active' : '' }}"><a href="{{ route('team.index') }}"><i class="fa fa-circle-o"></i>Team</a></li>
           </ul>
         </li>

@@ -71,27 +71,14 @@
                                         <ul>
 
                                             @if($data->description == 'updated')
-                                                <li>Data {{ substr($data->subject_type, 4) }} dengan nama
-                                                    @foreach($data->properties['old'] as $attr => $old)
-                                                        @if($attr == 'nama')
-                                                            <b>{{ $old }}</b> diubah menjadi
-                                                            <b>{{ $data->properties['attributes'][$attr] }}</b>
-                                                        @endif
-                                                    @endforeach
+                                             
+                                                   
                                             @elseif($data->description == 'created')
-                                                <li>Data {{ substr($data->subject_type, 4) }} dengan nama
-                                                        @foreach($data->properties['attributes'] as $attr => $old)
-                                                            @if($attr == 'judul')
-                                                                <b>{{ $old }}</b> telah dibuat
-                                                            @endif
-                                                        @endforeach
+                                             
+                                                       
                                             @elseif($data->description == 'deleted')
-                                                <li>Data {{ substr($data->subject_type, 4) }} dengan nama
-                                                        @foreach($data->properties['attributes'] as $attr => $old)
-                                                            @if($attr == 'nama')
-                                                                <b>{{ $old }}</b> telah hapus
-                                                            @endif
-                                                        @endforeach
+                                            
+                                                       
                                             @endif
 
                                         </ul>

@@ -10,6 +10,8 @@ use App\Services;
 use App\OtherService;
 use App\Gallery;
 use App\About;
+use App\Platforms;
+use App\PositionAvailable;
 
 class FrontendController extends Controller
 {
@@ -49,6 +51,16 @@ class FrontendController extends Controller
             $article = Article::where('judul', 'LIKE', "%$cari%")->paginate(4);
         }
         return view('frontend.gallery', compact('gallery'));
+    }
+
+    public function career(Request $request){
+        $positionavailable = PositionAvailable::all();
+        $platforms = Platforms::all();
+        $cari = $request->cari;
+        if ($cari) {
+            $article = Article::where('judul', 'LIKE', "%$cari%")->paginate(4);
+        }
+        return view('frontend.career', compact('positionavailable', 'platforms'));
     }
 
     public function allblog(Request $request)

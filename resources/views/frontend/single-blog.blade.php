@@ -23,11 +23,7 @@
             </div>
             <!-- post meta info end -->
             <!-- post slider -->
-            <div class="blogSlider theme-dark">
-                <div class="nivoSlider">
-                    <img src="{{ asset('assets/img/article/'.$article->foto)}}" alt="" />
-                </div>
-            </div>
+            <img src="{{ asset('assets/img/article/'.$article->foto)}}" alt="" width="500px" height="400px"/>
             <!-- post slider end -->
             <!-- post content -->
             <div class="post-content">

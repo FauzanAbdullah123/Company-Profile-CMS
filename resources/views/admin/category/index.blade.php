@@ -8,8 +8,6 @@
     Data Category
 @endsection
 
-@include ('layouts.flash')
-
 @section('content')
 <section class="content">
     <div class="row">
@@ -24,9 +22,10 @@
                 <div class="box-body">
                     <table id="dataTable" class="table table-bordered table-hover">
                         <thead>
-                            <th>Category Name</th>
+                            <th>No</th>
+                            <th>Name</th>
                             <th>Slug</th>
-                            <th>Action</th>
+                            <th>Aksi</th>
                         </thead>
                         <tbody class="data-kategori">
                         </tbody>
@@ -91,47 +90,26 @@
                 }
             });
             // Data Kategori
-            $('#dataTable').DataTable({
-            dataType: "json",
-            ajax: {
-                    url: '/api/category/',
-                    dataType: "json",
-                    type: "GET",
-                    stateSave : true,
-                    serverSide: true,
-                    processing: true,
-            },
-            responsive:true,
-            columns: [
-                    { data: 'nama', name: 'nama' },
-                    { data: 'slug', name: 'slug' },
-                    { data: 'id', render : function (data, type, row, meta) {
-                        return `
-                        <button type="button" class= "btn btn-primary btn-sm"
-                            data-target="#modalEdit"
-                            data-toggle="modal"
-                            data-id="${row.id}"
-                            data-nama="${row.nama}"
-                            ><i class="fa fa-edit"></i></button>
-                            <button class="btn btn-danger btn-sm"
-                            data-id="${row.id}"
-                            id="hapus-dataKategori"
-                            ><i class="fa fa-trash-o"></i></button>
-                        `;
-                        }
-                    }
+            var table = $('#dataTable').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: "{{ route('category.index') }}",
+                columns: [
+                    {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+                    {data: 'nama', name: 'nama'},
+                    {data: 'slug', name: 'slug'},
+                    {data: 'action', name: 'action', orderable: false, searchable: false},
                 ]
             });
             // Tambah Data
             $('#formAdd').on('submit', (e) => {
                 e.preventDefault();
                 $.ajax({
-                    url: '/api/category',
+                    url: '/category',
                     method: 'POST',
                     data: {
                         nama: $('.c-nama').val()
                     },
-                    dataType: 'json',
                     success: (res) => {
                         if(res.errors) {
                             $.each(res.errors, function(k, v) {
@@ -148,9 +126,8 @@
                                 )
                             })
                         } else {
-                            
                             $('#formAdd')[0].reset();
-                            Swal.fire(
+                             Swal.fire(
                                 'Good job!',
                                 res.message,
                                 'success'
@@ -164,28 +141,34 @@
                 })
             })
             // Tampilan Modal Edit Data
-          // get Edit data
-            $('#modalEdit').on('show.bs.modal', function (event) {
-                var button = $(event.relatedTarget)
-                var id = button.data('id')
-                var nama = button.data('nama')
-                var modal = $(this)
-                modal.find('.modal-body input[name="id"]').val(id)
-                modal.find('.modal-body input[name="nama"]').val(nama)
+            $('.data-kategori').on('click', '#edit-data', function(e) {
+                e.preventDefault();
+                var id = $(this).data('id');
+                $.ajax({
+                    url: '/category/'+id,
+                    method: 'GET',
+                    success: (res) => {
+                        $('.e-nama').val('');
+                        $('#modalEdit').modal('show')
+                        $('.e-nama').val(res.data.nama);
+                        $('input[id="id-kategori-e"]').val(res.data.id)
+                    },
+                    error: (err) => {
+                        console.log(err);
+                    }
+                })
             })
             // Update Data
             $('#formEdit').on('submit', (e) => {
                 e.preventDefault();
-                var formData = new FormData($('#formEdit')[0]);
-                var id = formData.get('id');
+                var id = $('input[id="id-kategori-e"]').val();
                 $.ajax({
-                    url: '/api/category/'+ id,
+                    url: '/category/'+ id,
                     method: 'PUT',
                     data: {
                         id: id,
                         nama: $('.e-nama').val()
                     },
-                    dataType: 'json',
                     success: (res) => {
                         if(res.errors) {
                             $.each(res.errors, function(k, v) {
@@ -209,7 +192,6 @@
                             )
                             location.reload();
                             $('#formEdit')[0].reset();
-                          
                         }
                     },
                     error: (err) => {
@@ -218,27 +200,39 @@
                 });
             })
             //Tampilan Modal Hapus Data
-            // Hapus Data
-            $("#dataTable").on('click', '#hapus-dataKategori', function () {
-                var id = $(this).data("id");
-                // alert(id)
+            $('.data-kategori').on('click', '#hapus-data', function (e) {
+                e.preventDefault();
+                var id = $(this).data('id');
                 $.ajax({
-                    url: '/api/category/' + id,
-                    method: "DELETE",
-                    dataType: "json",
-                    data: {
-                        id: id
+                    url: '/category/' + id,
+                    method: 'GET',
+                    success: (res) => {
+                        $('#modalHapus').modal('show');
+                        $('input[id="id-kategori-h"]').val(res.data.id)
+                        $('.t-before-h').html('Apakah anda ingin mengahapus kategori dengan nama : <b>'+res.data.nama+'</b> ?')
                     },
-                    success: function (berhasil) {
-                        Swal.fire(
-                            berhasil.message,
-                            berhasil.type,
-                            berhasil.success
+                    error: (err) => {
+                        console.log(err);
+                    }
+                })
+            })
+            $('#formHapus').on('submit', function (e) {
+                e.preventDefault();
+                var id = $('input[id="id-kategori-h"]').val();
+                $.ajax({
+                    url: '/category/'+id,
+                    method: 'DELETE',
+                    success: (res) => {
+                       Swal.fire(
+                            res.message,
+                            res.type,
+                            res.success
                         )
                         location.reload();
+                        $('#formHapus')[0].reset();
                     },
-                    error: function (gagal) {
-                        console.log(gagal)
+                    error: (err) => {
+                        console.log(err);
                     }
                 })
             })

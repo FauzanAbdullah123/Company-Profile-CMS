@@ -12,13 +12,13 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <div class="notify-alert"></div>
-                        <label for="nama">Category Name</label>
+                        <label for="nama">Name</label>
                         <input id="nama" class="form-control c-nama" type="text" name="nama">
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Add</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
                 </div>
             </form>
         </div>
@@ -35,20 +35,42 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
             </div>
-            <form id="formEdit" method="POST">
+            <form id="formEdit">
                 <div class="modal-body">
-                    <input type="hidden" name="id" id="id">
-                    <input type="hidden" name="_method" value="PATCH" id="">
-                        @csrf
+                    <input type="hidden" name="id" id="id-kategori-e">
                     <div class="form-group">
                         <div class="notify-alert-edit"></div>
-                        <label for="nama">Category Name</label>
+                        <label for="nama">Name</label>
                         <input id="nama" class="form-control e-nama" type="text" name="nama">
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-success">Edit</button>
+                    <button type="submit" class="btn btn-success">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalHapus" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Confirmation</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+            </div>
+            <form id="formHapus">
+                <input type="hidden" name="id" id="id-kategori-h">
+                <div class="modal-body">
+                    <p class="t-before-h"></p>
+                    <small class="form-text text-muted">* Data akan dihapus permanen!</small>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-danger">Delete</button>
                 </div>
             </form>
         </div>

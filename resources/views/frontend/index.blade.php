@@ -64,6 +64,7 @@
 			<li><a href="/about">About Us</a></li>
 			<li><a href="/services">Services</a></li>
 			<li><a href="/gallery">Gallery</a></li>
+			<li><a href="/career">Career</a></li>
 			<li><a href="/blog">Blog</a></li>
 		<!-- main menu end -->
 		<!-- search bar -->
@@ -106,9 +107,9 @@
 	<div class="container_12">
 		<!-- features boxes -->
 		<div class="grid_12">
-		<div class="divider_page"><h2>Our Services</h2></div>
+		<div class="divider_page"><h2>Other Services</h2></div>
 		@php
-			$otherservice = \App\OtherService::all();
+			$otherservice = \App\OtherService::paginate(4);
 		@endphp
         @foreach($otherservice as $data)
         <div class="grid_3 alpha">
@@ -121,7 +122,7 @@
 							<div class="feature_heading">
 								<div class="small" style="font-size:22px;">{{$data->title}}</div>
 							</div>
-							<div class="desc" style="font-size:15px; text-align:center; font-color:white;">{{$data->desc}}</div>
+							<div class="desc" style="font-size:15px; text-align:center; font-color:white;">   {!! substr($data->desc, 0, 200) !!}</div>
 						</div>
 					</div>
 					<!-- a feature box end -->

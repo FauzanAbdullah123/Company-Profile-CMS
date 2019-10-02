@@ -89,8 +89,8 @@
                     <div class="form-group row mb-4">
                         <label for="" class="col-form-label text-md-right col-12 col-md-3 col-lg-3"></label><br><br>
                         <div class="col-sm-12 col-md-10">
-                            <button type="submit" class="btn btn-success">Edit Post</button>
                             <a href="{{ route('article.index') }}" class="btn btn-secondary">Back</a>
+                            <button type="submit" class="btn btn-success">Save</button>
                         </div>
                     </div>
                     </form>

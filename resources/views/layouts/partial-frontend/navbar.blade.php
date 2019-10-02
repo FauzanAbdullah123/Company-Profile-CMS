@@ -16,6 +16,7 @@
 			<li><a href="/about">About Us</a></li>
 			<li><a href="/services">Services</a></li>
 			<li><a href="/gallery">Gallery</a></li>
+			<li><a href="/career">Career</a></li>
 			<li><a href="/blog">Blog</a></li>
 		<!-- main menu end -->
 		<!-- search bar -->

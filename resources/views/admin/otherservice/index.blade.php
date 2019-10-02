@@ -66,14 +66,14 @@
            <div class="form-group row mb-4">
             <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Description : </label>
             <div class="col-sm-12 col-md-10">
-                <textarea id="desc" rows="8" cols="30" type="text" name="desc"></textarea>
+                <textarea id="desc" rows="8" cols="30" type="text" name="desc" class="form-control"></textarea>
             </div>
            </div>
            <br />
            <div class="form-group" align="center">
             <input type="hidden" name="action" id="action" />
             <input type="hidden" name="hidden_id" id="hidden_id" />
-            <input type="submit" name="action_button" id="action_button" class="btn btn-warning" value="Add" />
+            <input type="submit" name="action_button" id="action_button" class="btn btn-warning" value="Add"  style="margin-left: 80%;"/>
            </div>
          </form>
         </div>
@@ -182,7 +182,7 @@
 
     $('#create_record').click(function(){
     $('.modal-title').text("Add Data Other Service");
-        $('#action_button').val("Add");
+        $('#action_button').val("Save");
         $('#action').val("Add");
         $('#formModal').modal('show');
     });
@@ -280,7 +280,7 @@
                 $('#desc').val(html.data.desc);
                 $('#hidden_id').val(html.data.id);
                 $('.modal-title').text("Edit Data Other Service");
-                $('#action_button').val("Edit");
+                $('#action_button').val("Save");
                 $('#action').val("Edit");
                 $('#formModal').modal('show');
             }
