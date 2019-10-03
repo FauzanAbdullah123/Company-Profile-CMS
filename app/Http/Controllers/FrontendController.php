@@ -17,7 +17,7 @@ class FrontendController extends Controller
 {
     public function index(Request $request)
     {
-        $article = Article::with('category', 'tag', 'user')->take(1)->get();
+        $article = Article::take(1)->get();
         $cari = $request->cari;
         if ($cari) {
             $art = Article::where('judul', 'LIKE', "%$cari%")->paginate(4);
@@ -71,6 +71,10 @@ class FrontendController extends Controller
             $article = Article::where('judul', 'LIKE', "%$cari%")->paginate(4);
         }
         return view('frontend.blog', compact('article'));
+    }
+
+    public function detailotherservice(OtherService $otherservice){
+        return view('frontend.other-service', compact('otherservice'));
     }
 
     public function detailblog(Article $article){

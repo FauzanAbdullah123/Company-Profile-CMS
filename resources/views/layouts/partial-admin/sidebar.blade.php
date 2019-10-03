@@ -17,7 +17,7 @@
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
 
-        <li class="{{ (!Request::segment(2) ? 'treeview active' : '')}}">
+        <li class="{{ (Request::segment(2) == 'home') ? 'treeview active' : ''}}">
           <a href="{{ route('home') }}">
             <i class="fa fa-th"></i> <span>Dashboard</span>
           </a>
@@ -71,7 +71,7 @@
          <li class="{{ (Request::segment(2) == 'positionavailables' || Request::segment(2) == 'platforms') ? 'active treeview menu-open' : 'treeview' }}">
           <a href="#">
             <i class="fa fa-bar-chart"></i>
-            <span>Carrier</span>
+            <span>Career</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>

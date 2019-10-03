@@ -94,6 +94,7 @@ Route::group(['prefix'=>'/'], function(){
     Route::get('/gallery','FrontendController@gallery')->name('gallery');
     Route::get('/career','FrontendController@career')->name('career');
     Route::get('/blog', 'FrontendController@allblog')->name('all.blog');
+    Route::get('/otherservice/{otherservice}', 'FrontendController@detailotherservice')->name('detail.otherservice');
     Route::get('/blog/{article}', 'FrontendController@detailblog')->name('detail.blog');
     Route::get('/blog/category/{cat}', 'FrontendController@blogcat')->name('cat.blog');
     Route::get('/blog/tag/{tag}', 'FrontendController@blogtag')->name('tag.blog');

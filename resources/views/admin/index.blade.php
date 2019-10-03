@@ -4,25 +4,92 @@
 
 @section('content')
 
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header"></div>
+<!-- Content Wrapper. Contains page content -->
+  <div class="container-fluid" >
+    <!-- Content Header (Page header) -->
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+          
+    <a href="{{ route('article.index') }}">
+        <div class="col-md-3 col-sm-6 col-xs-12">
+          <div class="info-box">
+            <span class="info-box-icon bg-aqua"><i class="fa fa-globe"></i></span></a>
 
-                    You are logged in!
-                </div>
+            <div class="info-box-content">
+                @php
+                    $articles = \App\Article::all();
+                @endphp
+              <span class="info-box-text">Articles</span>
+              <span class="info-box-number" style="font-size: 40px; text-align: center;">{{ $articles->count() }}</span>
             </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
         </div>
-    </div>
-</div>
+      
+    <a href="{{ route('service.index') }}">
+        <div class="col-md-3 col-sm-6 col-xs-12">
+          <div class="info-box">
+            <span class="info-box-icon bg-yellow"><i class="fa fa-cogs"></i></span></a>
+
+            <div class="info-box-content">
+                @php
+                    $service = \App\Services::all();
+                @endphp
+              <span class="info-box-text">Services</span>
+              <span class="info-box-number" style="font-size: 40px; text-align: center;">{{ $service->count() }}</span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+
+        <!-- /.col -->        
+    <a href="{{ route('gallery.index') }}">
+        <div class="col-md-3 col-sm-6 col-xs-12">
+          <div class="info-box">
+            <span class="info-box-icon bg-red"><i class="fa fa-camera"></i></span></a>
+
+            <div class="info-box-content">
+                @php
+                    $gallery = \App\Gallery::all();
+                @endphp
+              <span class="info-box-text">Gallery</span>
+              <span class="info-box-number" style="font-size: 40px; text-align: center;">{{ $gallery->count() }}</span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+
+        <!-- /.col -->
+    <a href="{{ route('user.index') }}">
+        <div class="col-md-3 col-sm-6 col-xs-12">
+          <div class="info-box">
+            <span class="info-box-icon bg-green"><i class="fa fa-group"></i></span></a>
+
+            <div class="info-box-content">
+                @php
+                    $user = \App\User::all();
+                @endphp
+              <span class="info-box-text">Users</span>
+              <span class="info-box-number" style="font-size: 40px; text-align: center;">{{ $user->count() }}</span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  
 @endsection
 
 @section('css')
@@ -64,3 +131,4 @@
     <!-- AdminLTE for demo purposes -->
     <script src="{{ asset('AdminLTE/dist/js/demo.js') }}"></script>
 @endpush
+

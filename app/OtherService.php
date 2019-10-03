@@ -15,5 +15,10 @@ class OtherService extends Model
 
     public $timestamps = true;
 
+    public function getRouteKeyName()
+    {
+        return 'title';
+    }
+
     protected static $logFillable = true;
 }

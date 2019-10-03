@@ -43,15 +43,16 @@
         <div class="grid_3 alpha">
             <!-- a feature box -->
             <div class="feature_box">
-                <div class="feature_icon">
-                    <img src="{{ asset('assets/img/otherservice/'.$data->image)}}" width="35px" height="35px" alt="">
+               <div class="feature_icon">
+                <a href="{{ route('detail.otherservice', $data->title) }}"><img src="{{ asset('assets/img/otherservice/'.$data->image)}}" width="35px" height="35px" alt=""></a>
                 </div>
                 <div class="feature_content">
                     <div class="feature_heading">
                         <div class="small" style="font-size:22px;">{{$data->title}}</div>
                     </div>
-                    <div class="desc" style="font-size:15px; text-align:center; font-color:white;">{!! substr($data->desc, 0, 200) !!}</div>
+                    <div class="desc" style="font-size:15px; text-align:center; font-color:white;">{!! substr($data->desc, 0, 200) !!} ...</div>
                 </div>
+                 <div class="feature_link"><a href="{{ route('detail.otherservice', $data->title) }}" class="arrows_icons16 icon16_5 tooltip_s" title="Read More"></a></div>
             </div>
             <!-- a feature box end -->
         </div>
