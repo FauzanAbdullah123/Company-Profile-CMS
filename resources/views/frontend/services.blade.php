@@ -29,7 +29,7 @@
     @foreach($services as $data)
     <div class="grid_6">
         <div class="divider_page"><h2>{{ $data->title }}</h2></div>
-        <p style="font-size:15px">{{ $data->desc }}</p>
+        <p style="font-size:15px">{!! nl2br(e($data->desc)) !!}</p>
     </div>
     @endforeach
     <!-- mission and vision end -->
@@ -50,7 +50,7 @@
                     <div class="feature_heading">
                         <div class="small" style="font-size:22px;">{{$data->title}}</div>
                     </div>
-                    <div class="desc" style="font-size:15px; text-align:center; font-color:white;">{!! substr($data->desc, 0, 200) !!} ...</div>
+                    <div class="desc" style="font-size:15px; text-align:center; font-color:white;">{{ substr($data->desc, 0, 200) }} ...</div>
                 </div>
                  <div class="feature_link"><a href="{{ route('detail.otherservice', $data->title) }}" class="arrows_icons16 icon16_5 tooltip_s" title="Read More"></a></div>
             </div>

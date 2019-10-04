@@ -209,7 +209,7 @@
                     success: (res) => {
                         $('#modalHapus').modal('show');
                         $('input[id="id-tag-h"]').val(res.data.id)
-                        $('.t-before-h').html('Apakah anda ingin mengahapus tag dengan nama : <b>'+res.data.nama+'</b> ?')
+                        $('.t-before-h').html('Are You Sure Want Delete This Tag : <b>'+res.data.nama+'</b> ?')
                     },
                     error: (err) => {
                         console.log(err);

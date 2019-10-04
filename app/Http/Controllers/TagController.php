@@ -60,7 +60,7 @@ class TagController extends Controller
 
         $response = [
             'errors'  => false,
-            'message'   => 'Data berhasil di simpan!'
+            'message'   => 'Data saved successfully!'
         ];
 
         return response()->json($response, 200);
@@ -78,7 +78,7 @@ class TagController extends Controller
 
         $response = [
             'data'      => $tagId,
-            'message'   => 'Data tag dengan nama '.$tagId->nama.'!'
+            'message'   => 'Tag data by name '.$tagId->nama.'!'
         ];
 
         return response()->json($response, 200);
@@ -120,7 +120,7 @@ class TagController extends Controller
 
         $response = [
             'data'      => $tagId,
-            'message'   => 'Data tag berhasil diubah menjadi '.$tagId->nama.'!',
+            'message'   => 'Tag data successfully changed to '.$tagId->nama.'!',
             'errors'    => false
         ];
 

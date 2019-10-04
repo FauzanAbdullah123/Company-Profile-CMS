@@ -48,7 +48,7 @@ class CategoryController extends Controller
         $newCat->save();
         $response = [
             'errors'    => false,
-            'message'   => 'Data berhasil di simpan!'
+            'message'   => 'Data saved successfully!'
         ];
         return response()->json($response, 200);
     }
@@ -63,7 +63,7 @@ class CategoryController extends Controller
         $catId = Category::findOrFail($id);
         $response = [
             'data'      => $catId,
-            'message'   => 'Data kategori dengan nama '.$catId->nama.'!'
+            'message'   => 'Category data by name '.$catId->nama.'!'
         ];
         return response()->json($response, 200);
     }
@@ -98,7 +98,7 @@ class CategoryController extends Controller
         $catId->save();
         $response = [
             'data'      => $catId,
-            'message'   => 'Data kategori berhasil diubah menjadi '.$catId->nama.'!'
+            'message'   => 'Category data successfully changed to '.$catId->nama.'!'
         ];
         return response()->json($response, 200);
     }

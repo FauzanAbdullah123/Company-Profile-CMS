@@ -66,7 +66,7 @@
                 <input type="hidden" name="id" id="id-tag-h">
                 <div class="modal-body">
                     <p class="t-before-h"></p>
-                    <small class="form-text text-muted">* Data akan dihapus permanen!</small>
+                    <small class="form-text text-muted">* Data will be deleted permanently!</small>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
