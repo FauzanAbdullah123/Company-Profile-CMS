@@ -39,7 +39,7 @@ s0.parentNode.insertBefore(s1,s0);
                     <a href="/blog/{{ $data->slug }}" title="{{ $data->judul }}" class="post_img">
                         <img src="{{ asset('assets/img/article/'.$data->foto) }}" alt="Recent Post" height="50px" />
                     </a>
-                    <h6 class="post_heading"><a href="/blog/{{ $data->slug }}" style="color: gray;">{{ $data->judul }}</a></h6>
+                    <h6 class="post_heading"><a href="/blog/{{ $data->slug }}">{{ $data->judul }}</a></h6>
                     <div class="post_meta"><span class="time">{{ $data->created_at->diffForHumans() }}</span></div>
                 </div>
             </div>
