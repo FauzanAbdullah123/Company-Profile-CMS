@@ -18,48 +18,28 @@ class FrontendController extends Controller
     public function index(Request $request)
     {
         $article = Article::take(1)->get();
-        $cari = $request->cari;
-        if ($cari) {
-            $art = Article::where('judul', 'LIKE', "%$cari%")->paginate(4);
-        }
         return view('frontend.index', compact('article'));
     }
 
     public function about(Request $request){
         $about = About::all();
-        $cari = $request->cari;
-        if ($cari) {
-            $article = Article::where('judul', 'LIKE', "%$cari%")->paginate(4);
-        }
         return view('frontend.about', compact('about'));
     }
 
     public function services(Request $request){
         $services = Services::all();
         $otherservice = OtherService::all();
-        $cari = $request->cari;
-        if ($cari) {
-            $article = Article::where('judul', 'LIKE', "%$cari%")->paginate(4);
-        }
         return view('frontend.services', compact('services', 'otherservice'));
     }
 
     public function gallery(Request $request){
         $gallery = Gallery::paginate(12);
-        $cari = $request->cari;
-        if ($cari) {
-            $article = Article::where('judul', 'LIKE', "%$cari%")->paginate(4);
-        }
         return view('frontend.gallery', compact('gallery'));
     }
 
     public function career(Request $request){
         $positionavailable = PositionAvailable::all();
         $platforms = Platforms::all();
-        $cari = $request->cari;
-        if ($cari) {
-            $article = Article::where('judul', 'LIKE', "%$cari%")->paginate(4);
-        }
         return view('frontend.career', compact('positionavailable', 'platforms'));
     }
 
@@ -69,6 +49,9 @@ class FrontendController extends Controller
         $cari = $request->cari;
         if ($cari) {
             $article = Article::where('judul', 'LIKE', "%$cari%")->paginate(4);
+            if ($article->count()==0){
+                return view('errors.404cari');
+            }
         }
         return view('frontend.blog', compact('article'));
     }

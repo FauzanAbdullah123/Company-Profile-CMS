@@ -1,13 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>404 Not Found!</title>
-    <link rel="stylesheet" type="text/css" href="/css/404.css" />
-</head>
-<body>
+@extends('layouts.frontend')
+
+@section('title-website')
+    404 Not Found!
+@endsection
+
+@section('title')
+    404 Not Found!
+@endsection
+
+@section('content')
+
+<style>
+    p.serif {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 17px;
+    }
+</style>
+
+<div class="container_12">
+    <!-- a sidebar width blog post -->
+    <div class="content left grid_9">
+
         <main>
                 <svg
                     viewBox="0 0 541.17206 328.45184"
@@ -218,6 +231,12 @@
                  <a id="errorLink" href="{{ URL::previous() }}">Back</a>
                </main>
                </main>
-               
-</body>
-</html>
+              </div>
+    @include('layouts.partial-frontend.sidebar')
+</div>
+
+
+
+<!-- container 12 end -->
+<div class="clearfix"></div>
+@endsection
