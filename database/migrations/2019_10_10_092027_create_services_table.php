@@ -18,6 +18,8 @@ class CreateServicesTable extends Migration
             $table->string('image');
             $table->string('title');
             $table->text('desc');
+            $table->unsignedBigInteger('catservice_id');
+            $table->foreign('catservice_id')->references('id')->on('catservices')->onDelete('cascade');
             $table->timestamps();
         });
     }

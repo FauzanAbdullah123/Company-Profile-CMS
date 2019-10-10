@@ -1,11 +1,11 @@
 @extends('layouts.admin')
 
 @section('title-website')
-    Other Service
+    Category Service
 @endsection
 
 @section('title')
-    Data Other Service
+    Data Category Service
 @endsection
 
 @section('content')
@@ -24,10 +24,8 @@
                     <table id="dataTable" class="table table-bordered table-hover">
                         <thead>
                         <tr>
-                            <th width="20%">Title</th>
-                            <th width="20%">Slug</th>
-                            <th width="35%">Description</th>
-                            <th width="10%">Image</th>
+                            <th width="35%">Name</th>
+                            <th width="35%">Slug</th>
                             <th width="30%">Action</th>
                         </tr>
                         </thead>
@@ -45,31 +43,19 @@
   <div class="modal-content">
    <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Add Data Other Service</h4>
+          <h4 class="modal-title">Add Data Category Service</h4>
         </div>
         <div class="modal-body">
          <span id="form_result"></span>
-         <form method="post" id="sample_form" class="form-horizontal" enctype="multipart/form-data">
+         <form method="post" id="sample_form" class="form-horizontal">
           @csrf
           <div class="form-group row mb-4">
-            <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Image : </label>
+            <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3" >Name : </label>
             <div class="col-sm-12 col-md-10">
-             <input type="file" name="image" id="image" />
-             <span id="store_image"></span>
+             <input type="text" name="nama" id="nama" class="form-control" />
             </div>
            </div>
-          <div class="form-group row mb-4">
-            <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3" >Title : </label>
-            <div class="col-sm-12 col-md-10">
-             <input type="text" name="title" id="title" class="form-control" />
-            </div>
-           </div>
-           <div class="form-group row mb-4">
-            <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Description : </label>
-            <div class="col-sm-12 col-md-10">
-                <textarea id="desc" rows="8" cols="30" type="text" name="desc" class="form-control"></textarea>
-            </div>
-           </div>
+          
            <br />
            <div class="form-group" align="center">
             <input type="hidden" name="action" id="action" />
@@ -142,10 +128,11 @@
     <script src="{{ asset('AdminLTE/bower_components/jquery-slimscroll/jquery.slimscroll.min.js') }}"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="{{ asset('AdminLTE/dist/js/demo.js') }}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.29.2/sweetalert2.all.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
     <script src="{{asset('AdminLTE/assets/vendor/ckeditor/ckeditor.js')}}"></script>
     <script src="{{asset('AdminLTE/assets/vendor/select2/select2.min.js')}}"></script>
     <script src="{{asset('AdminLTE/assets/js/components/select2-init.js')}}"></script>
+
 
 <script>
     $(document).ready(function(){
@@ -154,28 +141,16 @@
     processing: true,
     serverSide: true,
     ajax:{
-    url: "{{ route('other-service.index') }}",
+    url: "{{ route('catservice.index') }}",
     },
     columns:[
         {
-            data: 'title',
-            name: 'title'
+            data: 'nama',
+            name: 'nama'
         },
         {
             data: 'slug',
             name: 'slug'
-        },
-        {
-            data: 'desc',
-            name: 'desc'
-        },
-        {
-            data: 'image',
-            name: 'image',
-            render: function(data, type, full, meta){
-            return "<img src={{ URL::to('/') }}/assets/img/otherservice/" + data + " width='70' class='img-thumbnail' />";
-            },
-            orderable: false
         },
         {
             data: 'action',
@@ -186,7 +161,7 @@
     });
 
     $('#create_record').click(function(){
-    $('.modal-title').text("Add Data Other Service");
+    $('.modal-title').text("Add Data Category Service");
         $('#action_button').val("Save");
         $('#action').val("Add");
         $('#formModal').modal('show');
@@ -197,7 +172,7 @@
     if($('#action').val() == 'Add')
     {
         $.ajax({
-            url:"{{ route('other-service.store') }}",
+            url:"{{ route('catservice.store') }}",
             method:"POST",
             data: new FormData(this),
             contentType: false,
@@ -235,7 +210,7 @@
         if($('#action').val() == "Edit")
         {
             $.ajax({
-                url:"{{ route('other-service.update') }}",
+                url:"{{ route('catservice.update') }}",
                 method:"POST",
                 data:new FormData(this),
                 contentType: false,
@@ -257,7 +232,7 @@
                 if(data.success)
                 {
                 Swal.fire(
-                    'Data Other Service Successfully Edited!',
+                    'Data category service Successfully Edited!',
                     data.success,
                     'success'
                     )
@@ -276,15 +251,12 @@
     var id = $(this).attr('id');
     $('#form_result').html('');
     $.ajax({
-        url:"/admin/other-service/"+id+"/edit",
+        url:"/admin/catservice/"+id+"/edit",
         dataType:"json",
             success:function(html){
-                $('#store_image').html("<img src={{ URL::to('/') }}/assets/img/otherservice/" + html.data.image + " width='70' class='img-thumbnail' />");
-                $('#store_image').append("<input type='hidden' name='hidden_image' value='"+html.data.image+"' />");
-                $('#title').val(html.data.title);
-                $('#desc').val(html.data.desc);
+                $('#nama').val(html.data.nama);
                 $('#hidden_id').val(html.data.id);
-                $('.modal-title').text("Edit Data Other Service");
+                $('.modal-title').text("Edit Data Category Service");
                 $('#action_button').val("Save");
                 $('#action').val("Edit");
                 $('#formModal').modal('show');
@@ -301,7 +273,7 @@
 
     $('#ok_button').click(function(){
         $.ajax({
-        url:"/admin/other-service/destroy/"+user_id,
+        url:"/admin/catservice/destroy/"+user_id,
         beforeSend:function(){
             $('#ok_button').text('Deleting...');
         },

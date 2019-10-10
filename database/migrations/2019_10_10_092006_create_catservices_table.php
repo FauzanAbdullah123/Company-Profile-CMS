@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateOtherServicesTable extends Migration
+class CreateCatservicesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateOtherServicesTable extends Migration
      */
     public function up()
     {
-        Schema::create('other_services', function (Blueprint $table) {
+        Schema::create('catservices', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('image');
-            $table->string('title');
-            $table->text('desc');
+            $table->string('nama')->unique();
+            $table->string('slug');
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ class CreateOtherServicesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('other_services');
+        Schema::dropIfExists('catservices');
     }
 }

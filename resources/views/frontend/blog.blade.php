@@ -39,6 +39,11 @@
             <!-- post meta info -->
                 <div class="meta-info">
                     <div class="date-info">{{ date('d F Y' ,strtotime($data->created_at)) }}</div>
+                    <div class="tag-info">
+                        @foreach($data->tag as $a)
+                        <a href="/blog/tag/{{ $a->slug }}">{{ $a->nama }} &nbsp &nbsp </a> 
+                        @endforeach
+                    </div>
                 </div>
             <!-- post meta info end -->
             <!-- post content -->

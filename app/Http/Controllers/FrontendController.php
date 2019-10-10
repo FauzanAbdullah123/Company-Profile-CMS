@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use App\Article;
 use App\Tag;
 use App\Category;
-use App\Services;
+use App\Service;
+use App\Catservice;
 use App\OtherService;
 use App\Gallery;
 use App\About;
@@ -26,10 +27,10 @@ class FrontendController extends Controller
         return view('frontend.about', compact('about'));
     }
 
-    public function services(Request $request){
-        $services = Services::all();
+    public function service(Request $request){
+        $service = Service::all();
         $otherservice = OtherService::all();
-        return view('frontend.services', compact('services', 'otherservice'));
+        return view('frontend.services', compact('service', 'otherservice'));
     }
 
     public function gallery(Request $request){
@@ -56,6 +57,11 @@ class FrontendController extends Controller
         return view('frontend.blog', compact('article'));
     }
 
+    public function detailcatservice(Catservice $catservice){
+        $otherservice = OtherService::all();
+        $service = $catservice->service()->latest()->paginate(200);
+        return view('frontend.services', compact('service', 'catservice', 'otherservice'));
+    }
     public function detailotherservice(OtherService $otherservice){
         return view('frontend.other-service', compact('otherservice'));
     }

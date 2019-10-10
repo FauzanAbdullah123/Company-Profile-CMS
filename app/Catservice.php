@@ -5,29 +5,29 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
 
-class OtherService extends Model
+class Catservice extends Model
 {
     use LogsActivity;
 
     protected $fillable = [
-        'image', 'title', 'slug', 'desc'
+        'nama', 'slug',
     ];
     public $timestamps = true;
-
+    
     public function service()
     {
-        return $this->belongsToMany('App\Service', 'service_otherservice', 'otherservice_id', 'service_id');
+        return $this->hasMany('App\Service', 'catservice_id');
     }
     public static function boot()
     {
         parent::boot();
-        self::deleting(function ($otherservice) {
+        self::deleting(function ($catservice) {
             // mengecek apakah penulis masih punya buku
-            if ($otherservice->service->count() > 0) {
+            if ($catservice->service->count() > 0) {
                 //menyiapkan pesan error
-                $html = 'Other Service tidak bisa dihapus karena masih digunakan oleh Service: ';
+                $html = 'Category Service tidak bisa dihapus karena masih digunakan oleh Service: ';
                 $html .= '<ul>';
-                foreach ($otherservice->service as $data) {
+                foreach ($catservice->service as $data) {
                     $html .= "<li>$data->title<li>";
                 }
                 $html .= '<ul>';

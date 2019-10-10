@@ -33,9 +33,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:Admin']], func
     Route::get('/about/destroy/{id}', 'AboutController@destroy');
     //Route Page Service
     Route::resource('/service', 'ServiceController');
-    Route::post('/service/update', 'ServiceController@update')->name('service.update');
-    Route::get('/service/destroy/{id}', 'ServiceController@destroy');
-     //Route Page OtherService
+    //Route Page Category Service
+    Route::resource('/catservice', 'CatserviceController');
+    Route::post('/catservice/update', 'CatserviceController@update')->name('catservice.update');
+    Route::get('/catservice/destroy/{id}', 'CatserviceController@destroy');
+    //Route Page OtherService
     Route::resource('/other-service', 'OtherServiceController');
     Route::post('/other-service/update', 'OtherServiceController@update')->name('other-service.update');
     Route::get('/other-service/destroy/{id}', 'OtherServiceController@destroy');
@@ -44,8 +46,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:Admin']], func
     Route::post('/gallery/update', 'GalleryController@update')->name('gallery.update');
     Route::get('/gallery/destroy/{id}', 'GalleryController@destroy');
     //Route Page Logs
-    Route::get('/logs', 'LogController@index')->name('logs.index');
-    Route::delete('/logs/{id}', 'LogController@destroy')->name('logs.destroy');
+    Route::resource('/activitylogs', 'Admin\ActivityLogsController')->only([
+        'index', 'show', 'destroy'
+    ]);
     //Route Page Settings Sliders
     Route::resource('/sliders', 'SlidersController');
     Route::post('/sliders/update', 'SlidersController@update')->name('sliders.update');
@@ -90,10 +93,11 @@ Route::group(['prefix' => '', 'middleware' => ['auth']], function () {
 Route::group(['prefix'=>'/'], function(){
     Route::get('/','FrontendController@index');
     Route::get('/about','FrontendController@about')->name('about');
-    Route::get('/services','FrontendController@services')->name('services');
+    Route::get('/services','FrontendController@service')->name('service');
     Route::get('/gallery','FrontendController@gallery')->name('gallery');
     Route::get('/career','FrontendController@career')->name('career');
     Route::get('/blog', 'FrontendController@allblog')->name('all.blog');
+    Route::get('/services/{catservice}', 'FrontendController@detailcatservice')->name('detail.catservice');
     Route::get('/otherservice/{otherservice}', 'FrontendController@detailotherservice')->name('detail.otherservice');
     Route::get('/blog/{article}', 'FrontendController@detailblog')->name('detail.blog');
     Route::get('/blog/category/{cat}', 'FrontendController@blogcat')->name('cat.blog');

@@ -15,5 +15,10 @@ class Office extends Model
 
     public $timestamps = true;
 
-    protected static $logFillable = true;
+    // protected static $logFillable = true;
+
+    public function getDescriptionForEvent($eventName)
+    {
+        return __CLASS__ . " model has been {$eventName}";
+    }
 }

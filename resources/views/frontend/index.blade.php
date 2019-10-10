@@ -62,7 +62,19 @@
 		<ul id="mainmenu" style="background:black;">
 			<li><a href="/">Home</a></li>
 			<li><a href="/about">About Us</a></li>
-			<li><a href="/services">Services</a></li>
+			<li>
+				<a href="/services">Services</a>
+				<ul>
+					@php
+						$catservice = \App\Catservice::all();
+					@endphp
+					@foreach($catservice as $data)
+						@if($data->Service->count() > 0)
+					<li><a href="{{ route('detail.catservice', $data->slug) }}">{{ $data->nama }}</a></li>
+						@endif
+					@endforeach				
+				</ul>
+			</li>
 			<li><a href="/gallery">Gallery</a></li>
 			<li><a href="/career">Career</a></li>
 			<li><a href="/blog">Blog</a></li>

@@ -24,7 +24,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'name', 'email', 'password',
     ];
 
-    protected static $logFillable = true;
+    // protected static $logFillable = true;
 
     /**
      * The attributes that should be hidden for arrays.
@@ -43,4 +43,9 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getDescriptionForEvent($eventName)
+    {
+        return __CLASS__ . " model has been {$eventName}";
+    }
 }

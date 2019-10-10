@@ -1,36 +1,33 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Services;
-use Validator;
-use Spatie\Activitylog\Models\Activity;
 use Illuminate\Http\Request;
-use DataTables;
+use App\Service;
+use App\Catservice;
+use App\OtherService;
+use Session;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
+use Spatie\Activitylog\Models\Activity;
+use Illuminate\Contracts\Filesystem\FileNotFoundException;
 
 class ServiceController extends Controller
+
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        if(request()->ajax())
-        {
-            return Datatables()->of(Services::latest()->get())
-                    ->addColumn('action', function($data){
-                        $btn = '<button type="button" name="edit" class="edit btn btn-primary btn-sm" id="'.$data->id.'"><i class="fa fa-edit"></i></button>';
-                        $btn = $btn.' <button type="button" name="delete" class="delete btn btn-danger btn-sm" id="'.$data->id.'"><i class="fa fa-trash-o"></i></button>';
-                        return $btn;
-                    })
-                    ->rawColumns(['action'])
-                    ->make(true);
+        $service = Service::all();
+        $cari = $request->cari;
+        if ($cari) {
+            $service = Service::where('title', 'LIKE', "%$cari%")->paginate(5);
         }
-        return view('admin.service.index');
+        return view('admin.service.index', compact('service'));
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -38,8 +35,10 @@ class ServiceController extends Controller
      */
     public function create()
     {
+        $catservice = Catservice::all();
+        $otherservice = OtherService::all();
+        return view('admin.service.create', compact('catservice', 'otherservice'));
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -48,123 +47,120 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
-        $rules = array(
-            'image'    =>  'required|image|max:2048',
-            'title'     =>  'required',
-            'desc'         =>  'required'
-        );
-
-        $error = Validator::make($request->all(), $rules);
-
-        if($error->fails())
-        {
-            return response()->json(['errors' => $error->errors()->all()]);
-        }
-
-        $image = $request->file('image');
-
-        $new_name = rand() . '.' . $image->getClientOriginalExtension();
-
-        $image->move(public_path('/assets/img/service/'), $new_name);
-
-        $form_data = array(
-            'image'        =>  $new_name,
-            'title'         =>  $request->title,
-            'desc'             => $request->desc
-        );
-
-        Services::create($form_data);
-
-        return response()->json(['success' => 'Data Added successfully.']);
+       $service = new Service();
+       if ($request->hasFile('image')){
+           $file = $request->file('image');
+           $path = public_path().
+                           '/assets/img/service/';
+           $filename = str_random(6).'_'
+                       .$file->getClientOriginalName();
+           $uploadSuccess = $file->move(
+               $path,
+               $filename
+           );
+           $service->image = $filename;
+       }
+       $service->title = $request->title;
+       $service->desc = $request->desc;
+       $service->catservice_id = $request->catservice;
+       $service->save();
+       Session::flash("flash_notification", [
+        "level" => "success",
+        "message" => "Saved service Successfully <b>$service->title</b>!"
+    ]);
+       $service->otherservice()->attach($request->otherservice);
+       return redirect()->route('service.index');    
     }
-
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\service  $service
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(service $service)
     {
         //
     }
-
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\service  $service
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        if(request()->ajax())
-        {
-            $data = Services::findOrFail($id);
-            return response()->json(['data' => $data]);
-        }
+        $service = Service::findOrFail($id);
+        $catservice = Catservice::all();
+        $otherservice = OtherService::all();
+        $selected = $service->otherservice->pluck('id')->toArray();
+        return view('admin.service.edit', compact('service', 'selected', 'catservice', 'otherservice'));
     }
-
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\service  $service
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
-    {
-        $image_name = $request->hidden_image;
-        $image = $request->file('image');
-        if($image != '')
-        {
-            $rules = array(
-                'image'         =>  'image|max:2048',
-                'title'    =>  'required',
-                'desc'     =>  'required'
+    public function update(Request $request, $id)
+    {   
+        $service = Service::findOrFail($id);
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $path = public_path() . '/assets/img/service';
+            $filename = str_random(6) . '_'
+                . $file->getClientOriginalName();
+            $uploadSuccess = $file->move(
+                $path,
+                $filename
             );
-            $error = Validator::make($request->all(), $rules);
-            if($error->fails())
-            {
-                return response()->json(['errors' => $error->errors()->all()]);
+            // hapus image lama jika ada
+            if ($service->image) {
+                $old_image = $service->image;
+                $filepath = public_path() .
+                    '/assets/img/service/' .
+                    $service->image;
+                try {
+                    File::delete($filepath);
+                } catch (FileNotFoundException $e) {
+                    // file sudah dihapus/tidak ada
+                }
             }
-
-            $image_name = rand() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('/assets/img/service/'), $image_name);
+            $service->image = $filename;
         }
-        else
-        {
-            $rules = array(
-                'title'    =>  'required',
-                'desc'     =>  'required'
-            );
-
-            $error = Validator::make($request->all(), $rules);
-
-            if($error->fails())
-            {
-                return response()->json(['errors' => $error->errors()->all()]);
-            }
-        }
-
-        $form_data = array(
-            'image'            =>   $image_name,
-            'title'       =>   $request->title,
-            'desc'        =>   $request->desc
-        );
-        Services::whereId($request->hidden_id)->update($form_data);
-
-        return response()->json(['success' => 'Data is successfully updated']);
+        $service->title = $request->title;
+        $service->desc = $request->desc;
+        $service->catservice_id = $request->catservice;
+        $service->save();
+        $service->otherservice()->sync($request->otherservice);
+        Session::flash("flash_notification", [
+            "level" => "success",
+            "message" => "Edited service Successfully <b>$service->title</b>!"
+        ]);
+        return redirect()->route('service.index');
     }
-
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\service  $service
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        $data = Services::findOrFail($id);
-        $data->delete();
+        $service = Service::findOrFail($request->id);
+        if ($service->image) {
+            $old_image = $service->image;
+            $filepath = public_path() . '/assets/img/service/' . $service->image;
+            try {
+                File::delete($filepath);
+            } catch (FileNotFoundException $e) { }
+        }
+        $service->otherservice()->detach($service->id);
+        $service->delete();
+        Session::flash("flash_notification", [
+            "level" => "success",
+            "message" => "Deleted service Successfully!"
+        ]);
+        return redirect()->route('service.index');
     }
 }

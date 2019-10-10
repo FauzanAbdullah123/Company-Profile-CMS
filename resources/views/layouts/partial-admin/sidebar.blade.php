@@ -42,7 +42,7 @@
           </ul>
         </li>
 
-        <li class="{{ ( Request::segment(2) == 'service' || Request::segment(2) == 'other-service') ? 'active treeview menu-open' : 'treeview' }}">
+        <li class="{{ ( Request::segment(2) == 'service' || Request::segment(2) == 'catservice' || Request::segment(2) == 'other-service') ? 'active treeview menu-open' : 'treeview' }}">
           <a href="#">
             <i class="fa fa-cogs"></i>
             <span>Services</span>
@@ -52,6 +52,7 @@
           </a>
           <ul class="treeview-menu">
             <li class="{{ (Request::segment(2) == 'service') ? 'active' : '' }}"><a href="{{ route('service.index') }}"><i class="fa fa-circle-o"></i>Service</a></li>
+            <li class="{{ (Request::segment(2) == 'catservice') ? 'active' : '' }}"><a href="{{ route('catservice.index') }}"><i class="fa fa-circle-o"></i>Category Service</a></li>
             <li class="{{ (Request::segment(2) == 'other-service') ? 'active' : '' }}"><a href="{{ route('other-service.index') }}"><i class="fa fa-circle-o"></i>Other Service</a></li>
           </ul>
         </li>
@@ -103,8 +104,8 @@
             <li class="{{ (Request::segment(2) == 'team') ? 'active' : '' }}"><a href="{{ route('team.index') }}"><i class="fa fa-circle-o"></i>Team</a></li>
           </ul>
         </li>
-         <li class="{{ (Request::segment(2) == 'logs') ? 'treeview active' : ''}}">
-          <a href="{{ route('logs.index') }}">
+         <li class="{{ (Request::segment(2) == 'activitylogs') ? 'treeview active' : ''}}">
+          <a href="{{ route('activitylogs.index') }}">
             <i class="fa fa-cogs"></i> <span>Logs</span>
           </a>
         </li>

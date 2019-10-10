@@ -36,7 +36,7 @@
 
             <div class="info-box-content">
                 @php
-                    $service = \App\Services::all();
+                    $service = \App\Service::all();
                 @endphp
               <span class="info-box-text">Services</span>
               <span class="info-box-number" style="font-size: 40px; text-align: center;">{{ $service->count() }}</span>
