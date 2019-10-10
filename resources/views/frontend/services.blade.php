@@ -24,20 +24,20 @@
      <!-- features boxes -->
      <div class="grid_12">
         @foreach($data->otherservice as $a)
-        <div class="grid_3 alpha" style="position: relative;">
+        <div class="grid_3 alpha">
             <!-- a feature box -->
-            <div class="feature_box">
+            <div class="feature_box" style="margin-bottom: 60px;">
                <div class="feature_icon">
                 <a href="{{ route('detail.otherservice', $a->slug) }}"><img src="{{ asset('assets/img/otherservice/'.$a->image)}}" width="35px" height="35px" alt=""></a>
                 </div>
-                <div class="feature_content">
+                <div class="feature_content" style="height: 200px; border-radius: 15px;">
                     <div class="feature_heading">
                         <div class="small" style="font-size:22px;">{{$a->title}}</div>
                     </div>
                     <div class="feature_desc" style="font-size:15px; text-align:center; font-color:white;">{!! substr($a->desc, 0, 170) !!} ...</div>
                 </div>
                  <div class="feature_link"><a href="{{ route('detail.otherservice', $a->slug) }}" class="arrows_icons16 icon16_5 tooltip_s" title="Read More"></a></div>
-            </div><br><br>
+            </div>
             <!-- a feature box end -->
         </div>
         @endforeach
