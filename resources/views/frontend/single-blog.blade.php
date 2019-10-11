@@ -29,12 +29,12 @@
             <div class="post-content">
             <p>{!! $article->konten !!}</p>
             </div>
-            <br><br><br><br>
-            <div class="bottom-meta">
-                <div class="user-details row align-items-center">
-                    <div class="comment-wrap col-lg-6">
-                        <script data-sil-id="5d2d6c5baea7930010e1c912">let loadWidget = function() { var d = document, w = window, l = window.location,p = l.protocol == "file:" ? "http://" : "//"; if (!w.WS) w.WS = {}; c = w.WS; var m=function(t, o){ var e = d.getElementsByTagName("script"); e=e[e.length-1]; var n = d.createElement(t); if (t=="script") {n.async=true;} for (k in o) n[k] = o[k]; e.parentNode.insertBefore(n, e)}; m("script", { src: p + "bawkbox.com/widget/like-dislike/5d2d6c5baea7930010e1c912?page=" +encodeURIComponent(l+''), type: 'text/javascript' }); c.load_net = m; }; if(window.Squarespace){ document.addEventListener('DOMContentLoaded', loadWidget); } else { loadWidget() } </script><div class="sil-widget-like-dislike sil-widget" id="sil-widget-5d2d6c5baea7930010e1c912"><a href="//bawkbox.com/install/like-dislike">Like Dislike Button</a></div><!-- End BawkBox Code-->
-                    </div>
+            <br><br>
+            <hr>
+            <h4>Comment :</h4>
+            <div class="panel with-nav-tabs panel default">
+                <div class="panel-heading">
+                    <div id="disqus_thread"></div>
                 </div>
             </div>
             <!-- post content end -->
@@ -49,3 +49,24 @@
 <!-- container 12 end -->
 <div class="clearfix"></div>
 @endsection
+
+@push('js')
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://arkamaya.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+@endpush

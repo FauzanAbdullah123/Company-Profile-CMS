@@ -61,7 +61,7 @@ s0.parentNode.insertBefore(s1,s0);
             @endphp
               @foreach($gallery as $data)
             <a href="{{ asset('assets/img/gallery/'.$data->image)}}" data-rel="prettyPhoto" >
-            <img src="{{ asset('assets/img/gallery/'.$data->image)}}" height="70px" width="70px" alt="">
+            <img src="{{ asset('assets/img/gallery/'.$data->image)}}" height="70px" width="70px" alt="" style="border-radius: 10px;">
             </a>
               @endforeach
         </div>

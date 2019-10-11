@@ -144,8 +144,13 @@
     <script>
         CKEDITOR.replace( 'editor1' );
         $(document).ready(function () {
-        $('#select2').select2();
     })
+    </script>
+
+    <script>
+        $("#select2").select2({
+            placeholder: "Select Tag"
+        });
     </script>
 
      <script>

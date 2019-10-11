@@ -1,5 +1,5 @@
 <!-- header -->
-<div id="header_wrapper" class="" style="background:#fc4903; border-bottom: 1px solid white;">
+<div id="header_wrapper" class="" style="background:#fc4903; border-bottom: 1px solid white; padding-top: 20px; padding-bottom:20px;">
 	<!-- menu -->
 	<div id="header">
 		<!-- logo -->

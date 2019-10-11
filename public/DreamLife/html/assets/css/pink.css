@@ -146,7 +146,7 @@ ul.page_navigation li a.passive, ul.page_navigation li a.passive:hover						{bac
 
 /*Camera Desc*/
 .camera_desc				{color: #fff;}
-.camera_desc.pink		{background-color: #fc4903; background-color: rgba(201,87,125,.7);}
+.camera_desc.pink		{background-color: #fc4903; background-color: orangered;}
 .camera_desc.blue		{background-color: #377acd; background-color: rgba(55,122,205,.7);}
 .camera_desc.green	{background-color: #6e9a76; background-color: rgba(110,154,118,.7);}
 .camera_desc.black		{background-color: #3a3a3a; background-color: rgba(58,58,58,.7);}

@@ -58,7 +58,6 @@
                         <div class="form-group">
                             <label for="">Other Service</label>
                             <select style="width:100%;" name="otherservice[]" id="select2" class="form-control multiple" required multiple>
-                                <option value="">- Choose Other Service -</option>
                                 @foreach($otherservice as $data)
                                     <option value="{{ $data->id }}">
                                         {{ $data->title }}

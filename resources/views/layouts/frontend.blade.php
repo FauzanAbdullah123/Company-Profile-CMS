@@ -54,10 +54,10 @@
     <!-- End Navigation Bar -->
 	<!-- header text -->
 	<div class="header_text">
-		<div class="container_12">
+		<div class="container_12" style="height: 35px;">
+    <iframe scrolling="no" frameborder="no" clocktype="html5" style="overflow:hidden;border:0;width:240px;height:25px;padding-top:5px;"src="https://www.clocklink.com/html5embed.php?clock=018&timezone=JOG&color=gray&size=240&Title=&Message=&Target=&From=2019,1,1,0,0,0&DateFormat=yyyy / mm / dd DDD&TimeFormat=hh:mm:ss TT&Color=gray"></iframe>
 			<div class="grid_9">
 				<h3>@yield('title')</h3>
-        <iframe scrolling="no" frameborder="no" clocktype="html5" style="overflow:hidden;border:0;margin:0;padding:0;width:240px;height:25px;"src="https://www.clocklink.com/html5embed.php?clock=018&timezone=JOG&color=gray&size=240&Title=&Message=&Target=&From=2019,1,1,0,0,0&DateFormat=yyyy / mm / dd DDD&TimeFormat=hh:mm:ss TT&Color=gray"></iframe>
 			</div>
 		</div>
 	</div>

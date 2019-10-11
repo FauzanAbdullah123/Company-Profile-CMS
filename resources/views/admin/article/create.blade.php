@@ -49,7 +49,6 @@
                         <div class="form-group">
                             <label for="">Tag</label>
                             <select style="width:100%;" name="tag[]" id="select2" class="form-control multiple" required multiple>
-                                <option value="">- Choose Tag -</option>
                                 @foreach($tag as $data)
                                     <option value="{{ $data->id }}">
                                         {{ $data->nama }}

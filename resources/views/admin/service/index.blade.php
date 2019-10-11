@@ -141,9 +141,9 @@
     <script src="{{asset('AdminLTE/assets/js/components/select2-init.js')}}"></script>
 
    <script>
-        $(document).ready(function () {
-        $('#select2').select2();
-    })
+        $("#select2").select2({
+            placeholder: "Select Other Service"
+        });
     </script>
 
      <script>
