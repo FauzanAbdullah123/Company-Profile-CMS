@@ -19,6 +19,7 @@ Auth::routes(['verify' => true, 'register' => false]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('logout', 'Auth\LoginController@logout');
 
 //Route Backend
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:Admin']], function () {
@@ -45,10 +46,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:Admin']], func
     Route::resource('/gallery', 'GalleryController');
     Route::post('/gallery/update', 'GalleryController@update')->name('gallery.update');
     Route::get('/gallery/destroy/{id}', 'GalleryController@destroy');
-    //Route Page Logs
-    Route::resource('/activitylogs', 'Admin\ActivityLogsController')->only([
-        'index', 'show', 'destroy'
-    ]);
     //Route Page Settings Sliders
     Route::resource('/sliders', 'SlidersController');
     Route::post('/sliders/update', 'SlidersController@update')->name('sliders.update');
@@ -75,6 +72,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:Admin']], func
     Route::get('/team/destroy/{id}', 'TeamController@destroy');
     //Route Position Available
     Route::resource('/positionavailable', 'PositionAvailableController');
+    //Route Page Logs
+    Route::resource('/activitylogs', 'Admin\ActivityLogsController')->only([
+        'index', 'show', 'destroy'
+    ]);
 });
 
 Route::group(['prefix' => '', 'middleware' => ['auth']], function () {
