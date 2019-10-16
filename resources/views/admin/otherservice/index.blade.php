@@ -71,11 +71,12 @@
             </div>
            </div>
            <br />
-           <div class="form-group" align="center">
-            <input type="hidden" name="action" id="action" />
-            <input type="hidden" name="hidden_id" id="hidden_id" />
-            <input type="submit" name="action_button" id="action_button" class="btn btn-warning" value="Add"  style="margin-left: 80%;"/>
-           </div>
+            <div class="modal-footer">
+                <input type="hidden" name="action" id="action" />
+                <input type="hidden" name="hidden_id" id="hidden_id" />
+                <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
+                <input type="submit" name="action_button" id="action_button" class="btn btn-primary" value="Add"/>
+            </div>
          </form>
         </div>
      </div>

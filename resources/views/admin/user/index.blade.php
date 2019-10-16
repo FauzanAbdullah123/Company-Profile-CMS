@@ -32,6 +32,7 @@
                                 <th><center>User Name</center></th>
                                 <th><center>Email</center></th>
                                 <th><center>Role Name</center></th>
+                                <th><center>Status</center></th>
                                 <th colspan="2" style="text-align: center;">Action</th>
                             </tr>
                         </thead>
@@ -49,6 +50,17 @@
                                     Member
                                     @endif
                                 </center></td>
+                                <td>
+                                @if($data->isOnline())
+                                    <li class="text-success">
+                                        Online
+                                    </li>
+                                @else
+                                    <li class="text-danger">
+                                        Offline
+                                    </li>
+                                @endif
+                                </td>
 
                                 <td align="right">
                                 <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#edit"

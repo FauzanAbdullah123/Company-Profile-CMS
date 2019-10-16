@@ -90,7 +90,6 @@ class UserController extends Controller
     {
         $user = User::findOrFail($request->id);
         $user->name = $request->name;
-        $user->email = $request->email;
         $user->password = bcrypt($request->password);
         $user->save();
         $user->syncRoles([$request->role]);

@@ -40,7 +40,7 @@
                                 <th><center> No </center></th>
                                 <th><center> Image </center></th>
                                 <th><center> Title </center></th>
-                                <th><center> Description </center></th>
+                                <th width="30%"><center> Description </center></th>
                                 <th><center> Category Service </center></th>
                                 <th><center> Other Service </center></th>
                                 <th colspan="2" style="text-align: center;">Action</th>
@@ -59,7 +59,7 @@
                                     </center>
                                 </td>
                                 <td><center> {{$data->title}}</td></center>
-                                <td> {{$data->desc}}</td>
+                                <td> {!! str_limit($data->desc, 200) !!}</td>
                                 <td><center> {{$data->catservice->nama}}</td></center>
                                 <td>
                                     <ol>

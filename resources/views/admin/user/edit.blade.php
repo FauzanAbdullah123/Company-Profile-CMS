@@ -19,7 +19,7 @@
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="email" name="email" id="email" class="form-control" placeholder="Email" required>
+                        <input type="email" name="email" id="email" class="form-control" placeholder="Email" disabled>
                     </div>
                     <div class="form-group">
                         <label for="pass">Password</label>

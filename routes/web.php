@@ -19,6 +19,7 @@ Auth::routes(['verify' => true, 'register' => false]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+//Route Logout
 Route::get('logout', 'Auth\LoginController@logout');
 
 //Route Backend
@@ -73,9 +74,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:Admin']], func
     //Route Position Available
     Route::resource('/positionavailable', 'PositionAvailableController');
     //Route Page Logs
-    Route::resource('/activitylogs', 'Admin\ActivityLogsController')->only([
-        'index', 'show', 'destroy'
-    ]);
+    Route::resource('/activitylogs', 'Admin\ActivityLogsController');
 });
 
 Route::group(['prefix' => '', 'middleware' => ['auth']], function () {

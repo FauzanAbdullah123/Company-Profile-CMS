@@ -9,6 +9,7 @@ use Spatie\Activitylog\Traits\CausesActivity;
 use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContract;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laratrust\Traits\LaratrustUserTrait;
+use Cache;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -43,6 +44,11 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function isOnline()
+    {
+        return Cache::has('user-is-online-' . $this->id);
+    }
 
     public function getDescriptionForEvent($eventName)
     {
