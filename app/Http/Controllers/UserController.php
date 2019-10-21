@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\User;
-use App\Role;
-use Session;
-use Spatie\Activitylog\Models\Activity;
-
+use Spatie\Permission\Models\Role;
+use DB;
+use Hash;
 
 class UserController extends Controller
 {
@@ -16,11 +16,11 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $user = User::all();
-        $role = Role::all();
-        return view('admin.user.index', compact('user', 'role'));
+         $data = User::orderBy('id','DESC')->paginate(5);
+        return view('admin.users.index',compact('data'))
+            ->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -30,8 +30,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        $role = Role::all();
-        return view('admin.user.create', compact('role'));
+        
     }
 
     /**
@@ -42,18 +41,24 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $user = new User;
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->password = bcrypt($request->password);
-        $user->save();
-        
-        $user->attachRole($request->role);
-        Session::flash("flash_notification", [
-            "level" => "success",
-            "message" => "Berhasil Menyimpan <b>$user->name</b>"
+         $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|same:confirm-password',
+            'roles' => 'required'
         ]);
-        return redirect()->route('user.index');
+
+
+        $input = $request->all();
+        $input['password'] = Hash::make($input['password']);
+
+
+        $user = User::create($input);
+        $user->assignRole($request->input('roles'));
+
+
+        return redirect()->route('users.index')
+                        ->with('success','User created successfully');
     }
 
     /**
@@ -64,7 +69,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+         $user = User::find($id);
+        return view('admin.users.show',compact('user'));  
     }
 
     /**
@@ -75,8 +81,12 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $user = User::findOrFail($id);
-        return view('admin.user.edit', compact('user'));
+        $user = User::find($id);
+        $roles = Role::pluck('name','name')->all();
+        $userRole = $user->roles->pluck('name','name')->all();
+
+
+        return view('admin.users.edit',compact('user','roles','userRole'));
     }
 
     /**
@@ -88,16 +98,32 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = User::findOrFail($request->id);
-        $user->name = $request->name;
-        $user->password = bcrypt($request->password);
-        $user->save();
-        $user->syncRoles([$request->role]);
-        Session::flash("flash_notification", [
-            "level" => "success",
-            "message" => "Berhasil Mengedit <b>$user->name</b>"
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email,'.$id,
+            'password' => 'same:confirm-password',
+            'roles' => 'required'
         ]);
-        return redirect()->route('user.index');
+
+
+        $input = $request->all();
+        if(!empty($input['password'])){ 
+            $input['password'] = Hash::make($input['password']);
+        }else{
+            $input = array_except($input,array('password'));    
+        }
+
+
+        $user = User::find($id);
+        $user->update($input);
+        DB::table('model_has_roles')->where('model_id',$id)->delete();
+
+
+        $user->assignRole($request->input('roles'));
+
+
+        return redirect()->route('users.index')
+                        ->with('success','User updated successfully');
     }
 
     /**
@@ -106,15 +132,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, $id)
+    public function destroy($id)
     {
-        $user = User::findOrFail($request->id);
-        $user->delete();
-        $user->detachRole($request->id);
-        Session::flash("flash_notification", [
-            "level" => "success",
-            "message" => "Berhasil menghapus data"
-        ]);
-        return redirect()->route('user.index');
+         User::find($id)->delete();
+        return redirect()->route('users.index')
+                        ->with('success','User deleted successfully');
     }
 }

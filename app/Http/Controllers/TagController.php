@@ -9,6 +9,10 @@ use DataTables;
 
 class TagController extends Controller
 {
+    function __construct()
+    {
+         $this->middleware('permission:tag-page', ['only' => ['index','show']]);
+    }
     /**
      * Display a listing of the resource.
      *

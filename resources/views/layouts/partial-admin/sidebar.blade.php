@@ -11,22 +11,19 @@
             <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
         </div>
-
+  @guest
+  @else
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
-
         <li class="{{ (Request::segment(2) == 'home') ? 'treeview active' : ''}}">
           <a href="{{ route('home') }}">
             <i class="fa fa-th"></i> <span>Dashboard</span>
           </a>
         </li>
 
-          @guest
-        {{-- - --}}
-             @else
-        @role('Admin')
+         
         <li class="{{ ( Request::segment(2) == 'article' || Request::segment(2) == 'category' || Request::segment(2) == 'tag') ? 'active treeview menu-open' : 'treeview' }}">
           <a href="#">
             <i class="fa fa-globe"></i>
@@ -83,10 +80,18 @@
           </ul>
         </li>
 
-        <li class="{{ (Request::segment(2) == 'user') ? 'treeview active' : ''}}">
-          <a href="{{ route('user.index') }}">
-            <i class="fa fa-cog"></i> <span>Manage User</span>
+         <li class="{{ ( Request::segment(2) == 'users' || Request::segment(2) == 'roles') ? 'active treeview menu-open' : 'treeview' }}">
+          <a href="#">
+            <i class="fa fa-globe"></i>
+            <span>Manage ACL</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
           </a>
+          <ul class="treeview-menu">
+            <li class="{{ (Request::segment(2) == 'users') ? 'active' : '' }}"><a href="{{ route('users.index') }}"><i class="fa fa-circle-o"></i>Manage Users</a></li>
+            <li class="{{ (Request::segment(2) == 'roles') ? 'active' : '' }}"><a href="{{ route('roles.index') }}"><i class="fa fa-circle-o"></i>Manage Roles</a></li>
+          </ul>
         </li>
         <li class="{{ ( Request::segment(2) == 'sliders' || Request::segment(2) == 'office' || Request::segment(2) == 'works' || Request::segment(2) == 'logo' || Request::segment(2) == 'platforms' || Request::segment(2) == 'team') ? 'active treeview menu-open' : 'treeview' }}">
           <a href="#">
@@ -109,24 +114,6 @@
             <i class="fa fa-cogs"></i> <span>Logs</span>
           </a>
         </li>
-        @endrole
-
-         @role('Member')
-             <li class="{{ ( Request::segment(2) == 'article' || Request::segment(2) == 'category' || Request::segment(2) == 'tag') ? 'active treeview menu-open' : 'treeview' }}">
-              <a href="#">
-                <i class="fa fa-globe"></i>
-                <span>Blog</span>
-                <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
-                </span>
-              </a>
-              <ul class="treeview-menu">
-                <li class="{{ (Request::segment(2) == 'article') ? 'active' : '' }}"><a href="/article"><i class="fa fa-circle-o"></i>Articles</a></li>
-                <li class="{{ (Request::segment(2) == 'category') ? 'active' : '' }}"><a href="/category"><i class="fa fa-circle-o"></i>Categories</a></li>
-                <li class="{{ (Request::segment(2) == 'tag') ? 'active' : '' }}"><a href="/tag"><i class="fa fa-circle-o"></i>Tags</a></li>
-              </ul>
-            </li>
-            @endrole
           @endguest
       </ul>
     </section>

@@ -10,6 +10,10 @@ use DataTables;
 
 class AboutController extends Controller
 {
+    function __construct()
+    {
+         $this->middleware('permission:about-page', ['only' => ['index','show']]);
+    }
     /**
      * Display a listing of the resource.
      *

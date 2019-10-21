@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('index');
 });
 
-Auth::routes(['verify' => true, 'register' => false]);
+Auth::routes(['register' => false]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -23,12 +23,19 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('logout', 'Auth\LoginController@logout');
 
 //Route Backend
-Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:Admin']], function () {
+Route::group(['prefix' => 'backend','middleware' => ['auth']], function () {
     Route::get('/', function() {
         return view('admin.index');
     });
+    //Route Page Article
+     Route::resource('/article', 'ArticleController');
+     //Route Page Category
+     Route::resource('/category', 'CategoryController');
+     //Route Page Tag
+     Route::resource('/tag', 'TagController');
     //Route Page Manages User
-    Route::resource('/user', 'UserController');
+    Route::resource('/roles','RoleController');
+    Route::resource('/users', 'UserController');
     //Route Page About
     Route::resource('/about', 'AboutController');
     Route::post('/about/update', 'AboutController@update')->name('about.update');
@@ -75,18 +82,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:Admin']], func
     Route::resource('/positionavailable', 'PositionAvailableController');
     //Route Page Logs
     Route::resource('/activitylogs', 'Admin\ActivityLogsController');
-});
-
-Route::group(['prefix' => '', 'middleware' => ['auth']], function () {
-    Route::get('/', function () {
-        return view('admin.index');
-    });
-     //Route Page Article
-     Route::resource('/article', 'ArticleController');
-     //Route Page Category
-     Route::resource('/category', 'CategoryController');
-     //Route Page Tag
-     Route::resource('/tag', 'TagController');
 });
 
 // Route Frontend

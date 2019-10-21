@@ -10,6 +10,10 @@ use DataTables;
 
 class CatserviceController extends Controller
 {
+    function __construct()
+    {
+         $this->middleware('permission:catservice-page', ['only' => ['index','show']]);
+    }
     /**
      * Display a listing of the resource.
      *

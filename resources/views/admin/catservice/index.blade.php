@@ -252,7 +252,7 @@
     var id = $(this).attr('id');
     $('#form_result').html('');
     $.ajax({
-        url:"/admin/catservice/"+id+"/edit",
+        url:"/backend/catservice/"+id+"/edit",
         dataType:"json",
             success:function(html){
                 $('#nama').val(html.data.nama);
@@ -274,7 +274,7 @@
 
     $('#ok_button').click(function(){
         $.ajax({
-        url:"/admin/catservice/destroy/"+user_id,
+        url:"/backend/catservice/destroy/"+user_id,
         beforeSend:function(){
             $('#ok_button').text('Deleting...');
         },

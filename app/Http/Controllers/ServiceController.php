@@ -14,6 +14,10 @@ use Illuminate\Contracts\Filesystem\FileNotFoundException;
 class ServiceController extends Controller
 
 {
+    function __construct()
+    {
+         $this->middleware('permission:service-page', ['only' => ['index','show']]);
+    }
     /**
      * Display a listing of the resource.
      *

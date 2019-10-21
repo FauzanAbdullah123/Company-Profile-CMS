@@ -10,6 +10,10 @@ use DataTables;
 
 class TeamController extends Controller
 {
+    function __construct()
+    {
+         $this->middleware('permission:team-page', ['only' => ['index','show']]);
+    }
     /**
      * Display a listing of the resource.
      *

@@ -9,6 +9,10 @@ use Spatie\Activitylog\Models\Activity;
 
 class PositionAvailableController extends Controller
 {
+    function __construct()
+    {
+         $this->middleware('permission:positionavailable-page', ['only' => ['index','show']]);
+    }
     /**
      * Display a listing of the resource.
      *

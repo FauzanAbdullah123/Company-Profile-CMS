@@ -10,6 +10,10 @@ use DataTables;
 
 class GalleryController extends Controller
 {
+    function __construct()
+    {
+         $this->middleware('permission:gallery-page', ['only' => ['index','show']]);
+    }
     /**
      * Display a listing of the resource.
      *

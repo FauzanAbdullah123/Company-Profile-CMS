@@ -250,7 +250,7 @@
     var id = $(this).attr('id');
     $('#form_result').html('');
     $.ajax({
-        url:"/admin/logo/"+id+"/edit",
+        url:"/backend/logo/"+id+"/edit",
         dataType:"json",
             success:function(html){
                 $('#store_image').html("<img src={{ URL::to('/') }}/assets/img/logo/" + html.data.image + " width='70' class='img-thumbnail' />");
@@ -273,7 +273,7 @@
 
     $('#ok_button').click(function(){
         $.ajax({
-        url:"/admin/logo/destroy/"+user_id,
+        url:"/backend/logo/destroy/"+user_id,
         beforeSend:function(){
             $('#ok_button').text('Deleting...');
         },

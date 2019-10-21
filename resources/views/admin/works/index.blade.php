@@ -294,7 +294,7 @@
     var id = $(this).attr('id');
     $('#form_result').html('');
     $.ajax({
-        url:"/admin/works/"+id+"/edit",
+        url:"/backend/works/"+id+"/edit",
         dataType:"json",
             success:function(html){
                 $('#store_image').html("<img src={{ URL::to('/') }}/assets/img/works/" + html.data.image + " width='70' class='img-thumbnail' />");
@@ -321,7 +321,7 @@
 
     $('#ok_button').click(function(){
         $.ajax({
-        url:"/admin/works/destroy/"+user_id,
+        url:"/backend/works/destroy/"+user_id,
         beforeSend:function(){
             $('#ok_button').text('Deleting...');
         },

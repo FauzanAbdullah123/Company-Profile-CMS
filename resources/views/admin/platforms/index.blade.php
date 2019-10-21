@@ -264,7 +264,7 @@
     var id = $(this).attr('id');
     $('#form_result').html('');
     $.ajax({
-        url:"/admin/platforms/"+id+"/edit",
+        url:"/backend/platforms/"+id+"/edit",
         dataType:"json",
             success:function(html){
                 $('#platforms').val(html.data.platforms);
@@ -288,7 +288,7 @@
 
     $('#ok_button').click(function(){
         $.ajax({
-        url:"/admin/platforms/destroy/"+user_id,
+        url:"/backend/platforms/destroy/"+user_id,
         beforeSend:function(){
             $('#ok_button').text('Deleting...');
         },

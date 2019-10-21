@@ -12,6 +12,10 @@ use Spatie\Activitylog\Models\Activity;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 class ArticleController extends Controller
 {
+    function __construct()
+    {
+         $this->middleware('permission:article-page', ['only' => ['index','show']]);
+    }
     /**
      * Display a listing of the resource.
      *

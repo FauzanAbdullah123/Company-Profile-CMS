@@ -272,7 +272,7 @@
     var id = $(this).attr('id');
     $('#form_result').html('');
     $.ajax({
-        url:"/admin/sliders/"+id+"/edit",
+        url:"/backend/sliders/"+id+"/edit",
         dataType:"json",
             success:function(html){
                 $('#store_image').html("<img src={{ URL::to('/') }}/assets/img/sliders/" + html.data.image + " width='70' class='img-thumbnail' />");
@@ -297,7 +297,7 @@
 
     $('#ok_button').click(function(){
         $.ajax({
-        url:"/admin/sliders/destroy/"+user_id,
+        url:"/backend/sliders/destroy/"+user_id,
         beforeSend:function(){
             $('#ok_button').text('Deleting...');
         },

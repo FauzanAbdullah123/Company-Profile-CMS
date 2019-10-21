@@ -7,6 +7,10 @@ use Spatie\Activitylog\Models\Activity;
 use DataTables;
 class CategoryController extends Controller
 {
+    function __construct()
+    {
+         $this->middleware('permission:category-page', ['only' => ['index','show']]);
+    }
     /**
      * Display a listing of the resource.
      *

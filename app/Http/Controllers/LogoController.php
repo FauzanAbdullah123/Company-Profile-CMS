@@ -17,6 +17,10 @@ class LogoController extends Controller
      */
     public function index()
     {
+        function __construct()
+    {
+         $this->middleware('permission:logo-page', ['only' => ['index','show']]);
+    }
         if(request()->ajax())
         {
             return Datatables()->of(Logo::latest()->get())

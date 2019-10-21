@@ -263,7 +263,7 @@
     var id = $(this).attr('id');
     $('#form_result').html('');
     $.ajax({
-        url:"/admin/office/"+id+"/edit",
+        url:"/backend/office/"+id+"/edit",
         dataType:"json",
             success:function(html){
                 $('#title').val(html.data.title);
@@ -286,7 +286,7 @@
 
     $('#ok_button').click(function(){
         $.ajax({
-        url:"/admin/office/destroy/"+user_id,
+        url:"/backend/office/destroy/"+user_id,
         beforeSend:function(){
             $('#ok_button').text('Deleting...');
         },

@@ -17,8 +17,8 @@
         "laravel/tinker": "^1.0",
         "laravelcollective/html": "~5.0",
         "nesbot/carbon": "^2.24",
-        "santigarcor/laratrust": "5.2.*",
         "spatie/laravel-activitylog": "^3.7",
+        "spatie/laravel-permission": "^3.2",
         "yajra/laravel-datatables-oracle": "~9.0"
     },
     "require-dev": {

@@ -10,6 +10,10 @@ use DataTables;
 
 class SlidersController extends Controller
 {
+    function __construct()
+    {
+         $this->middleware('permission:sliders-page', ['only' => ['index','show']]);
+    }
     /**
      * Display a listing of the resource.
      *

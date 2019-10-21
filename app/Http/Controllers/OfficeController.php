@@ -10,6 +10,10 @@ use DataTables;
 
 class OfficeController extends Controller
 {
+    function __construct()
+    {
+         $this->middleware('permission:office-page', ['only' => ['index','show']]);
+    }
     /**
      * Display a listing of the resource.
      *

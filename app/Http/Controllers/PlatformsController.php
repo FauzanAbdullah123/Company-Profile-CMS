@@ -10,6 +10,10 @@ use DataTables;
 
 class PlatformsController extends Controller
 {
+    function __construct()
+    {
+         $this->middleware('permission:platforms-page', ['only' => ['index','show']]);
+    }
     /**
      * Display a listing of the resource.
      *

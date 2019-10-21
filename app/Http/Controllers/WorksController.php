@@ -10,6 +10,10 @@ use DataTables;
 
 class WorksController extends Controller
 {
+    function __construct()
+    {
+         $this->middleware('permission:works-page', ['only' => ['index','show']]);
+    }
     /**
      * Display a listing of the resource.
      *
