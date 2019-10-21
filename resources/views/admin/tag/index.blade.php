@@ -1,12 +1,7 @@
 @extends('layouts.admin')
 
-@section('title-website')
-    Tag
-@endsection
-
-@section('title')
-    Data Tag
-@endsection
+@section('title-website') Tags @endsection
+@section('title') <h1 style="margin-left: 2%; margin-top: 15px; font-size: 35px;"><b>Tags</b></h1> @endsection
 
 @section('content')
 <section class="content">

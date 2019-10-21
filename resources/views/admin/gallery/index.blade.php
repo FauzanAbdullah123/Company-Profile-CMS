@@ -1,12 +1,7 @@
 @extends('layouts.admin')
 
-@section('title-website')
-    Gallery
-@endsection
-
-@section('title')
-    Data Gallery
-@endsection
+@section('title-website') Gallery @endsection
+@section('title') <h1 style="margin-left: 2%; margin-top: 15px; font-size: 35px;"><b>Gallery</b></h1> @endsection
 
 @section('content')
 

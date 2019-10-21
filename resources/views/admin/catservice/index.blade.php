@@ -1,12 +1,7 @@
 @extends('layouts.admin')
 
-@section('title-website')
-    Category Service
-@endsection
-
-@section('title')
-    Data Category Service
-@endsection
+@section('title-website') Category Service @endsection
+@section('title') <h1 style="margin-left: 2%; margin-top: 15px; font-size: 35px;"><b>Category Service</b></h1> @endsection
 
 @section('content')
 
