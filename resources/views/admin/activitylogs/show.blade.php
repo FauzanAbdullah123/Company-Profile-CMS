@@ -10,10 +10,10 @@
             <div class="box">
                 <div class="box-header">Activity {{ $activitylog->id }}</div>
                     <div class="box-body">
-                    <a href="{{ url('/admin/activitylogs') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
+                    <a href="{{ url('/backend/activitylogs') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
                     {!! Form::open([
                         'method'=>'DELETE',
-                        'url' => ['admin/activitylogs', $activitylog->id],
+                        'url' => ['backend/activitylogs', $activitylog->id],
                         'style' => 'display:inline'
                     ]) !!}
                         {!! Form::button('<i class="fa fa-trash-o" aria-hidden="true"></i> Delete', array(

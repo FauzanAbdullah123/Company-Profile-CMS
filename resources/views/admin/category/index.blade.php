@@ -105,7 +105,7 @@
             $('#formAdd').on('submit', (e) => {
                 e.preventDefault();
                 $.ajax({
-                    url: '/category',
+                    url: '/backend/category',
                     method: 'POST',
                     data: {
                         nama: $('.c-nama').val()
@@ -145,7 +145,7 @@
                 e.preventDefault();
                 var id = $(this).data('id');
                 $.ajax({
-                    url: '/category/'+id,
+                    url: '/backend/category/'+id,
                     method: 'GET',
                     success: (res) => {
                         $('.e-nama').val('');
@@ -163,7 +163,7 @@
                 e.preventDefault();
                 var id = $('input[id="id-kategori-e"]').val();
                 $.ajax({
-                    url: '/category/'+ id,
+                    url: '/backend/category/'+ id,
                     method: 'PUT',
                     data: {
                         id: id,
@@ -204,7 +204,7 @@
                 e.preventDefault();
                 var id = $(this).data('id');
                 $.ajax({
-                    url: '/category/' + id,
+                    url: '/backend/category/' + id,
                     method: 'GET',
                     success: (res) => {
                         $('#modalHapus').modal('show');
@@ -220,7 +220,7 @@
                 e.preventDefault();
                 var id = $('input[id="id-kategori-h"]').val();
                 $.ajax({
-                    url: '/category/'+id,
+                    url: '/backend/category/'+id,
                     method: 'DELETE',
                     success: (res) => {
                        Swal.fire(

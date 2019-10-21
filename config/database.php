@@ -91,6 +91,10 @@ return [
             'prefix_indexes' => true,
         ],
 
+        'defaultconnection' => [
+            'driver' => 'mariadb',
+        ],
+
     ],
 
     /*

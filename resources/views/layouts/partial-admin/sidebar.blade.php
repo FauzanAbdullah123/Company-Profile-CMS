@@ -82,7 +82,7 @@
 
          <li class="{{ ( Request::segment(2) == 'users' || Request::segment(2) == 'roles') ? 'active treeview menu-open' : 'treeview' }}">
           <a href="#">
-            <i class="fa fa-globe"></i>
+            <i class="fa fa-group"></i>
             <span>Manage ACL</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
@@ -95,7 +95,7 @@
         </li>
         <li class="{{ ( Request::segment(2) == 'sliders' || Request::segment(2) == 'office' || Request::segment(2) == 'works' || Request::segment(2) == 'logo' || Request::segment(2) == 'platforms' || Request::segment(2) == 'team') ? 'active treeview menu-open' : 'treeview' }}">
           <a href="#">
-            <i class="fa fa-globe"></i>
+            <i class="fa fa-cog"></i>
             <span>Website Settings</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>

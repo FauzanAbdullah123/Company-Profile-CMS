@@ -105,7 +105,7 @@
             $('#formAdd').on('submit', (e) => {
                 e.preventDefault();
                 $.ajax({
-                    url: '/tag',
+                    url: '/backend/tag',
                     method: 'POST',
                     data: {
                         nama: $('.c-nama').val()
@@ -145,7 +145,7 @@
                 e.preventDefault();
                 var id = $(this).data('id');
                 $.ajax({
-                    url: '/tag/'+id,
+                    url: '/backend/tag/'+id,
                     method: 'GET',
                     success: (res) => {
                         $('.e-nama').val('');
@@ -163,7 +163,7 @@
                 e.preventDefault();
                 var id = $('input[id="id-tag-e"]').val();
                 $.ajax({
-                    url: '/tag/'+ id,
+                    url: '/backend/tag/'+ id,
                     method: 'PUT',
                     data: {
                         id: id,
@@ -204,7 +204,7 @@
                 e.preventDefault();
                 var id = $(this).data('id');
                 $.ajax({
-                    url: '/tag/' + id,
+                    url: '/backend/tag/' + id,
                     method: 'GET',
                     success: (res) => {
                         $('#modalHapus').modal('show');
@@ -220,7 +220,7 @@
                 e.preventDefault();
                 var id = $('input[id="id-tag-h"]').val();
                 $.ajax({
-                    url: '/tag/'+id,
+                    url: '/backend/tag/'+id,
                     method: 'DELETE',
                     success: (res) => {
                        Swal.fire(
