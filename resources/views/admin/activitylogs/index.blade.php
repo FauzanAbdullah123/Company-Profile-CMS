@@ -9,7 +9,7 @@
         <div class="col-xs-12">
             <div class="box">
                 <div class="box-header">
-                 {!! Form::open(['method' => 'GET', 'url' => '/admin/activitylogs', 'class' => 'form-inline my-2 my-lg-0 float-right', 'role' => 'search'])  !!}
+                 {!! Form::open(['method' => 'GET', 'url' => '/backend/activitylogs', 'class' => 'form-inline my-2 my-lg-0 float-right', 'role' => 'search'])  !!}
                     <div class="input-group">
                     <table>
                     <tr>
@@ -54,10 +54,10 @@
                                 </td>
                                 <td>{{ $item->created_at }}</td>
                                 <td>
-                                    <a href="{{ url('/admin/activitylogs/' . $item->id) }}" title="View Activity"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></button></a>
+                                    <a href="{{ url('/backend/activitylogs/' . $item->id) }}" title="View Activity"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></button></a>
                                     {!! Form::open([
                                         'method' => 'DELETE',
-                                        'url' => ['/admin/activitylogs', $item->id],
+                                        'url' => ['/backend/activitylogs', $item->id],
                                         'style' => 'display:inline'
                                     ]) !!}
                                         {!! Form::button('<i class="fa fa-trash-o" aria-hidden="true"></i>', array(
