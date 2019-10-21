@@ -4,6 +4,15 @@
 @section('title') <h1 style="margin-left: 2%; margin-top: 15px; font-size: 35px;"><b>Log Activity</b></h1> @endsection
 
 @section('content')
+
+@if ($message = Session::get('success'))
+<div class="container-fluid">
+    <div class="alert alert-success">
+    <button type="button" class="close" data-dismiss="alert">×</button>
+        <p>{{ $message }}</p>
+    </div>
+</div>
+@endif
 <section class="content">
     <div class="row">
         <div class="col-xs-12">

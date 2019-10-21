@@ -55,6 +55,7 @@ class ActivityLogsController extends Controller
     {
         Activity::destroy($id);
 
-        return redirect('backend/activitylogs')->with('flash_message', 'Activity deleted!');
+       return redirect()->route('activitylogs.index')
+                        ->with('success','Log deleted successfully');
     }
 }
