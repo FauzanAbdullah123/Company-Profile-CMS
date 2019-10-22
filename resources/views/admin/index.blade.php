@@ -2,6 +2,10 @@
 
 @section('title') <h1 style="margin-left: 43%; margin-top: 30px;"><b>Dashboard</b></h1> @endsection
 
+@section('title-website')
+Dashboard
+@endsection
+
 @section('content')
 
 <!-- Content Wrapper. Contains page content -->
