@@ -110,4 +110,17 @@
     <script src="{{ asset('AdminLTE/dist/js/demo.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 
+     <script>
+     $("#checkall").click(function (){
+     if ($("#checkall").is(':checked')){
+        $(".name").each(function (){
+           $(this).prop("checked", true);
+           });
+        }else{
+           $(".name").each(function (){
+                $(this).prop("checked", false);
+           });
+        }
+    });
+    </script>
 @endpush

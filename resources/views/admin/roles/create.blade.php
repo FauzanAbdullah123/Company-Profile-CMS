@@ -29,7 +29,11 @@
                     @endphp
                     <div class="form-group">
                         <strong>Permission:</strong>
-                        <br/>
+                        <br><br>
+                        <div class="col-md-3 "> 
+                            Select All : <input id="checkall" class='' type="checkbox" >
+                        </div>
+                        <br><br>
                         @foreach($permission as $value)
                             <label>{{ Form::checkbox('permission[]', $value->id, false, array('class' => 'name')) }}
                             {{ $value->name }}

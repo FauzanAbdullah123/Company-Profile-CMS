@@ -22,55 +22,56 @@
   </div>
 @endif
 
-<div class="container-fluid">
-    <div class="row justify-content-center">
-        <div class="col-md-10">
-            <div class="card">
-                <div class="card-body">
-                    {!! Form::model($user, ['method' => 'PATCH','route' => ['users.update', $user->id]]) !!}
-                        <div class="form-group row mb-4">
-                            <label for="" class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Name</label>
-                            <div class="col-sm-12 col-md-10">
-                                {!! Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}
-                            </div>
-                        </div>
-                        <div class="form-group row mb-4">
-                            <label for="" class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Email</label>
-                            <div class="col-sm-12 col-md-10">
-                                {!! Form::text('email', null, array('placeholder' => 'Email','class' => 'form-control')) !!}
-                            </div>
-                        </div>
-                        <div class="form-group row mb-4">
-                            <label for="" class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Password</label>
-                            <div class="col-sm-12 col-md-10">
-                                {!! Form::password('password', array('placeholder' => 'Password','class' => 'form-control')) !!}
-                            </div>
-                        </div>
-                        <div class="form-group row mb-4">
-                            <label for="" class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Confirm Password</label>
-                            <div class="col-sm-12 col-md-10">
-                                {!! Form::password('confirm-password', array('placeholder' => 'Confirm Password','class' => 'form-control')) !!}
-                            </div>
-                        </div>
-                        <div class="form-group row mb-4">
-                            <label for="" class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Role</label>
-                            <div class="col-sm-12 col-md-10">
-                                {!! Form::select('roles[]', $roles,$userRole, array('class' => 'form-control', 'placeholder' => 'Choose Role')) !!}
-                            </div>
-                        </div>
-                        <div class="form-group row mb-4">
-                            <label for="" class="col-form-label text-md-right col-12 col-md-3 col-lg-3"></label><br><br>
-                            <div class="col-sm-12 col-md-10">
-                                <button type="submit" class="btn btn-success">Edit User</button>
-                                <a href="{{ route('users.index') }}" class="btn btn-secondary">Back</a>
-                            </div>
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                </div>
+                <div class="box-body">
+                {!! Form::model($user, ['method' => 'PATCH','route' => ['users.update', $user->id]]) !!}
+                    <div class="form-group row mb-4">
+                        <label for="" class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Name</label>
+                        <div class="col-sm-12 col-md-10">
+                            {!! Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}
                         </div>
                     </div>
-                    {!! Form::close() !!}
+                    <div class="form-group row mb-4">
+                        <label for="" class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Email</label>
+                        <div class="col-sm-12 col-md-10">
+                            {!! Form::text('email', null, array('placeholder' => 'Email','class' => 'form-control')) !!}
+                        </div>
+                    </div>
+                    <div class="form-group row mb-4">
+                        <label for="" class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Password</label>
+                        <div class="col-sm-12 col-md-10">
+                            {!! Form::password('password', array('placeholder' => 'Password','class' => 'form-control')) !!}
+                        </div>
+                    </div>
+                    <div class="form-group row mb-4">
+                        <label for="" class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Confirm Password</label>
+                        <div class="col-sm-12 col-md-10">
+                            {!! Form::password('confirm-password', array('placeholder' => 'Confirm Password','class' => 'form-control')) !!}
+                        </div>
+                    </div>
+                    <div class="form-group row mb-4">
+                        <label for="" class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Role</label>
+                        <div class="col-sm-12 col-md-10">
+                            {!! Form::select('roles[]', $roles,$userRole, array('class' => 'form-control', 'placeholder' => 'Choose Role')) !!}
+                        </div>
+                    </div>
+                    <div class="form-group row mb-4">
+                        <div class="pull-right" style="margin-right:20px; margin-top:20px;">
+                            <button class="btn btn-light"><a href="{{ route('users.index') }}">Back</a></button>
+                            <button type="submit" class="btn btn-primary">Edit User</button>
+                        </div>
+                    </div>
                 </div>
+                {!! Form::close() !!}
             </div>
         </div>
     </div>
+</section>
 @endsection
 
 @section('css')

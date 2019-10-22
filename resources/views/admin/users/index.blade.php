@@ -42,58 +42,56 @@
 
 
 <div class="box-body">
-<table class="table table-bordered table-hover">
- <tr>
-   <th>No</th>
-   <th>Name</th>
-   <th>Email</th>
-   <th>Roles</th>
-   <th>Status</th>
-   <!-- <th>Status</th> -->
-   <th width="200px">Action</th>
- </tr>
- @foreach ($data as $key => $user)
-  <tr>
-    <td>{{ ++$i }}</td>
-    <td>{{ $user->name }}</td>
-    <td>{{ $user->email }}</td>
-    <td>
-      @if(!empty($user->getRoleNames()))
-        @foreach($user->getRoleNames() as $v)
-           <label class="badge badge-success">{{ $v }}</label>
-        @endforeach
-      @endif
-    </td>
-     <td>
-        @if($user->isOnline())
-            <span class="badge success">Online</span>
-        @else
-            <span class="badge danger">Offline</span>
-        @endif
-        </td>
+    <table class="table table-bordered table-hover">
+        <tr>
+        <th>No</th>
+        <th>Name</th>
+        <th>Roles</th>
+        <th>Status</th>
+        <!-- <th>Status</th> -->
+        <th width="200px">Action</th>
+        </tr>
+        @foreach ($data as $key => $user)
+        <tr>
+            <td>{{ ++$i }}</td>
+            <td>{{ $user->name }}</td>
+            <td>
+            @if(!empty($user->getRoleNames()))
+                @foreach($user->getRoleNames() as $v)
+                <label class="badge badge-success">{{ $v }}</label>
+                @endforeach
+            @endif
+            </td>
+            <td>
+                @if($user->isOnline())
+                    <span class="badge success">Online</span>
+                @else
+                    <span class="badge danger">Offline</span>
+                @endif
+                </td>
 
-    <td>
-       <a class="btn btn-info btn-sm" href="{{ route('users.show',$user->id) }}"><i class="fa fa-eye" aria-hidden="true"></i></a>
+            <td>
+            <a class="btn btn-info btn-sm" href="{{ route('users.show',$user->id) }}"><i class="fa fa-eye" aria-hidden="true"></i></a>
 
-       <a class="btn btn-primary btn-sm" href="{{ route('users.edit',$user->id) }}"><i class="fa fa-edit"></i></a>
+            <a class="btn btn-primary btn-sm" href="{{ route('users.edit',$user->id) }}"><i class="fa fa-edit"></i></a>
 
-        {!! Form::open([
-        'method' => 'DELETE',
-        'route' => ['users.destroy', $user->id],
-        'style'=>'display:inline'
-        ]) !!}
+                {!! Form::open([
+                'method' => 'DELETE',
+                'route' => ['users.destroy', $user->id],
+                'style'=>'display:inline'
+                ]) !!}
 
-            {!! Form::button('<i class="fa fa-trash-o" aria-hidden="true"></i>', array(
-                'type' => 'submit',
-                'class' => 'btn btn-danger btn-sm',
-                'title' => 'Delete Roles',
-                'onclick'=>'return confirm("Confirm delete?")'
-            )) !!}
-        {!! Form::close() !!}
-    </td>
-  </tr>
- @endforeach
-</table>
+                    {!! Form::button('<i class="fa fa-trash-o" aria-hidden="true"></i>', array(
+                        'type' => 'submit',
+                        'class' => 'btn btn-danger btn-sm',
+                        'title' => 'Delete Roles',
+                        'onclick'=>'return confirm("Confirm delete?")'
+                    )) !!}
+                {!! Form::close() !!}
+            </td>
+        </tr>
+    @endforeach
+    </table>
 </div>
 
 
