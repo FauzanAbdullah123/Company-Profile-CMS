@@ -66,9 +66,9 @@
         </td>
 
     <td>
-       <a class="btn btn-info btn-sm" href="{{ route('users.show',$user->id) }}"><i class="fa fa-eye" aria-hidden="true"></i></a>
+       <a class="btn btn-info btn-sm" href="{{ route('users.show',$user->id) }}" title="Show User"><i class="fa fa-eye" aria-hidden="true"></i></a>
 
-       <a class="btn btn-primary btn-sm" href="{{ route('users.edit',$user->id) }}"><i class="fa fa-edit"></i></a>
+       <a class="btn btn-primary btn-sm" href="{{ route('users.edit',$user->id) }}" title="Edit User"><i class="fa fa-edit"></i></a>
 
         {!! Form::open([
         'method' => 'DELETE',
@@ -79,7 +79,7 @@
             {!! Form::button('<i class="fa fa-trash-o" aria-hidden="true"></i>', array(
                 'type' => 'submit',
                 'class' => 'btn btn-danger btn-sm',
-                'title' => 'Delete Roles',
+                'title' => 'Delete User',
                 'onclick'=>'return confirm("Confirm delete?")'
             )) !!}
         {!! Form::close() !!}

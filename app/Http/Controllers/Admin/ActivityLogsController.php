@@ -55,7 +55,7 @@ class ActivityLogsController extends Controller
     {
         Activity::destroy($id);
 
-       return redirect()->route('activitylogs.index')
-                        ->with('success','Log deleted successfully');
+       return redirect()->route('activitylogs.index');
+                        
     }
 }
