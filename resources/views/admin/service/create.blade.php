@@ -57,7 +57,7 @@
                         @endphp
                         <div class="form-group">
                             <label for="">Other Service</label>
-                            <select style="width:100%;" name="otherservice[]" id="select2" class="form-control multiple" required multiple>
+                            <select style="width:100%;" name="otherservice[]" id="select2" class="form-control multiple" multiple>
                                 @foreach($otherservice as $data)
                                     <option value="{{ $data->id }}">
                                         {{ $data->title }}

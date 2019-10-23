@@ -52,7 +52,7 @@ class PositionAvailableController extends Controller
         $positionavailable->save();
          Session::flash("flash_notification", [
         "level" => "success",
-        "message" => "Saved Position Available Successfully <b>$positionavailable->title</b>!"
+        "message" => " <b>$positionavailable->title</b> Position Available Saved Successfully!"
         ]);
         
        return redirect()->route('positionavailable.index');  
@@ -96,7 +96,7 @@ class PositionAvailableController extends Controller
         $positionavailable->save();
          Session::flash("flash_notification", [
             "level" => "success",
-            "message" => "Edited Position Available Successfully <b>$positionavailable->title</b>!"
+            "message" => "Edited Position Available Successfully became <b>$positionavailable->title</b>!"
         ]);
         return redirect()->route('positionavailable.index');  
     }

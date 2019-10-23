@@ -5,7 +5,7 @@
 @endsection
 
 @section('title')
-    Role Management
+<h1 style="margin-left: 2%; margin-top: 15px; font-size: 35px;"><b>Role Management</b></h1>
 @endsection
 
 @section('content')
@@ -14,6 +14,7 @@
 @if ($message = Session::get('success'))
 <div class="container-fluid">
     <div class="alert alert-success">
+    <button type="button" class="close" data-dismiss="alert">×</button>
         <p>{{ $message }}</p>
     </div>
 </div>

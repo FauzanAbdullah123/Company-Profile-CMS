@@ -5,7 +5,7 @@
 @endsection
 
 @section('title')
-    Data Category
+<h1 style="margin-left: 2%; margin-top: 15px; font-size: 35px;"><b>Data Category</b></h1>
 @endsection
 
 @section('content')

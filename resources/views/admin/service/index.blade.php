@@ -5,7 +5,7 @@
 @endsection
 
 @section('title')
-    Data Service
+<h1 style="margin-left: 2%; margin-top: 15px; font-size: 35px;"><b>Data Service</b></h1>
 @endsection
 
 @section('content')

@@ -1,18 +1,18 @@
 @extends('layouts.admin')
 
 @section('title-website') Logs @endsection
-@section('title') <h1 style="margin-left: 41%; margin-top: 15px; font-size: 35px;"><b>Log Activity</b></h1> @endsection
+@section('title') <h1 style="margin-left: 2%; margin-top: 15px; font-size: 35px;"><b>Log Activity</b></h1> @endsection
 
 @section('content')
 
-@if ($message = Session::get('success'))
+<!-- @if ($message = Session::get('success'))
 <div class="container-fluid">
     <div class="alert alert-success">
+    <button type="button" class="close" data-dismiss="alert">×</button>
         <p>{{ $message }}</p>
     </div>
 </div>
-@endif
-
+@endif -->
 <section class="content">
     <div class="row">
         <div class="col-xs-12">
@@ -63,19 +63,8 @@
                                 </td>
                                 <td>{{ $item->created_at }}</td>
                                 <td>
-                                    <a href="{{ url('/backend/activitylogs/' . $item->id) }}" title="View Activity"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></button></a>
-                                    {!! Form::open([
-                                        'method' => 'DELETE',
-                                        'url' => ['/backend/activitylogs', $item->id],
-                                        'style' => 'display:inline'
-                                    ]) !!}
-                                        {!! Form::button('<i class="fa fa-trash-o" aria-hidden="true"></i>', array(
-                                                'type' => 'submit',
-                                                'class' => 'btn btn-danger btn-sm',
-                                                'title' => 'Delete Activity',
-                                                'onclick'=>'return confirm("Confirm delete?")'
-                                        )) !!}
-                                    {!! Form::close() !!}
+                                    <a href="{{ url('/backend/activitylogs/' . $item->id) }}" title="View Activity"><button class="btn btn-info btn-sm" style="width:40px;height:30px;"><i class="fa fa-eye" aria-hidden="true"></i></button></a>
+                                    <a href="javascript:;" data-toggle="modal" onclick="deleteData({{$item->id}})" data-target="#DeleteModal"><button class="btn btn-danger btn-sm" style="width:40px;height:30px;"><i class="fa fa-trash-o" aria-hidden="true"></i></button></a>
                                 </td>
                             </tr>
                         @endforeach
@@ -87,6 +76,30 @@
         </div>
     </div>
 </section>
+<div id="DeleteModal" class="modal fade text-danger" role="dialog">
+    <div class="modal-dialog ">
+        <!-- Modal content-->
+        <form action="" id="deleteForm" method="post">
+            <div class="modal-content">
+                <div class="modal-header bg-danger">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title text-center">LOG DELETE CONFIRMATION</h4>
+                </div>
+                <div class="modal-body">
+                    {{ csrf_field() }}
+                    {{ method_field('DELETE') }}
+                    <p class="text-center">Are You Sure Want To Delete ?</p>
+                </div>
+                <div class="modal-footer">
+                    <center>
+                        <button type="button" class="btn btn-success" data-dismiss="modal">Cancel</button>
+                        <button type="submit" name="" class="btn btn-danger" data-dismiss="modal" onclick="formSubmit()">Yes, Delete</button>
+                    </center>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
 @endsection
 
 @section('css')
@@ -127,5 +140,25 @@
     <!-- AdminLTE for demo purposes -->
     <script src="{{ asset('AdminLTE/dist/js/demo.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
-@endpush
+    <script type="text/javascript">
+        function deleteData(id)
+        {
+            var id = id;
+            var url = '{{ route("activitylogs.destroy", ":id") }}';
+            url = url.replace(':id', id);
+            $("#deleteForm").attr('action', url);
+        }
 
+        function formSubmit()
+        {
+            if(formSubmit) {
+            $("#deleteForm").submit();
+            Swal.fire(
+                'Good job!',
+                'Log Successfully Deleted',
+                'success'
+                )
+            }
+        }
+  </script>
+@endpush

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 23 Okt 2019 pada 08.14
+-- Waktu pembuatan: 23 Okt 2019 pada 08.50
 -- Versi server: 10.1.35-MariaDB
 -- Versi PHP: 7.2.9
 
@@ -77,7 +77,7 @@ INSERT INTO `activity_log` (`id`, `log_name`, `description`, `subject_id`, `subj
 (6, 'default', 'App\\Category model has been updated', 22, 'App\\Category', 1, 'App\\User', '[]', '2019-10-21 09:24:56', '2019-10-21 09:24:56'),
 (7, 'default', 'App\\Tag model has been created', 30, 'App\\Tag', 1, 'App\\User', '[]', '2019-10-21 09:42:23', '2019-10-21 09:42:23'),
 (8, 'default', 'App\\User model has been updated', 1, 'App\\User', 2, 'App\\User', '[]', '2019-10-23 02:19:25', '2019-10-23 02:19:25'),
-(9, 'default', 'App\\Tag model has been created', 30, 'App\\Tag', 3, 'App\\User', '[]', '2019-10-23 04:13:21', '2019-10-23 04:13:21');
+(10, 'default', 'App\\User model has been created', 4, 'App\\User', 1, 'App\\User', '[]', '2019-10-23 06:39:22', '2019-10-23 06:39:22');
 
 -- --------------------------------------------------------
 
@@ -329,8 +329,9 @@ CREATE TABLE `model_has_roles` (
 
 INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
 (1, 'App\\User', 1),
+(2, 'App\\User', 2),
 (2, 'App\\User', 3),
-(3, 'App\\User', 2);
+(3, 'App\\User', 4);
 
 -- --------------------------------------------------------
 
@@ -742,7 +743,8 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'Super Admin', 'superadmin@gmail.com', '$2y$10$o4pGSYJT6COz3xSIUI5IbOO56CBsRrZXXw/O/M2/l8w9.zKgGFr5.', NULL, '2019-10-21 08:28:34', '2019-10-23 02:19:24'),
 (2, 'Fauzan Abdullah', 'uzhantheforev@gmail.com', '$2y$10$bo/6yYLdtc6TifcdszQh4O5HPowlDUm9WfFcyMaQ6lVJEXm5yh8.i', NULL, '2019-10-21 08:48:27', '2019-10-21 08:48:27'),
-(3, 'Bagas', 'bagasbaldguy@gmail.com', '$2y$10$OqEeNrvelw/WxtjuoCqi6u9AxAB25Jidww1UrihvD553rlceS1L2y', NULL, '2019-10-21 08:49:10', '2019-10-21 08:49:10');
+(3, 'Bagas', 'bagasbaldguy@gmail.com', '$2y$10$OqEeNrvelw/WxtjuoCqi6u9AxAB25Jidww1UrihvD553rlceS1L2y', NULL, '2019-10-21 08:49:10', '2019-10-21 08:49:10'),
+(4, 'Administrator', 'admin@gmail.com', '$2y$10$wahDaq8913YljGU1qSxh4.uMnxsssMVu8N4taZRJqBciNfOfdAvI.', NULL, '2019-10-23 06:39:22', '2019-10-23 06:39:22');
 
 -- --------------------------------------------------------
 
@@ -969,7 +971,7 @@ ALTER TABLE `abouts`
 -- AUTO_INCREMENT untuk tabel `activity_log`
 --
 ALTER TABLE `activity_log`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT untuk tabel `articles`
@@ -1089,7 +1091,7 @@ ALTER TABLE `teams`
 -- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT untuk tabel `works`

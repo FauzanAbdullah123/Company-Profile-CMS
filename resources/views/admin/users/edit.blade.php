@@ -39,7 +39,7 @@
                     <div class="form-group row mb-4">
                         <label for="" class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Email</label>
                         <div class="col-sm-12 col-md-10">
-                            {!! Form::text('email', null, array('placeholder' => 'Email','class' => 'form-control')) !!}
+                            {!! Form::email('email', null, array('placeholder' => 'Email','class' => 'form-control')) !!}
                         </div>
                     </div>
                     <div class="form-group row mb-4">

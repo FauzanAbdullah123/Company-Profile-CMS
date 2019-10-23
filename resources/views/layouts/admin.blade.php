@@ -67,5 +67,6 @@
   </footer>
 
 @stack('js')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.29.2/sweetalert2.all.js"></script>
 </body>
 </html>

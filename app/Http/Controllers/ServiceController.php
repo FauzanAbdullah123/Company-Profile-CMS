@@ -70,7 +70,7 @@ class ServiceController extends Controller
        $service->save();
        Session::flash("flash_notification", [
         "level" => "success",
-        "message" => "Saved service Successfully <b>$service->title</b>!"
+        "message" => "<b>$service->title</b> Service Saved Successfully!"
     ]);
        $service->otherservice()->attach($request->otherservice);
        return redirect()->route('service.index');    
@@ -139,7 +139,7 @@ class ServiceController extends Controller
         $service->otherservice()->sync($request->otherservice);
         Session::flash("flash_notification", [
             "level" => "success",
-            "message" => "Edited service Successfully <b>$service->title</b>!"
+            "message" => "Edited Service Successfully became <b>$service->title</b>!"
         ]);
         return redirect()->route('service.index');
     }

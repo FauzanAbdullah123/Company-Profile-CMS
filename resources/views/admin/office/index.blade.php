@@ -5,7 +5,7 @@
 @endsection
 
 @section('title')
-    Data Office
+<h1 style="margin-left: 2%; margin-top: 15px; font-size: 35px;"><b>Data Office</b></h1>
 @endsection
 
 @section('content')
@@ -79,7 +79,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h2 class="modal-title">Confirmation</h2>
+                <h2 class="modal-confirm">Confirmation</h2>
             </div>
             <div class="modal-body">
                 <h4 align="center" style="margin:0;">Are you sure you want to remove this data?</h4>
