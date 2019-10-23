@@ -19,7 +19,7 @@ class RoleController extends Controller
 
     function __construct()
     {
-         $this->middleware('permission:role-page', ['only' => ['index','store']]);
+         $this->middleware('permission:role-page', ['only' => ['index','show']]);
     }
 
     public function index(Request $request)

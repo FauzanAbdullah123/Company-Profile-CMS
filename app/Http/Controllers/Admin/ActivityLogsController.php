@@ -10,6 +10,10 @@ use Illuminate\Http\Request;
 
 class ActivityLogsController extends Controller
 {
+    function __construct()
+    {
+         $this->middleware('permission:log-page', ['only' => ['index','show']]);
+    }
     /**
      * Display a listing of the resource.
      *

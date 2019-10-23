@@ -11,6 +11,10 @@ use Hash;
 
 class UserController extends Controller
 {
+    function __construct()
+    {
+         $this->middleware('permission:user-page', ['only' => ['index','show']]);
+    }
     /**
      * Display a listing of the resource.
      *

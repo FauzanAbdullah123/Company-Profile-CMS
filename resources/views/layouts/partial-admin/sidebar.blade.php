@@ -23,7 +23,7 @@
           </a>
         </li>
 
-         
+         @can('article-page')
         <li class="{{ ( Request::segment(2) == 'article' || Request::segment(2) == 'category' || Request::segment(2) == 'tag') ? 'active treeview menu-open' : 'treeview' }}">
           <a href="#">
             <i class="fa fa-globe"></i>
@@ -33,12 +33,14 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li class="{{ (Request::segment(2) == 'article') ? 'active' : '' }}"><a href="{{ route('article.index') }}"><i class="fa fa-circle-o"></i>Articles</a></li>
-            <li class="{{ (Request::segment(2) == 'category') ? 'active' : '' }}"><a href="{{ route('category.index') }}"><i class="fa fa-circle-o"></i>Categories</a></li>
-            <li class="{{ (Request::segment(2) == 'tag') ? 'active' : '' }}"><a href="{{ route('tag.index') }}"><i class="fa fa-circle-o"></i>Tags</a></li>
+           <li class="{{ (Request::segment(2) == 'article') ? 'active' : '' }}"><a href="{{ route('article.index') }}"><i class="fa fa-circle-o"></i>Articles</a></li>
+           <li class="{{ (Request::segment(2) == 'category') ? 'active' : '' }}"><a href="{{ route('category.index') }}"><i class="fa fa-circle-o"></i>Categories</a></li>
+           <li class="{{ (Request::segment(2) == 'tag') ? 'active' : '' }}"><a href="{{ route('tag.index') }}"><i class="fa fa-circle-o"></i>Tags</a></li>
           </ul>
         </li>
+        @endcan
 
+        @can('service-page')
         <li class="{{ ( Request::segment(2) == 'service' || Request::segment(2) == 'catservice' || Request::segment(2) == 'other-service') ? 'active treeview menu-open' : 'treeview' }}">
           <a href="#">
             <i class="fa fa-cogs"></i>
@@ -53,19 +55,25 @@
             <li class="{{ (Request::segment(2) == 'other-service') ? 'active' : '' }}"><a href="{{ route('other-service.index') }}"><i class="fa fa-circle-o"></i>Other Service</a></li>
           </ul>
         </li>
+        @endcan
 
+        @can('gallery-page')
         <li class="{{ (Request::segment(2) == 'gallery') ? 'treeview active' : ''}}">
           <a href="{{ route('gallery.index') }}">
             <i class="fa fa-camera"></i> <span>Gallery</span>
           </a>
         </li>
+        @endcan
 
+        @can('service-page')
          <li class="{{ (Request::segment(2) == 'about') ? 'treeview active' : ''}}">
           <a href="{{ route('about.index') }}">
             <i class="fa fa-info-circle"></i> <span>About</span>
           </a>
         </li>
+        @endcan
 
+         @can('positionavailable-page') 
          <li class="{{ (Request::segment(2) == 'positionavailables' || Request::segment(2) == 'platforms') ? 'active treeview menu-open' : 'treeview' }}">
           <a href="#">
             <i class="fa fa-bar-chart"></i>
@@ -79,7 +87,9 @@
             <li class="{{ (Request::segment(2) == 'platforms') ? 'active' : '' }}"><a href="{{ route('platforms.index') }}"><i class="fa fa-circle-o"></i>Platforms</a></li>
           </ul>
         </li>
+        @endcan
 
+        @can('user-page')
          <li class="{{ ( Request::segment(2) == 'users' || Request::segment(2) == 'roles') ? 'active treeview menu-open' : 'treeview' }}">
           <a href="#">
             <i class="fa fa-group"></i>
@@ -93,6 +103,9 @@
             <li class="{{ (Request::segment(2) == 'roles') ? 'active' : '' }}"><a href="{{ route('roles.index') }}"><i class="fa fa-circle-o"></i>Manage Roles</a></li>
           </ul>
         </li>
+        @endcan
+
+        @can('sliders-page')
         <li class="{{ ( Request::segment(2) == 'sliders' || Request::segment(2) == 'office' || Request::segment(2) == 'works' || Request::segment(2) == 'logo' || Request::segment(2) == 'platforms' || Request::segment(2) == 'team') ? 'active treeview menu-open' : 'treeview' }}">
           <a href="#">
             <i class="fa fa-cog"></i>
@@ -109,12 +122,17 @@
             <li class="{{ (Request::segment(2) == 'team') ? 'active' : '' }}"><a href="{{ route('team.index') }}"><i class="fa fa-circle-o"></i>Team</a></li>
           </ul>
         </li>
+        @endcan
+
+        @can('log-page')
          <li class="{{ (Request::segment(2) == 'activitylogs') ? 'treeview active' : ''}}">
           <a href="{{ route('activitylogs.index') }}">
             <i class="fa fa-cogs"></i> <span>Logs</span>
           </a>
         </li>
-          @endguest
+        @endcan
+
+        @endguest
       </ul>
     </section>
     <!-- /.sidebar -->
