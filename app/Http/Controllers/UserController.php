@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
 use Spatie\Permission\Models\Role;
+use Spatie\Activitylog\Models\Activity;
 use DB;
 use Hash;
 
@@ -16,6 +17,12 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    function __construct()
+    {
+         $this->middleware('permission:user-page', ['only' => ['index','show']]);
+    }
+
     public function index(Request $request)
     {
          $data = User::orderBy('id','DESC')->paginate(5);

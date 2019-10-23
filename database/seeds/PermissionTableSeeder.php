@@ -15,6 +15,8 @@ class PermissionTableSeeder extends Seeder
     public function run()
     {
        $permissions = [
+           'log-page',
+           'user-page',
            'role-page',
            'about-page',
            'article-page',

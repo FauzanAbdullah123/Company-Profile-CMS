@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use Spatie\Activitylog\Models\Activity;
 // use Spatie\Activitylog\Models\Activity;
 use DB;
 
@@ -19,7 +20,7 @@ class RoleController extends Controller
 
     function __construct()
     {
-         $this->middleware('permission:role-page', ['only' => ['index','store']]);
+         $this->middleware('permission:role-page', ['only' => ['index','show']]);
     }
 
     public function index(Request $request)

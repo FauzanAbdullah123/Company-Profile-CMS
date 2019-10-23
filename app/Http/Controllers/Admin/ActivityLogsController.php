@@ -15,6 +15,12 @@ class ActivityLogsController extends Controller
      *
      * @return \Illuminate\View\View
      */
+
+    function __construct()
+    {
+         $this->middleware('permission:log-page', ['only' => ['index','show']]);
+    }
+
     public function index(Request $request)
     {
         $keyword = $request->get('search');

@@ -41,9 +41,10 @@
         <td>{{ ++$i }}</td>
         <td>{{ $role->name }}</td>
         <td>
-            <a class="btn btn-info btn-sm" href="{{ route('roles.show',$role->id) }}" ><i class="fa fa-eye" aria-hidden="true"></i></a>
+            <a class="btn btn-info btn-sm" href="{{ route('roles.show',$role->id) }}" title="Show Role"><i class="fa fa-eye" aria-hidden="true"></i></a>
 
-                <a class="btn btn-primary btn-sm" href="{{ route('roles.edit',$role->id) }}"> <i class="fa fa-edit"></i></a>
+            @if ($role->id != 1)   
+                <a class="btn btn-primary btn-sm" href="{{ route('roles.edit',$role->id) }}" title="Edit Role"> <i class="fa fa-edit"></i></a>
 
                 {!! Form::open([
                 'method' => 'DELETE',
@@ -54,10 +55,12 @@
                     {!! Form::button('<i class="fa fa-trash-o" aria-hidden="true"></i>', array(
                         'type' => 'submit',
                         'class' => 'btn btn-danger btn-sm',
-                        'title' => 'Delete Roles',
+                        'title' => 'Delete Role',
                         'onclick'=>'return confirm("Confirm delete?")'
                     )) !!}
                 {!! Form::close() !!}
+
+            @endif
         </td>
     </tr>
     @endforeach
