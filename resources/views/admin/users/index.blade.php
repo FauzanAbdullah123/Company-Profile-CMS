@@ -63,7 +63,8 @@
         @else
             <span class="badge danger">Offline</span>
         @endif
-        </td>
+    </td>   
+
 
     <td>
        <a class="btn btn-info btn-sm" href="{{ route('users.show',$user->id) }}" title="Show User"><i class="fa fa-eye" aria-hidden="true"></i></a>
