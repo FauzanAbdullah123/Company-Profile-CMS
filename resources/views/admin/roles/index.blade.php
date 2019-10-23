@@ -38,7 +38,8 @@
         <td>{{ $role->name }}</td>
         <td>
             <a class="btn btn-info btn-sm" href="{{ route('roles.show',$role->id) }}" title="Show User"><i class="fa fa-eye" aria-hidden="true"></i></a>
-
+            
+            @if ($role->id != 1)
                 <a class="btn btn-primary btn-sm" href="{{ route('roles.edit',$role->id) }}" title="Edit User"> <i class="fa fa-edit"></i></a>
 
                 {!! Form::open([
@@ -54,6 +55,7 @@
                         'onclick'=>'return confirm("Confirm delete?")'
                     )) !!}
                 {!! Form::close() !!}
+            @endif
         </td>
     </tr>
     @endforeach

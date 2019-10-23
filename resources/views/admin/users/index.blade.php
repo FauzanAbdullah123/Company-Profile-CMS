@@ -68,21 +68,25 @@
     <td>
        <a class="btn btn-info btn-sm" href="{{ route('users.show',$user->id) }}" title="Show User"><i class="fa fa-eye" aria-hidden="true"></i></a>
 
+        @if ($user->id != 1)
        <a class="btn btn-primary btn-sm" href="{{ route('users.edit',$user->id) }}" title="Edit User"><i class="fa fa-edit"></i></a>
+        @endif
 
-        {!! Form::open([
-        'method' => 'DELETE',
-        'route' => ['users.destroy', $user->id],
-        'style'=>'display:inline'
-        ]) !!}
+        @if (($user->id != $user->isOnline()) && $user->id != 1) 
+            {!! Form::open([
+            'method' => 'DELETE',
+            'route' => ['users.destroy', $user->id],
+            'style'=>'display:inline'
+            ]) !!}
 
-            {!! Form::button('<i class="fa fa-trash-o" aria-hidden="true"></i>', array(
-                'type' => 'submit',
-                'class' => 'btn btn-danger btn-sm',
-                'title' => 'Delete User',
-                'onclick'=>'return confirm("Confirm delete?")'
-            )) !!}
-        {!! Form::close() !!}
+                {!! Form::button('<i class="fa fa-trash-o" aria-hidden="true"></i>', array(
+                    'type' => 'submit',
+                    'class' => 'btn btn-danger btn-sm',
+                    'title' => 'Delete User',
+                    'onclick'=>'return confirm("Confirm delete?")'
+                )) !!}
+            {!! Form::close() !!}
+        @endif
     </td>
   </tr>
  @endforeach
