@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 23, 2019 at 08:18 AM
+-- Generation Time: Oct 23, 2019 at 11:49 AM
 -- Server version: 10.3.16-MariaDB
 -- PHP Version: 7.3.7
 
@@ -72,7 +72,12 @@ CREATE TABLE `activity_log` (
 --
 
 INSERT INTO `activity_log` (`id`, `log_name`, `description`, `subject_id`, `subject_type`, `causer_id`, `causer_type`, `properties`, `created_at`, `updated_at`) VALUES
-(43, 'default', 'App\\Gallery model has been deleted', 43, 'App\\Gallery', 1, 'App\\User', '[]', '2019-10-23 05:55:10', '2019-10-23 05:55:10');
+(45, 'default', 'App\\User model has been updated', 1, 'App\\User', 1, 'App\\User', '[]', '2019-10-23 07:36:13', '2019-10-23 07:36:13'),
+(46, 'default', 'App\\User model has been updated', 1, 'App\\User', 1, 'App\\User', '[]', '2019-10-23 07:37:28', '2019-10-23 07:37:28'),
+(47, 'default', 'App\\User model has been updated', 1, 'App\\User', 1, 'App\\User', '[]', '2019-10-23 07:38:33', '2019-10-23 07:38:33'),
+(48, 'default', 'App\\User model has been updated', 4, 'App\\User', 4, 'App\\User', '[]', '2019-10-23 07:43:29', '2019-10-23 07:43:29'),
+(49, 'default', 'App\\User model has been deleted', 3, 'App\\User', 1, 'App\\User', '[]', '2019-10-23 08:19:44', '2019-10-23 08:19:44'),
+(50, 'default', 'App\\Category model has been created', 23, 'App\\Category', 1, 'App\\User', '[]', '2019-10-23 09:36:45', '2019-10-23 09:36:45');
 
 -- --------------------------------------------------------
 
@@ -292,7 +297,10 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (17, '2019_10_10_092006_create_catservices_table', 1),
 (18, '2019_10_10_092027_create_services_table', 1),
 (19, '2019_10_10_092111_create_other_services_table', 1),
-(20, '2019_10_18_090117_create_permission_tables', 1);
+(20, '2019_10_18_090117_create_permission_tables', 1),
+(21, '2019_10_23_135528_add_sign_in_at_to_users', 2),
+(22, '2019_10_23_142107_add_current_sign_in_at_to_users', 3),
+(23, '2017_09_01_000000_create_authentication_log_table', 4);
 
 -- --------------------------------------------------------
 
@@ -324,7 +332,6 @@ CREATE TABLE `model_has_roles` (
 
 INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
 (1, 'App\\User', 1),
-(2, 'App\\User', 3),
 (2, 'App\\User', 4),
 (8, 'App\\User', 5);
 
@@ -374,7 +381,7 @@ INSERT INTO `other_services` (`id`, `image`, `title`, `slug`, `desc`, `created_a
 (2, '1221571797.png', 'Website CMS Systems', 'website-cms-systems', 'A content management system (CMS) is a software application or set of related programs that are used to create and manage digital content. CMSes are typically used for enterprise content management (ECM) and web content management (WCM). An ECM facilitates collaboration in the workplace by integrating document management, digital asset management and records retention functionalities, and providing end users with role-based access to the organization\'s digital assets. A WCM facilitates collaborative authoring for websites. ECM software often includes a WCM publishing functionality, but ECM webpages typically remain behind the organization\'s firewall.  \r\n\r\nWant to create Website for your organization? We can provide you using Wordpress. We can customize it to integrated with your existing system. Everything with affordable price.', '2019-09-26 12:10:31', '2019-10-08 23:20:31'),
 (3, '447878208.png', 'E-Commerce', 'e-commerce', 'Ecommerce, also known as electronic commerce or internet commerce, refers to the buying and selling of goods or services using the internet, and the transfer of money and data to execute these transactions. Ecommerce is often used to refer to the sale of physical products online, but it can also describe any kind of commercial transaction that is facilitated through the internet.\r\n\r\nWe can offer you for implementing E-Commerce Management System. Like Magento , Prestashop , OpenCart , osCommerce , ZenCart. Also can be customize with your System.', '2019-09-26 12:11:52', '2019-10-08 23:18:34'),
 (4, '1298175450.png', 'Attendance', 'attendance', 'Want to implement Finger-Print for you Employee Attendance ? We can offer it and create System Automation to pull data from the machine. Attendance Report will be easy to generate.\r\n\r\nFingerprints are the tiny ridges, whorls and valley patterns on the tip of each finger. They form from pressure on a baby\'s tiny, developing fingers in the womb. No two people have been found to have the same fingerprints -- they are totally unique. There\'s a one in 64 billion chance that your fingerprint will match up exactly with someone else\'s.\r\n\r\nFingerprints are even more unique than DNA, the genetic material in each of our cells. Although identical twins can share the same DNA -- or at least most of it -- they can\'t have the same fingerprints.', '2019-09-26 12:12:30', '2019-10-08 23:14:46'),
-(5, '2058078437.png', 'Application Analytics', 'application-analytics', 'Application analytics provides insights into the performance of an application by producing real-time analysis through visualization of data. The application insights analytics include IT operations, customer experience and business outcomes. This allows enterprises to quickly troubleshoot performance questions and root cause issues in order to make needed changes for efficiency in real time.\r\n\r\nUnlock actionable business insights. Answer meaningful questions. All in real-time without code changes. We provide you Appdynamics as we are one of the partner to sale the products in Indonesia.', '2019-09-26 12:15:21', '2019-10-08 23:00:52'),
+(5, '2058078437.png', 'Application Analytics', 'application-analytics', 'Application analytics provides insights into the performance of an application by producing real-time analysis through visualization of data. The application insights analytics include IT operations, customer experience and business outcomes. This allows enterprises to quickly troubleshoot performance questions and root cause issues in order to make needed changes for efficiency in real time.\r\n\r\nUnlock actionable business insights. Answer meaningful questions. All in real-time without code changes. We provide you Appdynamics as we are one of the partner to sale the products in Indonesia.', '2019-09-26 12:15:21', '2019-10-23 08:19:07'),
 (7, '1971138424.png', 'Database Administration', 'database-administration', 'Database administration refers to the whole set of activities performed by a database administrator to ensure that a database is always available as needed. Other closely related tasks and roles are database security, database monitoring and troubleshooting, and planning for future growth\r\n\r\nthis job has the responsibility of defining database structure patterns, defining storage structures and access methods, as well as giving users access rights to access data.', '2019-10-01 17:15:05', '2019-10-08 23:18:15'),
 (8, '622300841.png', 'IT instructor', 'it-instructor', 'IT instructors are teachers who lead information technology courses at the high school and college levels. At the high school level, they usually teach courses on basic or advanced computer skills. At the college level, IT teachers may teach introductory computing, computer science and programming courses, as well as higher-level classes on specialized topics like discrete structures and software engineering. Postsecondary teachers may also mentor graduate students and conduct their own research in a particular area of interest within the field of computer science.\r\n\r\nTo be an instructor we must have skills that are in accordance with what we teach so there are no difficulties in teaching. Being a teacher or instructor can get around a salary of around 2.5 million and above and have several other benefits.', '2019-10-01 17:18:27', '2019-10-08 23:18:57'),
 (9, '223642333.png', 'UI or UX Designer', 'ui-or-ux-designer', 'UI is how a product that we make looks like what can be seen by the eye. The main purpose of the UI is to display interfaces that have good uniformity in terms of color, layout, or font. Meanwhile UX is a process to make products that we have made easy to use and do not confuse users. The responsibility of a UX designer is to ensure that every step by step goes logically and clearly. \r\n\r\nTo become a UI / UX designer we must be accustomed to choosing a combination of colors that are comfortable for the user and must be detailed to see results marketed to the production both in terms of fonts, colors, images.', '2019-10-01 17:23:52', '2019-10-08 23:19:42'),
@@ -648,7 +655,7 @@ CREATE TABLE `sliders` (
 
 INSERT INTO `sliders` (`id`, `image`, `title`, `desc`, `created_at`, `updated_at`) VALUES
 (1, '1798074603.jpg', 'We Provide IT Solution', 'Hi, We Are Arkamaya, Software Development Company from Bandung, Indonesia. Specialized in Software Development(Web, Dekstop, Mobile), you named IT.', '2019-09-25 05:51:21', '2019-09-25 05:53:51'),
-(2, '2080271535.jpg', 'Experience in Various Fields', 'more than 10 years experience in various fields in Manufacturing, Retail, Human Resource Information System, Inventory, Enterprise Resource Planning, etc.', '2019-09-25 05:54:53', '2019-10-09 08:54:12'),
+(2, '2080271535.jpg', 'Experience in Various Fields', 'more than 10 years experience in various fields in Manufacturing, Retail, Human Resource Information System, Inventory, Enterprise Resource Planning, etc.', '2019-09-25 05:54:53', '2019-10-23 08:18:35'),
 (3, '740391240.jpg', 'What We Do ?', 'Arkamaya helps  you to build an awesome software or develop the existing one, so you can focus on running your business.', '2019-09-25 05:55:48', '2019-10-09 08:55:25');
 
 -- --------------------------------------------------------
@@ -685,8 +692,7 @@ INSERT INTO `tags` (`id`, `nama`, `slug`, `created_at`, `updated_at`) VALUES
 (17, 'Education', 'education', '2019-09-18 19:59:34', '2019-09-18 19:59:34'),
 (18, 'Inovative', 'inovative', '2019-09-18 20:00:08', '2019-09-18 20:00:08'),
 (19, 'Information Technology', 'information-technology', '2019-09-18 20:00:26', '2019-09-18 20:00:26'),
-(20, 'Programming Language', 'programming-language', '2019-09-18 20:10:24', '2019-09-18 20:10:51'),
-(29, 'Override', 'override', '2019-10-01 20:34:34', '2019-10-01 20:34:34');
+(20, 'Programming Language', 'programming-language', '2019-09-18 20:10:24', '2019-09-18 20:10:51');
 
 -- --------------------------------------------------------
 
@@ -709,7 +715,7 @@ CREATE TABLE `teams` (
 
 INSERT INTO `teams` (`id`, `image`, `title`, `desc`, `created_at`, `updated_at`) VALUES
 (1, '1388796478.jpg', 'Irfan Satriadarma', 'Chief Executive Officers', '2019-09-25 21:42:52', '2019-09-25 21:43:45'),
-(2, '942513684.jpg', 'Farid Satia Supriana', 'Chief Operating Officer', '2019-09-25 21:44:22', '2019-09-25 22:09:47'),
+(2, '942513684.jpg', 'Farid Satia Supriana', 'Chief Operating Officer', '2019-09-25 21:44:22', '2019-10-23 08:17:08'),
 (3, '1048005460.jpg', 'Ipan Herdiansyah', 'Chief Marketing Officer', '2019-09-25 21:45:16', '2019-09-25 21:45:16'),
 (4, '2038541322.jpg', 'Widya Revina', 'HRGA Manager', '2019-09-25 21:46:15', '2019-09-25 21:46:15'),
 (5, '276594233.jpg', 'Yudha Ari Istiantoro', 'Project Manager', '2019-09-25 21:47:17', '2019-09-25 21:47:17'),
@@ -736,9 +742,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Super Admin', 'admin@gmail.com', '$2y$10$uuyquiow76oKxB5LphfWuethokX8q4k1IOYDCmhTFQrWg7zffSFya', NULL, '2019-10-18 04:00:01', '2019-10-21 03:04:44'),
-(3, 'Fauzan Abdullah', 'uzhantheforev@gmail.com', '$2y$10$mFd5f6gAzW9B0IYqRQ4Ov.N3ErojSVOHSK5PYZUyLXkLa26neahFS', NULL, '2019-10-18 07:22:26', '2019-10-18 07:33:02'),
-(4, 'Bagas Islam Mahendra', 'barca@gmail.com', '$2y$10$1J6okBcadqSV5eeJTedVvO9CufobOpHtoNhqjxwp/lDMTfA9ha9qC', NULL, '2019-10-23 04:03:10', '2019-10-23 04:03:10'),
+(1, 'Super Admin', 'admin@gmail.com', '$2y$10$uuyquiow76oKxB5LphfWuethokX8q4k1IOYDCmhTFQrWg7zffSFya', NULL, '2019-10-18 04:00:01', '2019-10-23 07:38:33'),
+(4, 'Bagas Islam Mahendra', 'barca@gmail.com', '$2y$10$1J6okBcadqSV5eeJTedVvO9CufobOpHtoNhqjxwp/lDMTfA9ha9qC', NULL, '2019-10-23 04:03:10', '2019-10-23 07:43:29'),
 (5, 'Administrator', 'mimin@gmail.com', '$2y$10$2aDGs3clgp9y4FwFxAHRJutZht8wrqxfW/R45MyW5t0oO4pJvtPsK', NULL, '2019-10-23 04:33:13', '2019-10-23 04:33:13');
 
 -- --------------------------------------------------------
@@ -767,7 +772,7 @@ INSERT INTO `works` (`id`, `image`, `title`, `desc`, `address`, `jobs`, `created
 (3, '1300257273.png', 'PD. Kebersihan Kota Bandung', 'For Almost 10 years we have been supporting PD. Kebersihan Kota Bandung in managing HRIS, with more concern in employee payroll, personnel activities,and payment automation.', 'JL. SURAPATI NO.216, CAHAUR GEULIS, CIBEUNYING KALER, BANDUNG', 'employee payroll, personnel activities,and payment automation', '2019-09-25 00:37:10', '2019-09-25 00:37:10'),
 (4, '537596798.png', 'PT. Aisin Indonesia Automotive', 'In Automotive Sector, we also have the opportunity to work with AISIN Indonesia Automotive in GA Inventory Sector , IATF document standard, and other business operations.', 'KAWASAN INDUSTRI KIIC LOT LL NO.9-10, KABUPATEN BANDUNG', 'GA Inventory Sector , IATF document standard, and other business operations', '2019-09-25 00:51:19', '2019-09-25 00:51:19'),
 (7, '1187944955.png', 'PT. Pupuk Kujang', 'PT Pupuk Kujang is one of the state-owned enterprises engaged in the field of industry and marketing of urea fertilizer and various chemical industries. We help develop Corporate Schedule, budget realization, and standard costing.', 'Jl. Jend. A. Yani No. 39 Cikampek 41373 Kabupaten Karawang', 'Develop Corporate Schedule, budget realization, and standard costing.', '2019-09-26 23:31:42', '2019-09-26 23:31:42'),
-(8, '1609218783.png', 'Barry Callebaut - PT. Papandayan Cocoa Industries', 'Barry Callebaut, the world\'s leading supplier of high-quality chocolate and cocoa products. B2B chocolate & cocoa manufacturer work with us in the field of HRIS Implementation.', 'Jl. Raya Dayeuhkolot No.84, Pasawahan, Dayeuhkolot, Bandung', 'HRIS Implementation.', '2019-09-26 23:33:38', '2019-09-26 23:33:38');
+(8, '1609218783.png', 'Barry Callebaut - PT. Papandayan Cocoa Industries', 'Barry Callebaut, the world\'s leading supplier of high-quality chocolate and cocoa products. B2B chocolate & cocoa manufacturer work with us in the field of HRIS Implementation.', 'Jl. Raya Dayeuhkolot No.84, Pasawahan, Dayeuhkolot, Bandung', 'HRIS Implementation.', '2019-09-26 23:33:38', '2019-10-23 08:18:12');
 
 --
 -- Indexes for dumped tables
@@ -966,7 +971,7 @@ ALTER TABLE `abouts`
 -- AUTO_INCREMENT for table `activity_log`
 --
 ALTER TABLE `activity_log`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT for table `articles`
@@ -984,7 +989,7 @@ ALTER TABLE `article_tag`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `catservices`
@@ -1008,7 +1013,7 @@ ALTER TABLE `logos`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `offices`
