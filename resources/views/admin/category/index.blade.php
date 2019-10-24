@@ -159,10 +159,11 @@
                 var id = $('input[id="id-kategori-e"]').val();
                 $.ajax({
                     url: '/backend/category/'+ id,
-                    method: 'PUT',
+                    method: 'POST',
                     data: {
                         id: id,
-                        nama: $('.e-nama').val()
+                        nama: $('.e-nama').val(),
+                        _method: 'PUT'
                     },
                     success: (res) => {
                         if(res.errors) {
@@ -216,7 +217,10 @@
                 var id = $('input[id="id-kategori-h"]').val();
                 $.ajax({
                     url: '/backend/category/'+id,
-                    method: 'DELETE',
+                    method: 'POST',
+                    data: {
+                        _method: 'DELETE'
+                    },
                     success: (res) => {
                        Swal.fire(
                             res.message,

@@ -159,10 +159,11 @@
                 var id = $('input[id="id-tag-e"]').val();
                 $.ajax({
                     url: '/backend/tag/'+ id,
-                    method: 'PUT',
+                    method: 'POST',
                     data: {
                         id: id,
-                        nama: $('.e-nama').val()
+                        nama: $('.e-nama').val(),
+                        _method: 'PUT'
                     },
                     success: (res) => {
                         if(res.errors) {
@@ -216,7 +217,10 @@
                 var id = $('input[id="id-tag-h"]').val();
                 $.ajax({
                     url: '/backend/tag/'+id,
-                    method: 'DELETE',
+                    method: 'POST',
+                    data: {
+                        _method: 'DELETE'
+                    },
                     success: (res) => {
                        Swal.fire(
                             res.message,
