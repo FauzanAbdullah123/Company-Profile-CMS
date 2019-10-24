@@ -1,12 +1,7 @@
 @extends('layouts.admin')
 
-@section('title-website')
-    Users
-@endsection
-
-@section('title')
-<h1 style="margin-left: 2%; margin-top: 15px; font-size: 35px;"><b>Manage Users</b></h1>
-@endsection
+@section('title-website') Manage Users @endsection
+@section('title') <h1 style="margin-left: 2%; margin-top: 15px; font-size: 35px;"><b>Manage Users</b></h1> @endsection
 
 @section('content')
 @include('admin.users.create')
@@ -98,7 +93,6 @@
     @endforeach
     </table>
 </div>
-
 
 {!! $data->render() !!}
 

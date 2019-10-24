@@ -1,12 +1,7 @@
 @extends('layouts.admin')
 
-@section('title-website')
-    Tag
-@endsection
-
-@section('title')
-<h1 style="margin-left: 2%; margin-top: 15px; font-size: 35px;"><b>Data Tag</b></h1>
-@endsection
+@section('title-website') Tags @endsection
+@section('title') <h1 style="margin-left: 2%; margin-top: 15px; font-size: 35px;"><b>Tags</b></h1> @endsection
 
 @section('content')
 <section class="content">
@@ -164,10 +159,11 @@
                 var id = $('input[id="id-tag-e"]').val();
                 $.ajax({
                     url: '/backend/tag/'+ id,
-                    method: 'PUT',
+                    method: 'POST',
                     data: {
                         id: id,
-                        nama: $('.e-nama').val()
+                        nama: $('.e-nama').val(),
+                        _method: 'PUT'
                     },
                     success: (res) => {
                         if(res.errors) {
@@ -221,7 +217,10 @@
                 var id = $('input[id="id-tag-h"]').val();
                 $.ajax({
                     url: '/backend/tag/'+id,
-                    method: 'DELETE',
+                    method: 'POST',
+                    data: {
+                        _method: 'DELETE'
+                    },
                     success: (res) => {
                        Swal.fire(
                             res.message,

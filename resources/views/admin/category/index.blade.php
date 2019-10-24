@@ -1,12 +1,7 @@
 @extends('layouts.admin')
 
-@section('title-website')
-    Category
-@endsection
-
-@section('title')
-<h1 style="margin-left: 2%; margin-top: 15px; font-size: 35px;"><b>Data Category</b></h1>
-@endsection
+@section('title-website') Category @endsection
+@section('title') <h1 style="margin-left: 2%; margin-top: 15px; font-size: 35px;"><b>Category</b></h1> @endsection
 
 @section('content')
 <section class="content">
@@ -164,10 +159,11 @@
                 var id = $('input[id="id-kategori-e"]').val();
                 $.ajax({
                     url: '/backend/category/'+ id,
-                    method: 'PUT',
+                    method: 'POST',
                     data: {
                         id: id,
-                        nama: $('.e-nama').val()
+                        nama: $('.e-nama').val(),
+                        _method: 'PUT'
                     },
                     success: (res) => {
                         if(res.errors) {
@@ -221,7 +217,10 @@
                 var id = $('input[id="id-kategori-h"]').val();
                 $.ajax({
                     url: '/backend/category/'+id,
-                    method: 'DELETE',
+                    method: 'POST',
+                    data: {
+                        _method: 'DELETE'
+                    },
                     success: (res) => {
                        Swal.fire(
                             res.message,

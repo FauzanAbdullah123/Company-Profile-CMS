@@ -90,7 +90,6 @@
 @endsection
 
 @push('js')
-
     <!-- jQuery 3 -->
     <script src="{{ asset('AdminLTE/bower_components/jquery/dist/jquery.min.js') }}"></script>
     <!-- Bootstrap 3.3.7 -->
@@ -113,5 +112,4 @@
     <!-- AdminLTE for demo purposes -->
     <script src="{{ asset('AdminLTE/dist/js/demo.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
-
 @endpush

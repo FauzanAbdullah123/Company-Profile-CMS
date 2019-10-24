@@ -1,12 +1,7 @@
 @extends('layouts.admin')
 
-@section('title-website')
-    Office
-@endsection
-
-@section('title')
-<h1 style="margin-left: 2%; margin-top: 15px; font-size: 35px;"><b>Data Office</b></h1>
-@endsection
+@section('title-website') Office @endsection
+@section('title') <h1 style="margin-left: 2%; margin-top: 15px; font-size: 35px;"><b>Office</b></h1> @endsection
 
 @section('content')
 

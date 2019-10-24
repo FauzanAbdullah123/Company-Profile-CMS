@@ -19,8 +19,13 @@
         "nesbot/carbon": "^2.24",
         "spatie/laravel-activitylog": "^3.7",
         "spatie/laravel-permission": "^3.2",
+<<<<<<< HEAD
         "yajra/laravel-datatables-oracle": "~9.0",
         "ybr-nx/laravel-mariadb": "^1.0"
+=======
+        "yadahan/laravel-authentication-log": "^1.2",
+        "yajra/laravel-datatables-oracle": "~9.0"
+>>>>>>> eab64150f975b06f52487f0a7c71ee52e8234fae
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

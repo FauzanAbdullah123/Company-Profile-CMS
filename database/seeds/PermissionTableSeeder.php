@@ -33,7 +33,6 @@ class PermissionTableSeeder extends Seeder
            'tag-page',
            'team-page',
            'works-page',
-           
         ];
 
 

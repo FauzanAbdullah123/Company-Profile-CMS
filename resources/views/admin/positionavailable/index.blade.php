@@ -1,12 +1,7 @@
 @extends('layouts.admin')
 
-@section('title-website')
-    Position Available
-@endsection
-
-@section('title')
-<h1 style="margin-left: 2%; margin-top: 15px; font-size: 35px;"><b>Data Position Available</b></h1>
-@endsection
+@section('title-website') Position Available @endsection
+@section('title') <h1 style="margin-left: 2%; margin-top: 15px; font-size: 35px;"><b>Position Available</b></h1> @endsection
 
 @section('content')
 @include('admin.positionavailable.create')

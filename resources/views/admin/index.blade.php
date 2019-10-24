@@ -1,6 +1,7 @@
 @extends('layouts.admin')
 
-@section('title') <h1 style="margin-left: 43%; margin-top: 30px;"><b>Dashboard</b></h1> @endsection
+@section('title-website') Dashboard @endsection
+@section('title') <h1 style="margin-left: 3%; margin-top: 30px;"><b>Arkamaya's Dashboard</b></h1> @endsection
 
 @section('title-website')
 Dashboard

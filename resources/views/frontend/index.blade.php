@@ -208,10 +208,10 @@
 		<div class="grid_12" align="center">
 				<div class="divider_page">
 					<h2> <center>Who We Work With </center></h2>
-				</div>
-				<div class="heading_button">
-					<div class="prev_button" id="testimonials_prev">Prev</div>
-					<div class="next_button" id="testimonials_next">Next</div>
+					<div class="heading_button">
+						<div class="prev_button" id="testimonials_prev">Prev</div>
+						<div class="next_button" id="testimonials_next">Next</div>
+					</div>
 				</div>
 				@php
 					$works = \App\Works::all();

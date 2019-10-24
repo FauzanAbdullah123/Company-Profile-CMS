@@ -1,12 +1,7 @@
 @extends('layouts.admin')
 
-@section('title-website')
-    Roles
-@endsection
-
-@section('title')
-<h1 style="margin-left: 2%; margin-top: 15px; font-size: 35px;"><b>Role Management</b></h1>
-@endsection
+@section('title-website') Roles Management @endsection
+@section('title') <h1 style="margin-left: 2%; margin-top: 15px; font-size: 35px;"><b>Roles Management</b></h1> @endsection
 
 @section('content')
 @include('admin.roles.create')
@@ -60,7 +55,6 @@
                         'onclick'=>'return confirm("Confirm delete?")'
                     )) !!}
                 {!! Form::close() !!}
-
             @endif
         </td>
     </tr>
@@ -113,8 +107,7 @@
     <!-- AdminLTE for demo purposes -->
     <script src="{{ asset('AdminLTE/dist/js/demo.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
-
-     <script>
+    <script>
      $("#checkall").click(function (){
      if ($("#checkall").is(':checked')){
         $(".name").each(function (){

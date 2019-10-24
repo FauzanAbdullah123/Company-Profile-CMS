@@ -33,9 +33,9 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li class="{{ (Request::segment(2) == 'article') ? 'active' : '' }}"><a href="{{ route('article.index') }}"><i class="fa fa-circle-o"></i>Articles</a></li>
-            <li class="{{ (Request::segment(2) == 'category') ? 'active' : '' }}"><a href="{{ route('category.index') }}"><i class="fa fa-circle-o"></i>Categories</a></li>
-            <li class="{{ (Request::segment(2) == 'tag') ? 'active' : '' }}"><a href="{{ route('tag.index') }}"><i class="fa fa-circle-o"></i>Tags</a></li>
+           <li class="{{ (Request::segment(2) == 'article') ? 'active' : '' }}"><a href="{{ route('article.index') }}"><i class="fa fa-circle-o"></i>Articles</a></li>
+           @can('category-page')<li class="{{ (Request::segment(2) == 'category') ? 'active' : '' }}"><a href="{{ route('category.index') }}"><i class="fa fa-circle-o"></i>Categories</a></li>@endcan
+           <li class="{{ (Request::segment(2) == 'tag') ? 'active' : '' }}"><a href="{{ route('tag.index') }}"><i class="fa fa-circle-o"></i>Tags</a></li>
           </ul>
         </li>
         @endcan
@@ -73,7 +73,7 @@
         </li>
         @endcan
 
-        @can('positionavailable-page')
+         @can('positionavailable-page') 
          <li class="{{ (Request::segment(2) == 'positionavailables' || Request::segment(2) == 'platforms') ? 'active treeview menu-open' : 'treeview' }}">
           <a href="#">
             <i class="fa fa-bar-chart"></i>
@@ -131,7 +131,8 @@
           </a>
         </li>
         @endcan
-          @endguest
+
+    @endguest
       </ul>
     </section>
     <!-- /.sidebar -->
