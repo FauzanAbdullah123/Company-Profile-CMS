@@ -9,48 +9,49 @@
 @endsection
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-10">
-            <div class="card">
-                <div class="card-body">
-                    <form action="{{ route('positionavailable.update', $positionavailable->id) }}" method="post">
-                        <input name="_method" type="hidden" value="PATCH">
-                        {{ csrf_field() }}
-                        <div class="form-group row mb-4">
-                            <label for="" class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Title</label>
-                            <div class="col-sm-12 col-md-10">
-                                <input class="form-control{{ $errors->has('title') ? ' is-invalid' : '' }}"  value="{{ $positionavailable->title }}" type="text" name="title" required>
-                                @if ($errors->has('title'))
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('title') }}</strong>
-                                </span>
-                                @endif
-                            </div>
-                         </div>
-                         <div class="form-group row mb-4">
-                            <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Description</label>
-                            <div class="col-sm-12 col-md-10">
-                                <textarea id="editor1" rows="8" cols="30" type="text" name="desc" required>{{ $positionavailable->desc }}</textarea>
-                                @if ($errors->has('desc'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('desc') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header">
+            </div>
+            <div class="box-body">
+                <form action="{{ route('positionavailable.update', $positionavailable->id) }}" method="post">
+                    <input name="_method" type="hidden" value="PATCH">
+                    {{ csrf_field() }}
                     <div class="form-group row mb-4">
-                        <label for="" class="col-form-label text-md-right col-12 col-md-3 col-lg-3"></label><br><br>
+                        <label for="" class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Title</label>
                         <div class="col-sm-12 col-md-10">
-                            <button type="submit" class="btn btn-success">Edit Post</button>
-                            <a href="{{ route('positionavailable.index') }}" class="btn btn-secondary">Back</a>
+                            <input class="form-control{{ $errors->has('title') ? ' is-invalid' : '' }}"  value="{{ $positionavailable->title }}" type="text" name="title" required>
+                            @if ($errors->has('title'))
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $errors->first('title') }}</strong>
+                            </span>
+                            @endif
+                        </div>
+                        </div>
+                        <div class="form-group row mb-4">
+                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Description</label>
+                        <div class="col-sm-12 col-md-10">
+                            <textarea id="editor1" rows="8" cols="30" type="text" name="desc" required>{{ $positionavailable->desc }}</textarea>
+                            @if ($errors->has('desc'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('desc') }}</strong>
+                                </span>
+                            @endif
                         </div>
                     </div>
-                    </form>
-                </div>
+                    <div class="form-group row mb-4">
+                        <div class="pull-right" style="margin-right:20px; margin-top:50px;">
+                            <button class="btn btn-light"><a href="{{ route('positionavailable.index') }}">Back</a></button>
+                            <button type="submit" class="btn btn-primary">Edit</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
+</section>
 @endsection
 
 @section('css')

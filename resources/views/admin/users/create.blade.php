@@ -22,26 +22,26 @@
                 {!! Form::open(array('route' => 'users.store','method'=>'POST')) !!}
                     <div class="form-group">
                         <strong>Name:</strong>
-                            {!! Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}
+                            {!! Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control','required' => true)) !!}
                         </div>
                         <div class="form-group">
                         <strong>Email:</strong>
-                        {!! Form::text('email', null, array('placeholder' => 'Email','class' => 'form-control')) !!}
+                        {!! Form::email('email', null, array('placeholder' => 'Email','class' => 'form-control','required' => true)) !!}
                     </div>
                     <div class="form-group">
                         <strong>Password:</strong>
-                        {!! Form::password('password', array('placeholder' => 'Password','class' => 'form-control')) !!}
+                        {!! Form::password('password', array('placeholder' => 'Password','class' => 'form-control','required' => true)) !!}
                     </div>
                     <div class="form-group">
                         <strong>Confirm Password:</strong>
-                        {!! Form::password('confirm-password', array('placeholder' => 'Confirm Password','class' => 'form-control')) !!}
+                        {!! Form::password('confirm-password', array('placeholder' => 'Confirm Password','class' => 'form-control','required' => true)) !!}
                     </div>
                     @php
                         $roles = \Spatie\Permission\Models\Role::pluck('name','name')->all();
                     @endphp
                     <div class="form-group">
                         <strong>Role:</strong>
-                        {!! Form::select('roles[]', $roles,[], array('class' => 'form-control', 'placeholder' => 'Choose Role')) !!}
+                        {!! Form::select('roles[]', $roles,[], array('class' => 'form-control', 'placeholder' => 'Choose Role','required' => true)) !!}
                     </div>
                 </div>
                 <div class="modal-footer">

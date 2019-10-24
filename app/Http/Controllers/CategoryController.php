@@ -9,7 +9,7 @@ class CategoryController extends Controller
 {
     function __construct()
     {
-         $this->middleware('permission:category-page', ['only' => ['index','show']]);
+         $this->middleware('permission:category-page');
     }
     /**
      * Display a listing of the resource.

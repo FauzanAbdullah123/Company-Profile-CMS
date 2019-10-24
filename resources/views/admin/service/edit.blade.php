@@ -9,95 +9,96 @@
 @endsection
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-10">
-            <div class="card">
-                <div class="card-body">
-                    <form action="{{ route('service.update', $service->id) }}" method="post" enctype="multipart/form-data">
-                        <input name="_method" type="hidden" value="PATCH">
-                        {{ csrf_field() }}
-                        <div class="form-group row mb-4">
-                            <label for="" class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Image</label>
-                            <div class="col-sm-12 col-md-10">
-                                @if (isset($service) && $service->image)
-                                <p>
-                                    <img src="{{ asset('/assets/img/service/'. $service->image.'') }}" alt="image" width="150px" height="150px" style="border-radius: 6%">
-                                </p>
-                                @endif
-                                <input class="form-control" type="file" name="image" value="{{ $service->image }}" required>
-                                @if ($errors->has('image'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('image') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="form-group row mb-4">
-                            <label for="" class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Title</label>
-                            <div class="col-sm-12 col-md-10">
-                                <input class="form-control{{ $errors->has('title') ? ' is-invalid' : '' }}"  value="{{ $service->title }}" type="text" name="title" required>
-                                @if ($errors->has('title'))
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header">
+            </div>
+            <div class="box-body">
+                <form action="{{ route('service.update', $service->id) }}" method="post" enctype="multipart/form-data">
+                    <input name="_method" type="hidden" value="PATCH">
+                    {{ csrf_field() }}
+                    <div class="form-group row mb-4">
+                        <label for="" class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Image</label>
+                        <div class="col-sm-12 col-md-10">
+                            @if (isset($service) && $service->image)
+                            <p>
+                                <img src="{{ asset('/assets/img/service/'. $service->image.'') }}" alt="image" width="150px" height="150px" style="border-radius: 6%">
+                            </p>
+                            @endif
+                            <input class="form-control" type="file" name="image" value="{{ $service->image }}" required>
+                            @if ($errors->has('image'))
                                 <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('title') }}</strong>
-                                </span>
-                                @endif
-                            </div>
-                         </div>
-                         <div class="form-group row mb-4">
-                            <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Description</label>
-                            <div class="col-sm-12 col-md-10">
-                                <textarea id="desc" rows="8" cols="30" type="text" name="desc" class="form-control" required>{{ $service->desc }}</textarea>
-                                @if ($errors->has('desc'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('desc') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="form-group row mb-4">
-                            <label for="" class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Category Service</label>
-                            <div class="col-sm-12 col-md-10">
-                            <select name="catservice" class="form-control" required>
-                                @foreach($catservice as $data)
-                                    <option value="{{ $data->id }}"
-                                        {{ $service->catservice->id ==
-                                            $data->id ? 'selected="selected"' : '' }}>
-                                        {{ $data->nama }}
-                                    </option>
-                                @endforeach
-                            </select>
-                            </div>
-                        </div>
-                        <div class="form-group row mb-4">
-                            <label for="" class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Other Service</label>
-                            <div class="col-sm-12 col-md-10">
-                            <select style="width:100%;" name="otherservice[]" id="select2" class="form-control multiple" required multiple>
-                                <option value="">- Choose Other Service -</option>
-                                    @foreach ($otherservice as $data)
-                                        <option value="{{ $data->id }}" {{ (in_array($data->id, $selected)) ? 'selected="selected"' : '' }}>
-                                            {{ $data->title }}</option>
-                                    @endforeach
-                            </select>
-                            @if ($errors->has('otherservice'))
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('otherservice') }}</strong>
+                                    <strong>{{ $errors->first('image') }}</strong>
                                 </span>
                             @endif
-                            </div>
-                        </div>
-                    <div class="form-group row mb-4">
-                        <label for="" class="col-form-label text-md-right col-12 col-md-3 col-lg-3"></label><br><br>
-                        <div class="col-sm-12 col-md-10">
-                            <a href="{{ route('service.index') }}" class="btn btn-secondary">Back</a>
-                            <button type="submit" class="btn btn-success">Save</button>
                         </div>
                     </div>
-                    </form>
-                </div>
+                    <div class="form-group row mb-4">
+                        <label for="" class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Title</label>
+                        <div class="col-sm-12 col-md-10">
+                            <input class="form-control{{ $errors->has('title') ? ' is-invalid' : '' }}"  value="{{ $service->title }}" type="text" name="title" required>
+                            @if ($errors->has('title'))
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $errors->first('title') }}</strong>
+                            </span>
+                            @endif
+                        </div>
+                        </div>
+                        <div class="form-group row mb-4">
+                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Description</label>
+                        <div class="col-sm-12 col-md-10">
+                            <textarea id="desc" rows="8" cols="30" type="text" name="desc" class="form-control" required>{{ $service->desc }}</textarea>
+                            @if ($errors->has('desc'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('desc') }}</strong>
+                                </span>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="form-group row mb-4">
+                        <label for="" class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Category Service</label>
+                        <div class="col-sm-12 col-md-10">
+                        <select name="catservice" class="form-control" required>
+                            @foreach($catservice as $data)
+                                <option value="{{ $data->id }}"
+                                    {{ $service->catservice->id ==
+                                        $data->id ? 'selected="selected"' : '' }}>
+                                    {{ $data->nama }}
+                                </option>
+                            @endforeach
+                        </select>
+                        </div>
+                    </div>
+                    <div class="form-group row mb-4">
+                        <label for="" class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Other Service</label>
+                        <div class="col-sm-12 col-md-10">
+                        <select style="width:100%;" name="otherservice[]" id="select2" class="form-control multiple" required multiple>
+                            <option value="">- Choose Other Service -</option>
+                                @foreach ($otherservice as $data)
+                                    <option value="{{ $data->id }}" {{ (in_array($data->id, $selected)) ? 'selected="selected"' : '' }}>
+                                        {{ $data->title }}</option>
+                                @endforeach
+                        </select>
+                        @if ($errors->has('otherservice'))
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $errors->first('otherservice') }}</strong>
+                            </span>
+                        @endif
+                        </div>
+                    </div>
+                    <div class="form-group row mb-4">
+                        <div class="pull-right" style="margin-right:20px; margin-top:50px;">
+                            <button class="btn btn-light"><a href="{{ route('service.index') }}">Back</a></button>
+                            <button type="submit" class="btn btn-primary">Edit Service</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
+</section>
 @endsection
 
 @section('css')

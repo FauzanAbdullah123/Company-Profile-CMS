@@ -70,7 +70,7 @@ class ArticleController extends Controller
        $article->save();
        Session::flash("flash_notification", [
         "level" => "success",
-        "message" => "Saved Article Successfully <b>$article->judul</b>!"
+        "message" => "<b>$article->judul</b> Article Saved Successfully!"
     ]);
        $article->tag()->attach($request->tag);
        return redirect()->route('article.index');    
@@ -141,7 +141,7 @@ class ArticleController extends Controller
         $article->tag()->sync($request->tag);
         Session::flash("flash_notification", [
             "level" => "success",
-            "message" => "Edited Article Successfully <b>$article->judul</b>!"
+            "message" => "Edited Article Successfully became <b>$article->judul</b>!"
         ]);
         return redirect()->route('article.index');
     }
